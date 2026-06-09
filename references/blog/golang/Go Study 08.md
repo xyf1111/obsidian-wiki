@@ -1,0 +1,20 @@
+---
+title: "Go Study 08"
+date: 2021-02-16
+tags: [golang]
+source: "https://xyf1111.github.io/go-study-08/"
+aliases:
+  - "Go Study 08"
+---
+
+# Go Study 08
+
+> 原文：[https://xyf1111.github.io/go-study-08/](https://xyf1111.github.io/go-study-08/)
+
+Go Study 08-封装
+
+封装 名字一般使用CamelCase 首字母大写：public 首字母小写：private
+
+包 每个目录一个包 main包包含可执行入口 为结构定义的方法必须放在同一个包内 可以是不同文件
+
+如何扩充系统类型或者别人的类型 定义别名 使用组合
