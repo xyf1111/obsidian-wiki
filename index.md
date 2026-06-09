@@ -18,7 +18,7 @@ title: Wiki
 ## 参考资料
 
 - [[hermes-documentation-links]] — Hermes 文档与学习资源汇总
-- [[CC-Blog-目录]] — CC's Blog 博客文章目录（93 篇）
+- [[CC-Blog-目录]] — CC's Blog 博客文章目录（97 篇）
 - [[CC-Blog-Go语言核心原理]] — Go Hash/Slice/Array/GC 底层原理
 - [[CC-Blog-面试题汇总]] — Go/MySQL/Redis 面试题整理
 - [[CC-Blog-MySQL与Redis]] — 数据库与缓存学习笔记
