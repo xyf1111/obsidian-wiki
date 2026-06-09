@@ -9,8 +9,9 @@ updated: 2026-06-07
 
 ## Recent Activity
 
-- [2026-06-06] INIT — vault created at /Users/chenjinhuang/code/ObsidianVault
+- [2026-06-09] INGEST — 从 xyf1111.github.io 导入 CC's Blog（98 篇→6 篇笔记）
 - [2026-06-07] INGEST — 导入 Hermes Agent 知识库（4 页）
+- [2026-06-06] INIT — vault created at /Users/chenjinhuang/code/ObsidianVault
 
 ## Active Threads
 
