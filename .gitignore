@@ -1,0 +1,22 @@
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/
+.obsidian/themes/
+.trash/
+.DS_Store
+
+# Sensitive / local config
+.env
+*.token
+*.secret
+*.log
+
+# Claude / agents internal
+.agents/
+.claude/
+
+# Quartz build output (will be added later)
+/public/
+/.quartz-cache/
+node_modules/
