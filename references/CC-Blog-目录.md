@@ -1,5 +1,5 @@
 ---
-title: "CC''s Blog 文章目录"
+title: "CC's Blog 文章目录"
 date: 2026-06-09
 tags:
   - blog
@@ -10,16 +10,44 @@ aliases:
   - CC博客
 ---
 
-# CC''s Blog 文章目录
+# CC's Blog 文章目录
 
 > 来源：[xyf1111.github.io](https://xyf1111.github.io/) — Hugo 博客 (LoveIt 主题)，作者 CC。
-> 共 **93 篇**独立笔记，点击标题即可阅读全文。
+> 共 **97 篇**独立笔记，点击标题即可阅读全文。
 
+## Go 语言 (66篇)
 
-## Go 语言 (60篇)
-
-- [[references/blog/golang/Go Docker|Go Docker]]
+### 底层原理
 - [[references/blog/golang/Go Hash|Go Hash]]
+- [[references/blog/golang/Go Slice|Go Slice]]
+- [[references/blog/golang/Go语言数组实现原理|Go语言数组实现原理]]
+- [[references/blog/golang/Go垃圾收集器|Go垃圾收集器]]
+- [[references/blog/golang/GoContextStudy|GoContextStudy]]
+- [[references/blog/golang/Go Docker|Go Docker]]
+- [[references/blog/golang/Grpc01|Grpc01]]
+- [[references/blog/golang/Go性能调优|Go性能调优]]
+
+### 学习笔记 (Go Study 01-18)
+- [[references/blog/golang/Go Study 01|Go Study 01]]
+- [[references/blog/golang/Go Study 02|Go Study 02]]
+- [[references/blog/golang/Go Study 03|Go Study 03]]
+- [[references/blog/golang/Go Study 04|Go Study 04]]
+- [[references/blog/golang/Go Study 05|Go Study 05]]
+- [[references/blog/golang/Go Study 06|Go Study 06]]
+- [[references/blog/golang/Go Study 07|Go Study 07]]
+- [[references/blog/golang/Go Study 08|Go Study 08]]
+- [[references/blog/golang/Go Study 09|Go Study 09]]
+- [[references/blog/golang/Go Study 10|Go Study 10]]
+- [[references/blog/golang/Go Study 11|Go Study 11]]
+- [[references/blog/golang/Go Study 12|Go Study 12]]
+- [[references/blog/golang/Go Study 13|Go Study 13]]
+- [[references/blog/golang/Go Study 14|Go Study 14]]
+- [[references/blog/golang/Go Study 15|Go Study 15]]
+- [[references/blog/golang/Go Study 16|Go Study 16]]
+- [[references/blog/golang/Go Study17|Go Study17]]
+- [[references/blog/golang/Go Study18|Go Study18]]
+
+### 实战案例 (Go Instance 01-23)
 - [[references/blog/golang/Go Instance 01|Go Instance 01]]
 - [[references/blog/golang/Go Instance 02|Go Instance 02]]
 - [[references/blog/golang/Go Instance 03|Go Instance 03]]
@@ -43,6 +71,8 @@ aliases:
 - [[references/blog/golang/Go Instance 21|Go Instance 21]]
 - [[references/blog/golang/Go Instance 22|Go Instance 22]]
 - [[references/blog/golang/Go Instance 23|Go Instance 23]]
+
+### 面试题 (Go Interview 01-09)
 - [[references/blog/golang/Go Interview 01|Go Interview 01]]
 - [[references/blog/golang/Go Interview 02|Go Interview 02]]
 - [[references/blog/golang/Go Interview 03|Go Interview 03]]
@@ -52,40 +82,20 @@ aliases:
 - [[references/blog/golang/Go Interview 07|Go Interview 07]]
 - [[references/blog/golang/Go Interview 08|Go Interview 08]]
 - [[references/blog/golang/Go Interview-09|Go Interview-09]]
-- [[references/blog/golang/Go Slice|Go Slice]]
-- [[references/blog/golang/Go Study 01|Go Study 01]]
-- [[references/blog/golang/Go Study 02|Go Study 02]]
-- [[references/blog/golang/Go Study 03|Go Study 03]]
-- [[references/blog/golang/Go Study 04|Go Study 04]]
-- [[references/blog/golang/Go Study 05|Go Study 05]]
-- [[references/blog/golang/Go Study 06|Go Study 06]]
-- [[references/blog/golang/Go Study 07|Go Study 07]]
-- [[references/blog/golang/Go Study 08|Go Study 08]]
-- [[references/blog/golang/Go Study 09|Go Study 09]]
-- [[references/blog/golang/Go Study 10|Go Study 10]]
-- [[references/blog/golang/Go Study 11|Go Study 11]]
-- [[references/blog/golang/Go Study 12|Go Study 12]]
-- [[references/blog/golang/Go Study 13|Go Study 13]]
-- [[references/blog/golang/Go Study 14|Go Study 14]]
-- [[references/blog/golang/Go Study 15|Go Study 15]]
-- [[references/blog/golang/Go Study 16|Go Study 16]]
-- [[references/blog/golang/Go Study17|Go Study17]]
-- [[references/blog/golang/Go Study18|Go Study18]]
-- [[references/blog/golang/GoContextStudy|GoContextStudy]]
-- [[references/blog/golang/Go垃圾收集器|Go垃圾收集器]]
-- [[references/blog/golang/Go性能调优|Go性能调优]]
+
+### Go 测试
 - [[references/blog/golang/Go测试从零到溜1-单元测试|Go测试从零到溜1-单元测试]]
 - [[references/blog/golang/Go测试从零到溜2-网络测试|Go测试从零到溜2-网络测试]]
 - [[references/blog/golang/Go测试从零到溜3-MySQL和Redis测试|Go测试从零到溜3-MySQL和Redis测试]]
-- [[references/blog/golang/Go语言数组实现原理|Go语言数组实现原理]]
-- [[references/blog/golang/Grpc01|Grpc01]]
 
-## MySQL (5篇)
+## MySQL (8篇)
 
 - [[references/blog/mysql/Mysql Interview 01|Mysql Interview 01]]
 - [[references/blog/mysql/Mysql Interview 02|Mysql Interview 02]]
 - [[references/blog/mysql/Mysql Interview 03|Mysql Interview 03]]
 - [[references/blog/mysql/Mysql Interview 04|Mysql Interview 04]]
+- [[references/blog/mysql/Mysql Interview 05|Mysql Interview 05]]
+- [[references/blog/mysql/Mysql Optimize 01|Mysql Optimize 01]]
 - [[references/blog/mysql/Mysql 调优1|Mysql 调优1]]
 
 ## Redis (6篇)
@@ -106,9 +116,10 @@ aliases:
 - [[references/blog/rabbitmq/RabbitMQ5|RabbitMQ5]]
 - [[references/blog/rabbitmq/RabbitMQ6|RabbitMQ6]]
 
-## Linux / 网络 / Git (5篇)
+## Linux / 网络 / Git (6篇)
 
 - [[references/blog/linux-network/Git Study01|Git Study01]]
+- [[references/blog/linux-network/Git Study02|Git Study02]]
 - [[references/blog/linux-network/Httptcpip Study 01|Httptcpip Study 01]]
 - [[references/blog/linux-network/Linux Network 01|Linux Network 01]]
 - [[references/blog/linux-network/Linux Network 02|Linux Network 02]]
@@ -132,6 +143,7 @@ aliases:
 
 - [[references/blog/other/Dos Code|Dos Code]]
 - [[references/blog/other/Markdown Study01|Markdown Study01]]
+- [[references/blog/other/First post|First post]]
 
 ---
 
