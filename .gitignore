@@ -16,7 +16,7 @@
 .agents/
 .claude/
 
-# Quartz build output (will be added later)
-/public/
-/.quartz-cache/
-node_modules/
+# Quartz build output
+quartz/public/
+quartz/.quartz/
+quartz/node_modules/
