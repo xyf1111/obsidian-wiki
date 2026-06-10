@@ -83,6 +83,12 @@ aliases:
 - [[references/blog/golang/Go Interview 08|Go Interview 08]]
 - [[references/blog/golang/Go Interview-09|Go Interview-09]]
 
+### 新特性 & 现代 Go
+- [[references/blog/golang/Go 泛型|Go 泛型 (Generics)]]
+- [[references/blog/golang/Go 新特性 1.19-1.24|Go 1.19 ~ 1.24 新特性]]
+- [[references/blog/golang/Go 工程师学习路线图|Go 工程师学习路线图]]
+- [[references/blog/golang/Go 开源项目与资源|Go 开源项目与学习资源]]
+
 ### Go 测试
 - [[references/blog/golang/Go测试从零到溜1-单元测试|Go测试从零到溜1-单元测试]]
 - [[references/blog/golang/Go测试从零到溜2-网络测试|Go测试从零到溜2-网络测试]]

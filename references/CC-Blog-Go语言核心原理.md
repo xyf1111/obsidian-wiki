@@ -28,6 +28,52 @@ tags:
 **开放寻址法**：
 - 哈希表底层是数组
 - 发生冲突时写入下一个非空位置
+
+**拉链法**：
+- 哈希表底层是数组 + 链表
+- 发生冲突时在链表后追加新元素
+- Go 使用拉链法
+
+### 扩容机制
+
+- **装载因子** = 元素数量 / 桶数量，超过 6.5 触发增量扩容
+- **增量扩容**：不是一次性搬完，而是逐步迁移，每次操作（增删改查）迁移 2 个桶
+- 扩容后桶数量翻倍，旧桶数据逐步迁移到新桶
+
+## Go 泛型 (Go 1.18+)
+
+> 详细笔记：[[references/blog/golang/Go 泛型|Go 泛型]]
+
+Go 1.18 引入泛型，是 Go 最大的语法变更。
+
+### 核心概念
+- **类型参数**：`[T any]`、`[T comparable]`
+- **类型约束**：`any`、`comparable`、自定义 `interface { ~int | ~string }`
+- **单态化 (monomorphization)**：编译时为每个具体类型生成专用代码，无运行时开销
+
+### 典型应用
+- 泛型集合：`Stack[T any]`、`Set[T comparable]`
+- 泛型函数：`Map[T, U any]`、`Filter[T any]`
+- 标准库：`slices`、`maps`、`cmp` 包（Go 1.21+）
+
+## Go 1.21 ~ 1.24 新特性
+
+> 详细笔记：[[references/blog/golang/Go 新特性 1.19-1.24|Go 新特性]]
+
+### Go 1.21 — 结构化日志 + 泛型工具包
+- `log/slog` 结构化日志
+- `slices` / `maps` / `cmp` 泛型包
+- 内置 `min`、`max`、`clear` 函数
+
+### Go 1.22 — 循环变量修复 + 增强 ServeMux
+- **循环变量语义修正**：每次迭代创建新变量，解决经典 bug
+- `for i := range 10`
+- `http.ServeMux` 支持路径参数和方法匹配
+
+### Go 1.23 — 迭代器
+- `iter.Seq` / `iter.Seq2` 迭代器接口
+- `for range` 可遍历自定义迭代器
+- `slices.All`、`maps.Keys` 等迭代器函数
 - 装载因子 = 元素数量 / 数组大小，超过 70% 性能急剧下降
 
 **拉链法**（Go 采用）：

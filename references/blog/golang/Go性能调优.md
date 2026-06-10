@@ -147,57 +147,117 @@ go tool pprof [binary] [source]
 ## 具体示例
 
 
-## go-torch和火焰图
+## Go 1.21+ 现代性能调优补充（2026更新）
 
+> 以下内容补充自 Go 1.21 ~ 1.24 的性能工具链变化
 
-火焰图(Flame Graph)是Bredan Gregg创建的一种性能分析表图，因为它的样子近似火焰而得名。上面的profiling结果也转换成火焰图，如果对火焰图比较了解可以手动来操作，不过这里我们要介绍一个工具：go-torch。这是Uber开源的一个工具，可以直接读取golang profiling数据，并生成一个火焰图的svg文件
+### 1. PGO (Profile-Guided Optimization) — Go 1.21+ 正式可用
 
+PGO 让编译器根据生产环境的 profiling 数据进行优化，是近年来最重要的性能改进。
 
-### 安装go-torch
+```bash
+# 步骤1：在生产环境采集 CPU profile
+go tool pprof -proto -seconds=30 http://localhost:8080/debug/pprof/profile > cpu.pprof
 
+# 步骤2：将 profile 放到项目根目录
+mv cpu.pprof default.pgo
 
-```go
-go get -v githug.com/uber/go-torch
+# 步骤3：正常构建，编译器自动使用 PGO
+go build -o myapp
+
+# 或显式指定
+go build -pgo=auto   # Go 1.24 默认开启
 ```
 
-火焰图svg文件可以通过浏览器打开，它对调用图的最大优点是它是动态的：可以通过点击每个方块来zoom in分析它上面的内容。
+**优化效果**：通常带来 **2% ~ 14%** 的性能提升，无需改一行代码。
 
+### 2. `go tool pprof` Web UI（取代 go-torch）
 
-火焰图的调用顺序从下到上，每个方块代表一个函数，它上面一层表示这个函数会调用哪些函数，方块的大小代表了占用CPU使用的长短。火焰图的配色并没有特殊的意义，默认的红、黄配色是为了更像火焰而已。
+Go 1.21+ 内置 Web UI，无需单独安装 FlameGraph 或 go-torch：
 
+```bash
+# 分析 CPU profile
+go tool pprof -http=:8081 cpu.pprof
 
-go-torch工具的使用非常简单，没有任何参数的话，它会尝试从http://localhost:8080/debug/pprof/profile获取profiling数据。它有三个常用的参数可以调整：
+# 分析内存
+go tool pprof -http=:8081 http://localhost:8080/debug/pprof/heap
 
+# 对比两个 profile（找出内存泄漏）
+go tool pprof -http=:8081 -base base.pprof current.pprof
+```
 
-- -u -url：要访问的URL，这里只是主机和端口部分
-- -s -suffix：pprof profile的路径，默认为/debug/pprof/profile
-- -seconds：要执行profiling的时间长度，默认为30s
+Web UI 提供：火焰图、调用图、Top 函数、源代码视图等。**直接替换 go-torch + FlameGraph**。
 
+### 3. 实时 Trace（替代原始 trace 页面）
 
-### 安装FlameGraph
+```bash
+# 采集 5 秒的 trace 数据
+curl -o trace.out http://localhost:8080/debug/pprof/trace?seconds=5
+go tool trace trace.out
+```
 
+Go 1.22+ 的 trace 工具支持更详细的 goroutine 分析、网络阻塞分析等。
 
-要生成火焰图，需要事先安装FlameGraph工具，这个工具安装很简单(需要perl环境支持)，只要把对应的可执行文件加入到环境变量中即可。
+### 4. `runtime/metrics` 可观测性
 
-
-1. 下载安装perl：https://www.perl.org/get.html
-2. 下载FlameGraph：git clone [https://github.com/brendangregg/FlameGraph.git](https://github.com/brendangregg/FlameGraph.git)
-3. 将FrameGraph目录加入到操作系统的环境变量中
-4. window只需要把go-torch/render/flamegraph.go文件中的GenerateFlameGraph按如下方式修改，然后在go-torch目录下执行go install即可
-
+Go 1.21+ 提供标准化的运行时指标，可用于 Prometheus 等监控系统：
 
 ```go
-// GenerateFlameGraph runs the flamegraph script to generate a flame graph SVG. func GenerateFlameGraph(graphInput []byte, args ...string) ([]byte, error) {
-flameGraph := findInPath(flameGraphScripts)
-if flameGraph == "" {
-	return nil, errNoPerlScript
+import "runtime/metrics"
+
+// 读取所有可用指标
+samples := make([]metrics.Sample, len(metrics.All()))
+for i, desc := range metrics.All() {
+    samples[i].Name = desc.Name
 }
-if runtime.GOOS == "windows" {
-	return runScript("perl", append([]string{flameGraph}, args...), graphInput)
-}
-  return runScript(flameGraph, args, graphInput)
+metrics.Read(samples)
+
+for _, s := range samples {
+    switch s.Value.Kind() {
+    case metrics.KindUint64:
+        fmt.Printf("%s: %d\n", s.Name, s.Value.Uint64())
+    case metrics.KindFloat64:
+        fmt.Printf("%s: %f\n", s.Name, s.Value.Float64())
+    }
 }
 ```
+
+关键指标示例：`/gc/cycles/automatic:gc-cycle.count`、`/memory/used:bytes`。
+
+### 5. 软内存限制 (Go 1.19+)
+
+传统上靠 `GOGC` 控制 GC（默认 100），Go 1.19 引入更直观的方式：
+
+```go
+import "runtime/debug"
+
+// 限制 Go 最多使用 200MB 内存
+// GC 会更积极以维持这个限制
+debug.SetMemoryLimit(200 * 1024 * 1024)
+
+// 或者通过环境变量
+// GOMEMLIMIT=200MiB go run main.go
+```
+
+### 6. 现代压测工具
+
+wrk 仍可用，但更推荐：
+
+```bash
+# hey (Go 写的，比 wrk 更易用)
+go install github.com/rakyll/hey@latest
+hey -n 10000 -c 100 http://localhost:8080/api
+
+# 或 vegeta
+go install github.com/tsenart/vegeta@latest
+echo "GET http://localhost:8080/api" | vegeta attack -duration=30s -rate=100 | vegeta report
+```
+
+### 原笔记调整说明
+
+- `go-torch` + `FlameGraph` 已分别于 2020 年、2021 年停止维护
+- 推荐统一使用 `go tool pprof -http` 查看火焰图
+- `pprof` Web UI 功能更强（支持搜索、对比、源代码定位）
 
 ### 压测工具
 
