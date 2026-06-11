@@ -1,12 +1,12 @@
 ---
-title: "Go Study 06"
+title: "Go 基础 06 — rune与字符串操作"
 date: 2021-02-16
 tags:
   - golang
   - go基础
 source: "https://xyf1111.github.io/go-study-06/"
 aliases:
-  - "Go Study 06"
+  - "Go 基础 06"  - "Go Study 06"
 ---
 
 # Go 基础 06 — rune与字符串操作

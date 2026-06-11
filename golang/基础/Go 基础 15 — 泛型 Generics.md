@@ -1,5 +1,5 @@
 ---
-title: "Go 泛型 (Generics)"
+title: "Go 基础 15 — 泛型 Generics"
 date: 2026-06-11
 tags:
   - golang
@@ -8,7 +8,7 @@ tags:
   - Go1.18
 source: ""
 aliases:
-  - "Go Generics"
+  - "Go 基础 15"  - "Go Generics"
   - "Go 泛型"
 ---
 

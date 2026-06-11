@@ -1,12 +1,12 @@
 ---
-title: "Go Study 16"
+title: "Go 基础 14 — Slice 操作专题"
 date: 2021-07-18
 tags:
   - golang
   - go基础
 source: "https://xyf1111.github.io/go-study-16/"
 aliases:
-  - "Go Study 16"
+  - "Go 基础 14"  - "Go Study 16"
 ---
 
 # Go 基础 14 — Slice 操作专题
