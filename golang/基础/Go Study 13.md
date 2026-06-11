@@ -1,13 +1,15 @@
 ---
 title: "Go Study 13"
 date: 2021-02-21
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-13/"
 aliases:
   - "Go Study 13"
 ---
 
-# Go Study 13
+# Go 基础 13 — 测试入门
 
 > 原文：[https://xyf1111.github.io/go-study-13/](https://xyf1111.github.io/go-study-13/)
 

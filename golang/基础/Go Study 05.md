@@ -1,13 +1,15 @@
 ---
 title: "Go Study 05"
 date: 2021-02-16
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-05/"
 aliases:
   - "Go Study 05"
 ---
 
-# Go Study 05
+# Go 基础 05 — 字符串与字符处理
 
 > 原文：[https://xyf1111.github.io/go-study-05/](https://xyf1111.github.io/go-study-05/)
 

@@ -1,13 +1,15 @@
 ---
 title: "Go Study 01"
 date: 2021-02-15
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-01/"
 aliases:
   - "Go Study 01"
 ---
 
-# Go Study 01
+# Go 基础 01 — 变量定义与基本类型
 
 > 原文：[https://xyf1111.github.io/go-study-01/](https://xyf1111.github.io/go-study-01/)
 

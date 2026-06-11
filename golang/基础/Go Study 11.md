@@ -1,13 +1,15 @@
 ---
 title: "Go Study 11"
 date: 2021-02-18
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-11/"
 aliases:
   - "Go Study 11"
 ---
 
-# Go Study 11
+# Go 基础 11 — 函数式: 函数与闭包
 
 > 原文：[https://xyf1111.github.io/go-study-11/](https://xyf1111.github.io/go-study-11/)
 

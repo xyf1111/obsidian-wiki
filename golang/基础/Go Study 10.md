@@ -1,13 +1,15 @@
 ---
 title: "Go Study 10"
 date: 2021-02-17
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-10/"
 aliases:
   - "Go Study 10"
 ---
 
-# Go Study 10
+# Go 基础 10 — 接口: interface
 
 > 原文：[https://xyf1111.github.io/go-study-10/](https://xyf1111.github.io/go-study-10/)
 

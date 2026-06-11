@@ -1,13 +1,15 @@
 ---
 title: "Go Study 08"
 date: 2021-02-16
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-08/"
 aliases:
   - "Go Study 08"
 ---
 
-# Go Study 08
+# Go 基础 08 — 封装与包管理
 
 > 原文：[https://xyf1111.github.io/go-study-08/](https://xyf1111.github.io/go-study-08/)
 

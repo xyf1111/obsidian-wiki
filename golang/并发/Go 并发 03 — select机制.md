@@ -7,7 +7,7 @@ aliases:
   - "Go Study17"
 ---
 
-# Go Study17
+# Go 并发 03 — select多路复用
 
 > 原文：[https://xyf1111.github.io/go-study17/](https://xyf1111.github.io/go-study17/)
 

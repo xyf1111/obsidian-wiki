@@ -3,6 +3,7 @@ title: "Go 泛型 (Generics)"
 date: 2026-06-11
 tags:
   - golang
+  - 现代Go
   - 泛型
   - Go1.18
 source: ""

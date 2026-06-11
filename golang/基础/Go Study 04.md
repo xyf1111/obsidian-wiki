@@ -1,13 +1,15 @@
 ---
 title: "Go Study 04"
 date: 2021-02-15
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-04/"
 aliases:
   - "Go Study 04"
 ---
 
-# Go Study 04
+# Go 基础 04 — 数组与切片
 
 > 原文：[https://xyf1111.github.io/go-study-04/](https://xyf1111.github.io/go-study-04/)
 

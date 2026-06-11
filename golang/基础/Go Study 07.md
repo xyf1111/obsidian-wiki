@@ -1,13 +1,15 @@
 ---
 title: "Go Study 07"
 date: 2021-02-16
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-07/"
 aliases:
   - "Go Study 07"
 ---
 
-# Go Study 07
+# Go 基础 07 — 面向对象: 结构体与方法
 
 > 原文：[https://xyf1111.github.io/go-study-07/](https://xyf1111.github.io/go-study-07/)
 

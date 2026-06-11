@@ -1,13 +1,15 @@
 ---
 title: "Go Study 03"
 date: 2021-02-15
-tags: [golang]
+tags:
+  - golang
+  - go基础
 source: "https://xyf1111.github.io/go-study-03/"
 aliases:
   - "Go Study 03"
 ---
 
-# Go Study 03
+# Go 基础 03 — 循环: for
 
 > 原文：[https://xyf1111.github.io/go-study-03/](https://xyf1111.github.io/go-study-03/)
 

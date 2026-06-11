@@ -7,7 +7,7 @@ aliases:
   - "Go Study18"
 ---
 
-# Go Study18
+# Go 实战 — validator参数校验
 
 > 原文：[https://xyf1111.github.io/go-study18/](https://xyf1111.github.io/go-study18/)
 

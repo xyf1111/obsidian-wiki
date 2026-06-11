@@ -3,6 +3,7 @@ title: "Go 1.19 ~ 1.24 新特性"
 date: 2026-06-11
 tags:
   - golang
+  - 现代Go
   - Go1.21
   - Go1.22
   - Go1.23

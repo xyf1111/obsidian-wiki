@@ -7,7 +7,7 @@ aliases:
   - "Go Study 15"
 ---
 
-# Go Study 15
+# Go 并发 02 — channel使用
 
 > 原文：[https://xyf1111.github.io/go-study-15/](https://xyf1111.github.io/go-study-15/)
 

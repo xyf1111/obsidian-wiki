@@ -7,7 +7,7 @@ aliases:
   - "Go Study 14"
 ---
 
-# Go Study 14
+# Go 并发 01 — goroutine入门
 
 > 原文：[https://xyf1111.github.io/go-study-14/](https://xyf1111.github.io/go-study-14/)
 
