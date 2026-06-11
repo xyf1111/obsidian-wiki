@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Wiki</title>
+      <link>https://xyf1111.github.io/obsidian-wiki</link>
+      <description>Last 10 notes on Wiki</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>career</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/career/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/career/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>mysql</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/database/mysql/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/database/mysql/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>database</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/database/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/database/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>redis</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/database/redis/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/database/redis/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>基础</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/golang/%E5%9F%BA%E7%A1%80/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/golang/%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>golang</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/golang/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/golang/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>实战</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/golang/%E5%AE%9E%E6%88%98/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/golang/%E5%AE%9E%E6%88%98/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>并发</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/golang/%E5%B9%B6%E5%8F%91/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/golang/%E5%B9%B6%E5%8F%91/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>底层原理</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/golang/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/golang/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item><item>
+    <title>路线</title>
+    <link>https://xyf1111.github.io/obsidian-wiki/golang/%E8%B7%AF%E7%BA%BF/</link>
+    <guid>https://xyf1111.github.io/obsidian-wiki/golang/%E8%B7%AF%E7%BA%BF/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 11 Jun 2026 21:28:42 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
