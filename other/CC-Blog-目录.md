@@ -18,14 +18,14 @@ aliases:
 ## Go 语言 (66篇)
 
 ### 底层原理
-- [[references/blog/golang/Go Hash|Go Hash]]
-- [[references/blog/golang/Go Slice|Go Slice]]
-- [[references/blog/golang/Go语言数组实现原理|Go语言数组实现原理]]
-- [[references/blog/golang/Go垃圾收集器|Go垃圾收集器]]
-- [[references/blog/golang/GoContextStudy|GoContextStudy]]
-- [[references/blog/golang/Go Docker|Go Docker]]
-- [[references/blog/golang/Grpc01|Grpc01]]
-- [[references/blog/golang/Go性能调优|Go性能调优]]
+- [[golang/底层原理/Go Hash|Go Hash]]
+- [[golang/底层原理/Go Slice|Go Slice]]
+- [[golang/底层原理/Go语言数组实现原理|Go语言数组实现原理]]
+- [[golang/底层原理/Go垃圾收集器|Go垃圾收集器]]
+- [[golang/进阶/GoContextStudy|GoContextStudy]]
+- [[golang/进阶/Go Docker|Go Docker]]
+- [[golang/进阶/Grpc01|Grpc01]]
+- [[golang/进阶/Go性能调优|Go性能调优]]
 
 ### 学习笔记 (Go Study 01-18)
 - [[references/blog/golang/Go Study 01|Go Study 01]]
@@ -84,10 +84,10 @@ aliases:
 - [[references/blog/golang/Go Interview-09|Go Interview-09]]
 
 ### 新特性 & 现代 Go
-- [[references/blog/golang/Go 泛型|Go 泛型 (Generics)]]
+- [[golang/基础/Go 泛型|Go 泛型 (Generics)]]
 - [[references/blog/golang/Go 新特性 1.19-1.24|Go 1.19 ~ 1.24 新特性]]
-- [[references/blog/golang/Go 工程师学习路线图|Go 工程师学习路线图]]
-- [[references/blog/golang/Go 开源项目与资源|Go 开源项目与学习资源]]
+- [[golang/路线/Go 工程师学习路线图|Go 工程师学习路线图]]
+- [[golang/实战/Go 开源项目与资源|Go 开源项目与学习资源]]
 
 ### Go 测试
 - [[references/blog/golang/Go测试从零到溜1-单元测试|Go测试从零到溜1-单元测试]]
@@ -155,8 +155,8 @@ aliases:
 
 ## 主题笔记（摘要汇总）
 
-- [[CC-Blog-Go语言核心原理]] — Go 底层原理深度总结
-- [[CC-Blog-面试题汇总]] — 面试题系统整理
-- [[CC-Blog-MySQL与Redis]] — 数据库与缓存知识点
-- [[CC-Blog-消息队列与中间件]] — RabbitMQ 与 gRPC
-- [[CC-Blog-个人经历]] — 简历与学习经历
+- [[other/CC-Blog-Go语言核心原理]] — Go 底层原理深度总结
+- [[other/CC-Blog-面试题汇总]] — 面试题系统整理
+- [[other/CC-Blog-MySQL与Redis]] — 数据库与缓存知识点
+- [[other/CC-Blog-消息队列与中间件]] — RabbitMQ 与 gRPC
+- [[other/CC-Blog-个人经历]] — 简历与学习经历

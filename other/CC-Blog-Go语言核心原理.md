@@ -42,7 +42,7 @@ tags:
 
 ## Go 泛型 (Go 1.18+)
 
-> 详细笔记：[[references/blog/golang/Go 泛型|Go 泛型]]
+> 详细笔记：[[golang/基础/Go 泛型|Go 泛型]]
 
 Go 1.18 引入泛型，是 Go 最大的语法变更。
 
@@ -237,6 +237,6 @@ Go 1.5+ 使用 **非分代、非移动、并发、三色标记清除** 算法。
 
 ## 相关笔记
 
-- [[CC-Blog-目录]] — 全部文章索引
-- [[CC-Blog-面试题汇总]] — Go 面试题整理
-- [[CC-Blog-MySQL与Redis]] — 数据库笔记
+- [[other/CC-Blog-目录]] — 全部文章索引
+- [[other/CC-Blog-面试题汇总]] — Go 面试题整理
+- [[other/CC-Blog-MySQL与Redis]] — 数据库笔记
