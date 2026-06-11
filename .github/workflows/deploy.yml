@@ -50,6 +50,15 @@ jobs:
       - name: Install Quartz plugins
         run: cd quartz && npx quartz plugin install
 
+      - name: Apply folder-page sort patch (ascending date)
+        run: |
+          TARGET="quartz/.quartz/plugins/folder-page/dist/index.js"
+          if [ -f "$TARGET" ]; then
+            sed -i 's/(getDate(f22)?.getTime() ?? 0) - (getDate(f1)?.getTime() ?? 0)/(getDate(f1)?.getTime() ?? 0) - (getDate(f22)?.getTime() ?? 0)/; s/return f1Title.localeCompare(f2Title);/return f2Title.localeCompare(f1Title);/' "$TARGET"
+          else
+            echo "WARNING: $TARGET not found"
+          fi
+
       - name: Build Quartz site
         run: cd quartz && npx quartz build -d .. -v
 
