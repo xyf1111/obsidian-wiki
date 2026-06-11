@@ -6,10 +6,11 @@ tags:
   - go基础
 source: "https://xyf1111.github.io/go-study-10/"
 aliases:
-  - "Go 基础 10"  - "Go Study 10"
+  - "Go 基础 10"
+  - "Go Study 10"
 ---
 
-# Go 基础 10 — 接口: interface
+# Go 基础 10 — 接口 interface
 
 > 原文：[https://xyf1111.github.io/go-study-10/](https://xyf1111.github.io/go-study-10/)
 

@@ -6,7 +6,8 @@ tags:
   - go基础
 source: "https://xyf1111.github.io/go-study-16/"
 aliases:
-  - "Go 基础 14"  - "Go Study 16"
+  - "Go 基础 14"
+  - "Go Study 16"
 ---
 
 # Go 基础 14 — Slice 操作专题

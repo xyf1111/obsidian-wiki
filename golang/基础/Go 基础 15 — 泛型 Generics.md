@@ -8,7 +8,8 @@ tags:
   - Go1.18
 source: ""
 aliases:
-  - "Go 基础 15"  - "Go Generics"
+  - "Go 基础 15"
+  - "Go Generics"
   - "Go 泛型"
 ---
 

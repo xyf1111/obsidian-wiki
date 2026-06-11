@@ -6,7 +6,8 @@ tags:
   - go基础
 source: "https://xyf1111.github.io/go-study-09/"
 aliases:
-  - "Go 基础 09"  - "Go Study 09"
+  - "Go 基础 09"
+  - "Go Study 09"
 ---
 
 # Go 基础 09 — GOPATH与依赖管理
