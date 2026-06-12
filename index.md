@@ -17,12 +17,12 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 📖 [基础](/obsidian-wiki/golang/基础/) | Go 语法基础 01-16 · 变量·条件·循环·数组·字符串·结构体·接口·函数·错误·测试·Slice·泛型·新特性 |
-| 🔄 [[golang/并发/Go 并发 01 — goroutine\|并发]] | goroutine · channel · select 多路复用 |
-| ⚙️ [[golang/底层原理/Go语言数组实现原理\|底层原理]] | 数组 · Slice · Hash · GC · 语言核心原理 |
-| 🚀 [[golang/进阶/Go性能调优\|进阶]] | 性能调优 · Context · gRPC · Docker · 测试 |
-| 💻 [[golang/实战/Go Instance 01\|实战]] | 23 个实战案例 · 开源项目与资源 |
-| 🎯 [[golang/面试/Go Interview 01\|面试]] | Go Interview 01-09 · 面试题汇总 |
-| 🗺️ [[golang/路线/Go 工程师学习路线图\|学习路线]] | Go 进阶学习路线 |
+| 🔄 [并发](/obsidian-wiki/golang/并发/) | goroutine · channel · select 多路复用 |
+| ⚙️ [底层原理](/obsidian-wiki/golang/底层原理/) | 数组 · Slice · Hash · GC · 语言核心原理 |
+| 🚀 [进阶](/obsidian-wiki/golang/进阶/) | 性能调优 · Context · gRPC · Docker · 测试 |
+| 💻 [实战](/obsidian-wiki/golang/实战/) | 23 个实战案例 · 开源项目与资源 |
+| 🎯 [面试](/obsidian-wiki/golang/面试/) | Go Interview 01-09 · 面试题汇总 |
+| 🗺️ [学习路线](/obsidian-wiki/golang/路线/) | Go 进阶学习路线 |
 
 ## 数据库
 
