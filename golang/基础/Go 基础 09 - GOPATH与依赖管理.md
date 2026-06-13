@@ -1,5 +1,5 @@
 ---
-title: "Go 基础 09 — GOPATH与依赖管理"
+title: "Go 基础 09 - GOPATH与依赖管理"
 date: 2021-02-17
 tags:
   - golang
@@ -10,7 +10,7 @@ aliases:
   - "Go Study 09"
 ---
 
-Go 基础 09 - GOPATH与依赖管理
+# Go 基础 09 - GOPATH与依赖管理
 
 > 原文：[https://xyf1111.github.io/go-study-09/](https://xyf1111.github.io/go-study-09/)
 

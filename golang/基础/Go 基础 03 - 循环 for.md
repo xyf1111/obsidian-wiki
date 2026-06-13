@@ -1,5 +1,5 @@
 ---
-title: "Go 基础 03 — 循环 for"
+title: "Go 基础 03 - 循环 for"
 date: 2021-02-15
 tags:
   - golang
@@ -10,7 +10,7 @@ aliases:
   - "Go Study 03"
 ---
 
-Go 基础 03 - 循环 for
+# Go 基础 03 - 循环 for
 
 > 原文：[https://xyf1111.github.io/go-study-03/](https://xyf1111.github.io/go-study-03/)
 

@@ -1,5 +1,5 @@
 ---
-title: "Go 基础 12 — 错误处理 defer-panic-recover"
+title: "Go 基础 12 - 错误处理 defer-panic-recover"
 date: 2021-02-18
 tags:
   - golang
@@ -10,7 +10,7 @@ aliases:
   - "Go Study 12"
 ---
 
-Go 基础 12 - 错误处理 defer-panic-recover
+# Go 基础 12 - 错误处理 defer-panic-recover
 
 > 原文：[https://xyf1111.github.io/go-study-12/](https://xyf1111.github.io/go-study-12/)
 

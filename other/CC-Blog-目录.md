@@ -12,7 +12,7 @@ aliases:
 
 # CC's Blog 文章目录
 
-> 来源：[xyf1111.github.io](https://xyf1111.github.io/) — Hugo 博客 (LoveIt 主题)，作者 CC。
+> 来源：[xyf1111.github.io](https://xyf1111.github.io/) - Hugo 博客 (LoveIt 主题)，作者 CC。
 > 共 **97 篇**独立笔记，点击标题即可阅读全文。
 
 ## Go 语言 (66篇)
@@ -28,24 +28,24 @@ aliases:
 - [[golang/进阶/Go性能调优|Go性能调优]]
 
 ### 学习笔记 (Go 基础 01-16)
-- [[golang/基础/Go 基础 01 — 变量定义与基本类型|Go 基础 01 — 变量定义与基本类型]]
-- [[golang/基础/Go 基础 02 — 条件语句 if-switch|Go 基础 02 — 条件语句 if-switch]]
-- [[golang/基础/Go 基础 03 — 循环 for|Go 基础 03 — 循环 for]]
-- [[golang/基础/Go 基础 04 — 数组与切片|Go 基础 04 — 数组与切片]]
-- [[golang/基础/Go 基础 05 — 字符串与字符处理|Go 基础 05 — 字符串与字符处理]]
-- [[golang/基础/Go 基础 06 — rune与字符串操作|Go 基础 06 — rune与字符串操作]]
-- [[golang/基础/Go 基础 07 — 结构体与方法|Go 基础 07 — 结构体与方法]]
-- [[golang/基础/Go 基础 08 — 封装与包管理|Go 基础 08 — 封装与包管理]]
-- [[golang/基础/Go 基础 09 — GOPATH与依赖管理|Go 基础 09 — GOPATH与依赖管理]]
-- [[golang/基础/Go 基础 10 — 接口 interface|Go 基础 10 — 接口 interface]]
-- [[golang/基础/Go 基础 11 — 函数与闭包|Go 基础 11 — 函数与闭包]]
-- [[golang/基础/Go 基础 12 — 错误处理 defer-panic-recover|Go 基础 12 — 错误处理 defer-panic-recover]]
-- [[golang/基础/Go 基础 13 — 测试入门|Go 基础 13 — 测试入门]]
-- [[golang/并发/Go 并发 01 — goroutine|Go Study 14]]
-- [[golang/并发/Go 并发 02 — channel|Go Study 15]]
-- [[golang/基础/Go 基础 14 — Slice 操作专题|Go 基础 14 — Slice 操作专题]]
-- [[golang/并发/Go 并发 03 — select机制|Go Study17]]
-- [[golang/进阶/Go 实战 — 结构体验证器 validator|Go Study18]]
+- [[golang/基础/Go 基础 01 - 变量定义与基本类型|Go 基础 01 - 变量定义与基本类型]]
+- [[golang/基础/Go 基础 02 - 条件语句 if-switch|Go 基础 02 - 条件语句 if-switch]]
+- [[golang/基础/Go 基础 03 - 循环 for|Go 基础 03 - 循环 for]]
+- [[golang/基础/Go 基础 04 - 数组与切片|Go 基础 04 - 数组与切片]]
+- [[golang/基础/Go 基础 05 - 字符串与字符处理|Go 基础 05 - 字符串与字符处理]]
+- [[golang/基础/Go 基础 06 - rune与字符串操作|Go 基础 06 - rune与字符串操作]]
+- [[golang/基础/Go 基础 07 - 结构体与方法|Go 基础 07 - 结构体与方法]]
+- [[golang/基础/Go 基础 08 - 封装与包管理|Go 基础 08 - 封装与包管理]]
+- [[golang/基础/Go 基础 09 - GOPATH与依赖管理|Go 基础 09 - GOPATH与依赖管理]]
+- [[golang/基础/Go 基础 10 - 接口 interface|Go 基础 10 - 接口 interface]]
+- [[golang/基础/Go 基础 11 - 函数与闭包|Go 基础 11 - 函数与闭包]]
+- [[golang/基础/Go 基础 12 - 错误处理 defer-panic-recover|Go 基础 12 - 错误处理 defer-panic-recover]]
+- [[golang/基础/Go 基础 13 - 测试入门|Go 基础 13 - 测试入门]]
+- [[golang/并发/Go 并发 01 - goroutine|Go Study 14]]
+- [[golang/并发/Go 并发 02 - channel|Go Study 15]]
+- [[golang/基础/Go 基础 14 - Slice 操作专题|Go 基础 14 - Slice 操作专题]]
+- [[golang/并发/Go 并发 03 - select机制|Go Study17]]
+- [[golang/进阶/Go 实战 - 结构体验证器 validator|Go Study18]]
 
 ### 实战案例 (Go Instance 01-23)
 - [[golang/实战/Go Instance 01|Go Instance 01]]
@@ -155,8 +155,8 @@ aliases:
 
 ## 主题笔记（摘要汇总）
 
-- [[other/CC-Blog-Go语言核心原理]] — Go 底层原理深度总结
-- [[other/CC-Blog-面试题汇总]] — 面试题系统整理
-- [[other/CC-Blog-MySQL与Redis]] — 数据库与缓存知识点
-- [[other/CC-Blog-消息队列与中间件]] — RabbitMQ 与 gRPC
-- [[other/CC-Blog-个人经历]] — 简历与学习经历
+- [[other/CC-Blog-Go语言核心原理]] - Go 底层原理深度总结
+- [[other/CC-Blog-面试题汇总]] - 面试题系统整理
+- [[other/CC-Blog-MySQL与Redis]] - 数据库与缓存知识点
+- [[other/CC-Blog-消息队列与中间件]] - RabbitMQ 与 gRPC
+- [[other/CC-Blog-个人经历]] - 简历与学习经历
