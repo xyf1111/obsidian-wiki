@@ -10,7 +10,7 @@ aliases:
   - "Go Study 10"
 ---
 
-# Go 基础 10 — 接口 interface
+Go 基础 10 - 接口 interface
 
 > 原文：[https://xyf1111.github.io/go-study-10/](https://xyf1111.github.io/go-study-10/)
 

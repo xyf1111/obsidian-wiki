@@ -10,7 +10,7 @@ aliases:
   - "Go Study 06"
 ---
 
-# Go 基础 06 — rune与字符串操作
+Go 基础 06 - rune与字符串操作
 
 > 原文：[https://xyf1111.github.io/go-study-06/](https://xyf1111.github.io/go-study-06/)
 

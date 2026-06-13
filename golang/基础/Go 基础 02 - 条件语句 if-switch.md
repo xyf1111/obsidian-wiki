@@ -10,7 +10,7 @@ aliases:
   - "Go Study 02"
 ---
 
-# Go 基础 02 — 条件语句 if/switch
+Go 基础 02 - 条件语句 if/switch
 
 > 原文：[https://xyf1111.github.io/go-study-02/](https://xyf1111.github.io/go-study-02/)
 
