@@ -42,7 +42,7 @@ tags:
 
 ## Go 泛型 (Go 1.18+)
 
-> 详细笔记：[[golang/基础/Go 泛型|Go 泛型]]
+> 详细笔记：[[golang/基础/Go 基础 15 - 泛型 Generics|Go 泛型]]
 
 Go 1.18 引入泛型，是 Go 最大的语法变更。
 
