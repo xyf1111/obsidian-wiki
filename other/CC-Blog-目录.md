@@ -15,7 +15,9 @@ aliases:
 > 来源：[xyf1111.github.io](https://xyf1111.github.io/) - Hugo 博客 (LoveIt 主题)，作者 CC。
 > 共 **97 篇**独立笔记，点击标题即可阅读全文。
 
-## Go 语言 (66篇)
+## 编程语言 (68篇)
+
+### Go 语言 (66篇)
 
 ### 底层原理
 - [[golang/底层原理/Go Hash|Go Hash]]
@@ -202,7 +204,7 @@ aliases:
 - [[career/Resume|Resume]]
 - [[career/花开简历|花开简历]]
 
-## Java (2篇)
+### Java (2篇)
 
 - [[java/Java01|Java01]]
 - [[java/Java02|Java02]]

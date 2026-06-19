@@ -13,17 +13,12 @@ title: Wiki
 - [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]] — Go 生态周报（2026-06-19）
 - [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]] — Go 生态周报
 
-## Go 语言
+## 编程语言
 
 | 分类 | 内容 |
 |------|------|
-| 📖 [[golang/基础/]] | Go 语法基础 01-21 · 变量·条件·循环·数组·字符串·结构体·接口·函数·错误·测试·Slice·泛型·新特性·指针·常量·make/new·time·fmt |
-| 🔄 [[golang/并发/]] | goroutine · channel · select · Mutex · WaitGroup · atomic · Pool · 并发模式 · 调试 |
-| ⚙️ [[golang/底层原理/]] | 数组 · Slice · Hash · GC · 字符串 · 接口 · defer/panic · GMP调度 · 内存分配 · make/new底层 |
-| 🚀 [[golang/进阶/]] | Context · pprof · 测试 · Docker · validator · gRPC · Gin · Modules · JSON · 错误处理 · slog · HTTP 服务 |
-| 💻 [[golang/实战/]] | 23 个实战案例 · 开源项目与资源 |
-| 🎯 [[golang/面试/]] | Go Interview 01-09 · 面试题汇总 |
-| 🗺️ [[golang/路线/]] | Go 工程师学习路线 — 7 阶段完整路径 |
+| 🐹 [[golang/]] | **Go 语言**：基础·并发·底层·进阶·实战·面试·路线 — 88 篇 |
+| ☕ [[java/]] | **Java**：Java01-02 · 基础语法·OOP·异常·集合·IO·多线程 |
 
 ## 数据库
 
@@ -56,10 +51,6 @@ title: Wiki
 | 🌐 [[linux-network/]] | 网络 01-03 · 协议基础·Socket编程·TCP握手挥手 |
 | 📡 [[http-tcpip/]] | HTTP TCPIP 01-02 · OSI模型·HTTP协议·HTTPS·HTTP2/3 |
 | 🔧 [[git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
-
-## Java
-
-- [[java/Java01|Java 学习笔记]]
 
 ## 学习方法
 
