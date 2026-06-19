@@ -19,7 +19,7 @@ title: Wiki
 | 📖 [[golang/基础/]] | Go 语法基础 01-21 · 变量·条件·循环·数组·字符串·结构体·接口·函数·错误·测试·Slice·泛型·新特性·指针·常量·make/new·time·fmt |
 | 🔄 [[golang/并发/]] | goroutine · channel · select · Mutex · WaitGroup · atomic · Pool · 并发模式 · 调试 |
 | ⚙️ [[golang/底层原理/]] | 数组 · Slice · Hash · GC · 字符串 · 接口 · defer/panic · GMP调度 · 内存分配 · make/new底层 |
-| 🚀 [[golang/进阶/]] | 性能调优 · Context · gRPC · Docker · 测试 |
+| 🚀 [[golang/进阶/]] | Context · pprof · 测试 · Docker · validator · gRPC · Gin · Modules · JSON · 错误处理 · slog · HTTP 服务 |
 | 💻 [[golang/实战/]] | 23 个实战案例 · 开源项目与资源 |
 | 🎯 [[golang/面试/]] | Go Interview 01-09 · 面试题汇总 |
 | 🗺️ [[golang/路线/]] | Go 进阶学习路线 |
