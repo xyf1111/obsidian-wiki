@@ -30,6 +30,7 @@ title: Wiki
 |------|------|
 | 🐬 [[database/mysql/]] | MySQL 01-09 · 事务·索引·锁·分库分表·主从复制·慢查询 |
 | 📗 [[database/redis/]] | Redis 01-08 · 数据类型·持久化·过期策略·分布式锁·Cluster |
+| 🍃 [[database/mongodb/]] | MongoDB 01-03 · CRUD·索引·聚合·副本集·分片集群 |
 
 ## 中间件
 
