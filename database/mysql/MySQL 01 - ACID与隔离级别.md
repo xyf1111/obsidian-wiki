@@ -1,5 +1,5 @@
 ---
-title: "Mysql Interview 02"
+title: "MySQL 01 - ACID与隔离级别"
 date: 2021-03-09
 tags: [mysql]
 source: "https://xyf1111.github.io/mysql-interview-02/"
@@ -7,7 +7,7 @@ aliases:
   - "Mysql Interview 02"
 ---
 
-# Mysql Interview 02
+# MySQL 01 - ACID与隔离级别
 
 > 原文：[https://xyf1111.github.io/mysql-interview-02/](https://xyf1111.github.io/mysql-interview-02/)
 

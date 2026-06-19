@@ -1,5 +1,5 @@
 ---
-title: "Redis Study 04"
+title: "Redis 04 - 主从复制"
 date: 2021-03-15
 tags: [redis]
 source: "https://xyf1111.github.io/redis-study-04/"
@@ -7,7 +7,7 @@ aliases:
   - "Redis Study 04"
 ---
 
-# Redis Study 04
+# Redis 04 - 主从复制
 
 > 原文：[https://xyf1111.github.io/redis-study-04/](https://xyf1111.github.io/redis-study-04/)
 

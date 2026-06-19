@@ -1,5 +1,5 @@
 ---
-title: "Redis Study 01"
+title: "Redis 01 - 基础与NoSQL"
 date: 2021-03-11
 tags: [redis]
 source: "https://xyf1111.github.io/redis-study-01/"
@@ -7,7 +7,7 @@ aliases:
   - "Redis Study 01"
 ---
 
-# Redis Study 01
+# Redis 01 - 基础与NoSQL概述
 
 > 原文：[https://xyf1111.github.io/redis-study-01/](https://xyf1111.github.io/redis-study-01/)
 

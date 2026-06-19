@@ -1,5 +1,5 @@
 ---
-title: "Mysql Interview 01"
+title: "MySQL 07 - drop delete truncate"
 date: 2021-03-08
 tags: [mysql]
 source: "https://xyf1111.github.io/mysql-interview-01/"
@@ -7,7 +7,7 @@ aliases:
   - "Mysql Interview 01"
 ---
 
-# Mysql Interview 01
+# MySQL 07 - drop delete truncate对比
 
 > 原文：[https://xyf1111.github.io/mysql-interview-01/](https://xyf1111.github.io/mysql-interview-01/)
 

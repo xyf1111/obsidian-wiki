@@ -1,5 +1,5 @@
 ---
-title: "Mysql Interview 03"
+title: "MySQL 03 - 索引原理与B+Tree"
 date: 2021-03-09
 tags: [mysql]
 source: "https://xyf1111.github.io/mysql-interview-03/"
@@ -7,7 +7,7 @@ aliases:
   - "Mysql Interview 03"
 ---
 
-# Mysql Interview 03
+# MySQL 03 - 索引原理与B+Tree
 
 > 原文：[https://xyf1111.github.io/mysql-interview-03/](https://xyf1111.github.io/mysql-interview-03/)
 

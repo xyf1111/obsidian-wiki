@@ -1,5 +1,5 @@
 ---
-title: "Mysql Interview 04"
+title: "MySQL 04 - 锁机制与MVCC"
 date: 2021-03-10
 tags: [mysql]
 source: "https://xyf1111.github.io/mysql-interview-04/"
@@ -7,7 +7,7 @@ aliases:
   - "Mysql Interview 04"
 ---
 
-# Mysql Interview 04
+# MySQL 04 - 锁机制与MVCC
 
 > 原文：[https://xyf1111.github.io/mysql-interview-04/](https://xyf1111.github.io/mysql-interview-04/)
 

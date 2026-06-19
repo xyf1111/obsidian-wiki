@@ -1,5 +1,5 @@
 ---
-title: "Mysql 调优1"
+title: "MySQL 05 - SQL执行顺序"
 date: 2021-11-05
 tags: [mysql]
 source: "https://xyf1111.github.io/mysql-optimize/"
@@ -7,7 +7,7 @@ aliases:
   - "Mysql 调优1"
 ---
 
-# Mysql 调优1
+# MySQL 05 - SQL执行顺序
 
 > 原文：[https://xyf1111.github.io/mysql-optimize/](https://xyf1111.github.io/mysql-optimize/)
 

@@ -1,5 +1,5 @@
 ---
-title: "Redis Interview 02"
+title: "Redis 06 - 过期策略与缓存异常"
 date: 2021-03-18
 tags: [redis]
 source: "https://xyf1111.github.io/redis-interview-02/"

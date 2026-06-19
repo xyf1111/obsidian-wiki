@@ -94,24 +94,28 @@ aliases:
 |- [[golang/进阶/Go 进阶 04 - 网络测试|Go 进阶 04 - 网络测试]]
 |- [[golang/进阶/Go 进阶 05 - MySQL和Redis测试|Go 进阶 05 - MySQL和Redis测试]]
 
-## MySQL (8篇)
+## 数据库 (MySQL 9篇 · Redis 8篇)
 
-- [[database/mysql/Mysql Interview 01|Mysql Interview 01]]
-- [[database/mysql/Mysql Interview 02|Mysql Interview 02]]
-- [[database/mysql/Mysql Interview 03|Mysql Interview 03]]
-- [[database/mysql/Mysql Interview 04|Mysql Interview 04]]
-- [[database/mysql/Mysql Interview 05|Mysql Interview 05]]
-- [[database/mysql/Mysql Optimize 01|Mysql Optimize 01]]
-- [[database/mysql/Mysql 调优1|Mysql 调优1]]
+- [[database/mysql/MySQL 01 - ACID与隔离级别|MySQL 01 - ACID与隔离级别]]
+- [[database/mysql/MySQL 02 - 存储引擎对比|MySQL 02 - 存储引擎对比]]
+- [[database/mysql/MySQL 03 - 索引原理与B+Tree|MySQL 03 - 索引原理与B+Tree]]
+- [[database/mysql/MySQL 04 - 锁机制与MVCC|MySQL 04 - 锁机制与MVCC]]
+- [[database/mysql/MySQL 05 - SQL执行顺序|MySQL 05 - SQL执行顺序]]
+- [[database/mysql/MySQL 06 - 慢查询与Explain|MySQL 06 - 慢查询与Explain]]
+- [[database/mysql/MySQL 07 - drop delete truncate对比|MySQL 07 - DDL对比]]
+- [[database/mysql/MySQL 08 - 分库分表与读写分离|MySQL 08 - 分库分表]]
+- [[database/mysql/MySQL 09 - 主从复制与高可用|MySQL 09 - 主从复制]]
 
-## Redis (6篇)
+## Redis (8篇)
 
-- [[database/redis/Redis Interview 01|Redis Interview 01]]
-- [[database/redis/Redis Interview 02|Redis Interview 02]]
-- [[database/redis/Redis Study 01|Redis Study 01]]
-- [[database/redis/Redis Study 02|Redis Study 02]]
-- [[database/redis/Redis Study 03|Redis Study 03]]
-- [[database/redis/Redis Study 04|Redis Study 04]]
+- [[database/redis/Redis 01 - 基础与NoSQL概述|Redis 01 - 基础与NoSQL]]
+- [[database/redis/Redis 02 - 五大数据类型|Redis 02 - 五大数据类型]]
+- [[database/redis/Redis 03 - 特殊数据类型与事务|Redis 03 - 特殊数据类型]]
+- [[database/redis/Redis 04 - 主从复制|Redis 04 - 主从复制]]
+- [[database/redis/Redis 05 - 持久化与数据类型|Redis 05 - 持久化]]
+- [[database/redis/Redis 06 - 过期策略与缓存异常|Redis 06 - 过期策略与缓存]]
+- [[database/redis/Redis 07 - 分布式锁|Redis 07 - 分布式锁]]
+- [[database/redis/Redis 08 - Cluster集群|Redis 08 - Cluster集群]]
 
 ## RabbitMQ (6篇)
 

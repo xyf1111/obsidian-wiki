@@ -1,5 +1,5 @@
 ---
-title: "Redis Study 02"
+title: "Redis 02 - 五大数据类型"
 date: 2021-03-12
 tags: [redis]
 source: "https://xyf1111.github.io/redis-study-02/"

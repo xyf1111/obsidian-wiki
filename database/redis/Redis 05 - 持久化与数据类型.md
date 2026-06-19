@@ -1,5 +1,5 @@
 ---
-title: "Redis Interview 01"
+title: "Redis 05 - 持久化与数据类型"
 date: 2021-03-11
 tags: [redis]
 source: "https://xyf1111.github.io/redis-interview-01/"

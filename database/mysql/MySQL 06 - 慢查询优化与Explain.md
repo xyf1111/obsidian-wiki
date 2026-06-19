@@ -1,5 +1,5 @@
 ---
-title: "Mysql Optimize 01"
+title: "MySQL 06 - 慢查询与Explain"
 date: 2021-03-08
 tags: [mysql]
 source: "https://xyf1111.github.io/mysql-optimize-01/"
@@ -7,7 +7,7 @@ aliases:
   - "Mysql Optimize 01"
 ---
 
-# Mysql Optimize 01
+# MySQL 06 - 慢查询与Explain
 
 > 原文：[https://xyf1111.github.io/mysql-optimize-01/](https://xyf1111.github.io/mysql-optimize-01/)
 

@@ -1,5 +1,5 @@
 ---
-title: "Redis Study 03"
+title: "Redis 03 - 特殊数据类型与事务"
 date: 2021-03-15
 tags: [redis]
 source: "https://xyf1111.github.io/redis-study-03/"
