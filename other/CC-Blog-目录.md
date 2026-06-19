@@ -168,14 +168,30 @@ aliases:
 
 - [[search-engine/meilisearch/Meilisearch 01 - 快速入门与对比|Meilisearch 01 - 快速入门与对比]]
 
-## Linux / 网络 / Git (6篇)
+## Linux / 网络 / Git (11篇)
 
-- [[linux-network/Git Study01|Git Study01]]
-- [[linux-network/Git Study02|Git Study02]]
-- [[linux-network/Httptcpip Study 01|Httptcpip Study 01]]
-- [[linux-network/Linux Network 01|Linux Network 01]]
-- [[linux-network/Linux Network 02|Linux Network 02]]
-- [[linux-network/Linux Study01|Linux Study01]]
+### Linux (3篇)
+
+- [[linux/Linux 01 - 基础命令|Linux 01 - 基础命令]]
+- [[linux/Linux 02 - 文件系统与权限|Linux 02 - 文件系统与权限]]
+- [[linux/Linux 03 - 进程管理与网络排查|Linux 03 - 进程管理与网络排查]]
+
+### 网络 (3篇)
+
+- [[linux-network/网络 01 - 协议基础|网络 01 - 协议基础]]
+- [[linux-network/网络 02 - Socket编程|网络 02 - Socket编程]]
+- [[linux-network/网络 03 - TCP三次握手与四次挥手|网络 03 - TCP三次握手与四次挥手]]
+
+### HTTP/TCP/IP (2篇)
+
+- [[http-tcpip/HTTP TCPIP 01 - OSI与TCPIP协议|HTTP TCPIP 01 - OSI与TCPIP协议]]
+- [[http-tcpip/HTTP TCPIP 02 - HTTP协议详解|HTTP TCPIP 02 - HTTP协议详解]]
+
+### Git (3篇)
+
+- [[git/Git 01 - 配置与基础操作|Git 01 - 配置与基础操作]]
+- [[git/Git 02 - SSH与远程仓库|Git 02 - SSH与远程仓库]]
+- [[git/Git 03 - 分支策略与工作流|Git 03 - 分支策略与工作流]]
 
 ## 面试 / 生活 (6篇)
 
