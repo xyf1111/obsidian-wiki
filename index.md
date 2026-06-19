@@ -22,7 +22,7 @@ title: Wiki
 | 🚀 [[golang/进阶/]] | Context · pprof · 测试 · Docker · validator · gRPC · Gin · Modules · JSON · 错误处理 · slog · HTTP 服务 |
 | 💻 [[golang/实战/]] | 23 个实战案例 · 开源项目与资源 |
 | 🎯 [[golang/面试/]] | Go Interview 01-09 · 面试题汇总 |
-| 🗺️ [[golang/路线/]] | Go 进阶学习路线 |
+| 🗺️ [[golang/路线/]] | Go 工程师学习路线 — 7 阶段完整路径 |
 
 ## 数据库
 
