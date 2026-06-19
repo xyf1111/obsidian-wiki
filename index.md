@@ -10,6 +10,7 @@ title: Wiki
 
 - [[learning/提问的智慧|提问的智慧]] — GitHub 40K+ stars 经典：如何正确提问以高效获取帮助
 - [[learning/持续学习的方法论与实践|持续学习的方法论与实践]] — 在技术快速迭代中保持竞争力的方法论与习惯
+- [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]] — Go 生态周报（2026-06-19）
 - [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]] — Go 生态周报
 
 ## Go 语言
@@ -62,6 +63,7 @@ title: Wiki
 
 ## 周报
 
+- [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]]
 - [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]]
 
 ## Hermes Agent
@@ -80,6 +82,10 @@ title: Wiki
 
 ## 最近活动
 
+- [2026-06-19] Go GitHub Weekly 2026-06-19 周报（Go 1.25 Beta·Gin v1.11·GORM v1.26·OpenTelemetry slog集成）
+- [2026-06-19] 搜索引擎分类：Elasticsearch 4篇 + Meilisearch 1篇
+- [2026-06-19] 中间件补全：RabbitMQ 6→9篇 + Kafka 8篇 + Nginx 6篇
+- [2026-06-19] 数据库补全：MySQL 9篇 + Redis 8篇 + MongoDB 3篇
 - [2026-06-11] 全新目录结构：golang/database/middleware/learning/career 分类整理
 - [2026-06-11] 新增提问的智慧（GitHub 经典）、持续学习方法论、Go 周报等笔记
 - [2026-06-09] 从 xyf1111.github.io 导入 CC's Blog（98 篇 → 93 篇笔记）
