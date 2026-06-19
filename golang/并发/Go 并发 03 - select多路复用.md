@@ -1,190 +1,191 @@
 ---
-title: "Go Study17"
+title: "Go 并发 03 - select多路复用"
 date: 2021-07-22
-tags: [golang]
+tags:
+  - golang
+  - 并发
 source: "https://xyf1111.github.io/go-study17/"
 aliases:
+  - "Go 并发 03"
   - "Go Study17"
 ---
 
-# Go 并发 03 - select多路复用
+# Go 并发 03 — select多路复用
 
 > 原文：[https://xyf1111.github.io/go-study17/](https://xyf1111.github.io/go-study17/)
 
-## select语句介绍
+## select 基础
 
-
-Go语言中的select语句用于监控并选择一组case语句执行相应的代码。它看起来类似于switch语句，但是select语句中所有case中的表达式必须是channel的发送或者接受操作。一个典型的select的使用示例如下：
-
+`select` 让一个 goroutine **同时等待多个 channel 操作**：
 
 ```go
 select {
-case <- ch1:
-    fmt.Println("liwenzhou.com")
+case <-ch1:
+    fmt.Println("received from ch1")
 case ch2 <- 1:
-    fmt.Println("qimi")
+    fmt.Println("sent to ch2")
 }
 ```
 
-Go语言中select关键字也能够让当前goroutine同时等待ch1的可读和ch2的可写，在ch1和ch2状态改变之前，select会一直堵塞下去，直到其中的一个channel转为就绪状态时执行对应的case分支的代码。如果多个channel同时就绪的话则随机选择一个case执行。
+| 特性 | 说明 |
+|------|------|
+| 同时就绪 | **随机选择一个**执行 |
+| 无就绪 | **阻塞**直到某个 case 就绪 |
+| nil channel | **永远阻塞**（相当于禁用这个 case） |
+| 空 select | **永久阻塞**（`select {}`） |
 
-
-处理上面展示的典型实例外，接下来我们逐一介绍一些select的特殊示例
-
-
-## 空select
-
-
-空select指的是内部不包含任何case，例如：
-
+## 空 select
 
 ```go
-select {
-
-}
+// 永久阻塞 main goroutine
+// 通常用于让程序持续运行（如服务端）
+select {}
 ```
 
-空的select语句会直接堵塞当前的goroutine，使得该goroutine进入无法唤醒的永久休眠状态
-
-
-## 只有一个case
-
-
-如果select中只包含一个case，那么该select就变成了一个堵塞的channel读/写操作。
-
+## default — 非阻塞操作
 
 ```go
 select {
-case <- ch1:
-    fmt.Println("liwenzhou.com")
-}
-```
-
-上面的代码，当ch1可读时会执行打印操作，否则就会堵塞
-
-
-## 有default语句
-
-
-如果select中还可以包含default语句，用于当其他case都不满足时执行一些默认操作。
-
-
-```go
-select {
-case <- ch1:
-    fmt.Println("liwenzhou.com")
+case val := <-ch:
+    fmt.Println("received:", val)
 default:
-    time.Sleep(time.Second)
+    fmt.Println("no data available")  // 非阻塞：没有就绪立即执行 default
 }
 ```
 
-上面的代码，当ch1可读时会执行打印操作，否则就执行default语句中的代码，这里就相当于做了一个非堵塞的channel读取操作。
-
-
-## 总结
-
-
-1. select不存在任何的case：永久堵塞当前goroutine
-2. select只存在一个case：堵塞的发送/接收
-3. select存在多个case：随机选择一个满足条件的case执行
-4. select存在default，其他case都不满足时，执行default语句中的代码
-
-
-## 如何在select中实现优先级
-
-
-已知，当select存在多个case时会随机选择一个满足条件的case执行
-
-
-现在我们有一个需求：我们有一个函数会持续不间断地从ch1和ch2中分别接收任务1和任务2，如何确保当ch1和ch2同时达到就绪状态时，优先执行任务1，在没有任务1的时候再去执行任务2
-
+### 非阻塞发送
 
 ```go
-func worker (ch1, ch2 <-chan int, stopCh chan struct{}) {
-    for {
+select {
+case ch <- val:
+    fmt.Println("sent")
+default:
+    fmt.Println("channel full, dropping value")  // buffer 满时不阻塞
+}
+```
+
+## 超时控制
+
+```go
+select {
+case result := <-ch:
+    fmt.Println("result:", result)
+case <-time.After(3 * time.Second):
+    fmt.Println("timeout after 3s")
+}
+```
+
+> 注意：`time.After` 每次调用都会创建新 timer，如果在循环中使用会导致内存泄漏。循环中应该用 `time.NewTimer`。
+
+## 循环中的 select — 多路监听
+
+```go
+ch1 := make(chan int)
+ch2 := make(chan int)
+
+go producer1(ch1)
+go producer2(ch2)
+
+for i := 0; i < 10; i++ {
+    select {
+    case v := <-ch1:
+        fmt.Println("ch1:", v)
+    case v := <-ch2:
+        fmt.Println("ch2:", v)
+    }
+}
+```
+
+## 优先级实现
+
+select 本身不支持优先级，但可以用嵌套 select + 循环实现：
+
+```go
+// 优先处理 ch1，ch1 没有数据才处理 ch2
+for {
+    select {
+    case job1 := <-ch1:
+        fmt.Println("high priority:", job1)
+    default:
         select {
-        case <-stopCh:
-            return
         case job1 := <-ch1:
-            fmt.Println(job1)
-        default:
-            select {
-            case job2 := <-ch2:
-                fmt.Println(job2)
-            default:
-            }
+            fmt.Println("high priority:", job1)
+        case job2 := <-ch2:
+            fmt.Println("normal:", job2)
         }
     }
 }
 ```
 
-上面的代码通过嵌套两个select实现了"优先级"，看起来是满足题目要求的。但是这代码有点问题，如果ch1和ch2都没有达到就绪状态的话，整个程序不会堵塞而是进入死循环。
-
-
-```go
-func worker2(ch1, ch2 <-chan int, stopCh chan struct{}) {
-    for {
-        select {
-        case <-stopCh:
-            return
-        case job1 := ch1:
-            fmt.Printl(job1)
-        case job2 := ch2:
-        priority:
-            for {
-                select {
-                case job1 := <-ch1:
-                    fmt.Println(job1)
-                default:
-                    break priority
-                }
-            }
-            fmt.Println(job2)
-        }
-    }
-}
-```
-
-这一次不仅使用了嵌套的select，还组合使用了for循环和LABEL来实现题目的要求。上面的代码在外层select选中执行job := <-ch2时，进入到内层select循环尝试执行job1 := <-ch1，当ch1就绪时就会一直执行，否则跳出内层select
-
-
-## 实际应用场景
-
-
-K8s的controller中就有关于上面这个技巧的实际使用示例，这里在关于select中实现优先级相关代码的关键处都已添加了注释。
-
+### K8s 中的优先级 select 实战
 
 ```go
 // kubernetes/pkg/controller/nodelifecycle/scheduler/taint_manager.go
 func (tc *NoExecuteTaintManager) worker(worker int, done func(), stopCh <-chan struct{}) {
-	defer done()
-
-	// 当处理具体事件的时候，我们会希望 Node 的更新操作优先于 Pod 的更新
-	// 因为 NodeUpdates 与 NoExecuteTaintManager无关应该尽快处理
-	// -- 我们不希望用户(或系统)等到PodUpdate队列被耗尽后，才开始从受污染的Node中清除pod。
-	for {
-		select {
-		case <-stopCh:
-			return
-		case nodeUpdate := <-tc.nodeUpdateChannels[worker]:
-			tc.handleNodeUpdate(nodeUpdate)
-			tc.nodeUpdateQueue.Done(nodeUpdate)
-		case podUpdate := <-tc.podUpdateChannels[worker]:
-			// 如果我们发现了一个 Pod 需要更新，我么你需要先清空 Node 队列.
-		priority:
-			for {
-				select {
-				case nodeUpdate := <-tc.nodeUpdateChannels[worker]:
-					tc.handleNodeUpdate(nodeUpdate)
-					tc.nodeUpdateQueue.Done(nodeUpdate)
-				default:
-					break priority
-				}
-			}
-			// 在 Node 队列清空后我们再处理 podUpdate.
-			tc.handlePodUpdate(podUpdate)
-			tc.podUpdateQueue.Done(podUpdate)
-		}
-	}
+    defer done()
+    for {
+        select {
+        case <-stopCh:
+            return
+        case nodeUpdate := <-tc.nodeUpdateChannels[worker]:
+            tc.handleNodeUpdate(nodeUpdate)
+            tc.nodeUpdateQueue.Done(nodeUpdate)
+        case podUpdate := <-tc.podUpdateChannels[worker]:
+            // 发现 Pod 需要更新时，先清空 Node 队列
+        priority:
+            for {
+                select {
+                case nodeUpdate := <-tc.nodeUpdateChannels[worker]:
+                    tc.handleNodeUpdate(nodeUpdate)
+                    tc.nodeUpdateQueue.Done(nodeUpdate)
+                default:
+                    break priority
+                }
+            }
+            tc.handlePodUpdate(podUpdate)
+            tc.podUpdateQueue.Done(podUpdate)
+        }
+    }
 }
 ```
+
+## select + for + timer — 循环中的超时
+
+```go
+// ✅ 推荐：复用 Timer
+ticker := time.NewTicker(5 * time.Second)
+defer ticker.Stop()
+
+for {
+    select {
+    case <-ticker.C:
+        fmt.Println("tick every 5s")
+    case <-ch:
+        fmt.Println("processed job")
+    case <-ctx.Done():
+        fmt.Println("stopped")
+        return
+    }
+}
+```
+
+## select + done channel — 优雅退出
+
+```go
+func worker(stop <-chan struct{}) {
+    for {
+        select {
+        case job := <-jobCh:
+            process(job)
+        case <-stop:
+            fmt.Println("worker shutting down")
+            return
+        }
+    }
+}
+```
+
+## 参考资料
+
+- [Go by Example: Select](https://gobyexample.com/select)
+- [Go 语言 select 详解](https://go.dev/tour/concurrency/5)
