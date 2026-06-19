@@ -159,14 +159,14 @@ aliases:
 
 ### Elasticsearch (4篇)
 
-- [[search-engine/Elasticsearch 01 - 基础概念与架构|Elasticsearch 01 - 基础概念与架构]]
-- [[search-engine/Elasticsearch 02 - 索引与映射管理|Elasticsearch 02 - 索引与映射管理]]
-- [[search-engine/Elasticsearch 03 - 查询与搜索|Elasticsearch 03 - 查询与搜索]]
-- [[search-engine/Elasticsearch 04 - 集群与性能优化|Elasticsearch 04 - 集群与性能优化]]
+- [[search-engine/elasticsearch/Elasticsearch 01 - 基础概念与架构|Elasticsearch 01 - 基础概念与架构]]
+- [[search-engine/elasticsearch/Elasticsearch 02 - 索引与映射管理|Elasticsearch 02 - 索引与映射管理]]
+- [[search-engine/elasticsearch/Elasticsearch 03 - 查询与搜索|Elasticsearch 03 - 查询与搜索]]
+- [[search-engine/elasticsearch/Elasticsearch 04 - 集群与性能优化|Elasticsearch 04 - 集群与性能优化]]
 
 ### Meilisearch (1篇)
 
-- [[search-engine/Meilisearch 01 - 快速入门与对比|Meilisearch 01 - 快速入门与对比]]
+- [[search-engine/meilisearch/Meilisearch 01 - 快速入门与对比|Meilisearch 01 - 快速入门与对比]]
 
 ## Linux / 网络 / Git (6篇)
 
