@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ6"
+title: "RabbitMQ 06 - RPC远程调用"
 date: 2021-09-29
 tags: [RabbitMQ]
 source: "https://xyf1111.github.io/rabbitmq6/"
@@ -7,7 +7,7 @@ aliases:
   - "RabbitMQ6"
 ---
 
-# RabbitMQ6
+# RabbitMQ 06 - RPC远程调用
 
 > 原文：[https://xyf1111.github.io/rabbitmq6/](https://xyf1111.github.io/rabbitmq6/)
 

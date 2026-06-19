@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ5"
+title: "RabbitMQ 05 - Topic交换器"
 date: 2021-09-25
 tags: [RabbitMQ]
 source: "https://xyf1111.github.io/rabbitmq5/"
@@ -7,7 +7,7 @@ aliases:
   - "RabbitMQ5"
 ---
 
-# RabbitMQ5
+# RabbitMQ 05 - Topic交换器
 
 > 原文：[https://xyf1111.github.io/rabbitmq5/](https://xyf1111.github.io/rabbitmq5/)
 

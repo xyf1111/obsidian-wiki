@@ -33,7 +33,11 @@ title: Wiki
 
 ## 中间件
 
-- [[middleware/rabbitmq/RabbitMQ1|RabbitMQ]] — RabbitMQ 学习笔记 1-6
+| 分类 | 内容 |
+|------|------|
+| 🐰 [[middleware/rabbitmq/]] | RabbitMQ 01-09 · 工作队列·发布订阅·死信队列·可靠性·集群 |
+| 📨 [[middleware/kafka/]] | Kafka 01-08 · 生产者·消费者·分区·Streams·Connect·集群运维 |
+| 🌐 [[middleware/nginx/]] | Nginx 01-06 · 反向代理·SSL·缓存·限流·调优 |
 
 ## Linux & 网络
 

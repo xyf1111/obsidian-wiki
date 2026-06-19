@@ -117,14 +117,37 @@ aliases:
 - [[database/redis/Redis 07 - 分布式锁|Redis 07 - 分布式锁]]
 - [[database/redis/Redis 08 - Cluster集群|Redis 08 - Cluster集群]]
 
-## RabbitMQ (6篇)
+## RabbitMQ (9篇)
 
-- [[middleware/rabbitmq/RabbitMQ1|RabbitMQ1]]
-- [[middleware/rabbitmq/RabbitMQ2|RabbitMQ2]]
-- [[middleware/rabbitmq/RabbitMQ3|RabbitMQ3]]
-- [[middleware/rabbitmq/RabbitMQ4|RabbitMQ4]]
-- [[middleware/rabbitmq/RabbitMQ5|RabbitMQ5]]
-- [[middleware/rabbitmq/RabbitMQ6|RabbitMQ6]]
+- [[middleware/rabbitmq/RabbitMQ 01 - 基础与HelloWorld|RabbitMQ 01 - 基础与HelloWorld]]
+- [[middleware/rabbitmq/RabbitMQ 02 - 工作队列|RabbitMQ 02 - 工作队列]]
+- [[middleware/rabbitmq/RabbitMQ 03 - 发布订阅|RabbitMQ 03 - 发布订阅]]
+- [[middleware/rabbitmq/RabbitMQ 04 - 路由|RabbitMQ 04 - 路由]]
+- [[middleware/rabbitmq/RabbitMQ 05 - Topic交换器|RabbitMQ 05 - Topic交换器]]
+- [[middleware/rabbitmq/RabbitMQ 06 - RPC远程调用|RabbitMQ 06 - RPC远程调用]]
+- [[middleware/rabbitmq/RabbitMQ 07 - 死信队列与延迟队列|RabbitMQ 07 - 死信队列与延迟队列]]
+- [[middleware/rabbitmq/RabbitMQ 08 - 消息可靠性保障|RabbitMQ 08 - 消息可靠性保障]]
+- [[middleware/rabbitmq/RabbitMQ 09 - 集群与高可用|RabbitMQ 09 - 集群与高可用]]
+
+## Kafka (8篇)
+
+- [[middleware/kafka/Kafka 01 - 基础概念与架构|Kafka 01 - 基础概念与架构]]
+- [[middleware/kafka/Kafka 02 - 生产者与消费者|Kafka 02 - 生产者与消费者]]
+- [[middleware/kafka/Kafka 03 - 分区机制与消费策略|Kafka 03 - 分区机制与消费策略]]
+- [[middleware/kafka/Kafka 04 - 可靠性保障|Kafka 04 - 可靠性保障]]
+- [[middleware/kafka/Kafka 05 - Kafka Streams 与流处理|Kafka 05 - Kafka Streams 与流处理]]
+- [[middleware/kafka/Kafka 06 - Schema Registry 与序列化|Kafka 06 - Schema Registry 与序列化]]
+- [[middleware/kafka/Kafka 07 - Kafka Connect 与数据集成|Kafka 07 - Kafka Connect 与数据集成]]
+- [[middleware/kafka/Kafka 08 - 集群运维与监控|Kafka 08 - 集群运维与监控]]
+
+## Nginx (6篇)
+
+- [[middleware/nginx/Nginx 01 - 基础概念与安装配置|Nginx 01 - 基础概念与安装配置]]
+- [[middleware/nginx/Nginx 02 - 反向代理与负载均衡|Nginx 02 - 反向代理与负载均衡]]
+- [[middleware/nginx/Nginx 03 - HTTPS与SSL配置|Nginx 03 - HTTPS与SSL配置]]
+- [[middleware/nginx/Nginx 04 - 静态资源与缓存策略|Nginx 04 - 静态资源与缓存策略]]
+- [[middleware/nginx/Nginx 05 - 限流与安全防护|Nginx 05 - 限流与安全防护]]
+- [[middleware/nginx/Nginx 06 - 日志分析与性能调优|Nginx 06 - 日志分析与性能调优]]
 
 ## Linux / 网络 / Git (6篇)
 

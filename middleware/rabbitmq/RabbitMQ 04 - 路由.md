@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ4"
+title: "RabbitMQ 04 - 路由"
 date: 2021-08-15
 tags: [RabbitMQ]
 source: "https://xyf1111.github.io/rabbitmq4/"
@@ -7,7 +7,7 @@ aliases:
   - "RabbitMQ4"
 ---
 
-# RabbitMQ4
+# RabbitMQ 04 - 路由
 
 > 原文：[https://xyf1111.github.io/rabbitmq4/](https://xyf1111.github.io/rabbitmq4/)
 

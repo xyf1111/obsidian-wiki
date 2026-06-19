@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ3"
+title: "RabbitMQ 03 - 发布订阅"
 date: 2021-07-14
 tags: [RabbitMQ]
 source: "https://xyf1111.github.io/rabbitmq3/"
@@ -7,7 +7,7 @@ aliases:
   - "RabbitMQ3"
 ---
 
-# RabbitMQ3
+# RabbitMQ 03 - 发布订阅
 
 > 原文：[https://xyf1111.github.io/rabbitmq3/](https://xyf1111.github.io/rabbitmq3/)
 
