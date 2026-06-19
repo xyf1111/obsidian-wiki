@@ -39,6 +39,13 @@ title: Wiki
 | 📨 [[middleware/kafka/]] | Kafka 01-08 · 生产者·消费者·分区·Streams·Connect·集群运维 |
 | 🌐 [[middleware/nginx/]] | Nginx 01-06 · 反向代理·SSL·缓存·限流·调优 |
 
+## 搜索引擎
+
+| 分类 | 内容 |
+|------|------|
+| 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-04 · 索引·映射·查询·集群优化 |
+| ⚡ [[search-engine/meilisearch/]] | Meilisearch 01 · 快速入门·前端集成·对比ES |
+
 ## Linux & 网络
 
 - [[linux-network/Linux Study01|Linux]] · [[linux-network/Linux Network 01|网络]] · [[linux-network/Httptcpip Study 01|HTTP/TCP/IP]] · [[linux-network/Git Study01|Git]] · [[other/Dos Code|DOS 命令]]
