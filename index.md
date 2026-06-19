@@ -43,8 +43,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-04 · 索引·映射·查询·集群优化 |
-| ⚡ [[search-engine/meilisearch/]] | Meilisearch 01 · 快速入门·前端集成·对比ES |
+| 🔍 [[search-engine/]] | Elasticsearch 01-04 · Meilisearch 01 · 索引·查询·集群·对比 |
 
 ## Linux & 网络
 
