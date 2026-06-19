@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ2"
+title: "RabbitMQ 02 - 工作队列"
 date: 2021-06-28
 tags: [RabbitMQ]
 source: "https://xyf1111.github.io/rabbitmq2/"
@@ -7,7 +7,7 @@ aliases:
   - "RabbitMQ2"
 ---
 
-# RabbitMQ2
+# RabbitMQ 02 - 工作队列
 
 > 原文：[https://xyf1111.github.io/rabbitmq2/](https://xyf1111.github.io/rabbitmq2/)
 

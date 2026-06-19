@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ1"
+title: "RabbitMQ 01 - 基础与HelloWorld"
 date: 2021-06-23
 tags: [RabbitMQ]
 source: "https://xyf1111.github.io/rabbitmq1/"
@@ -7,7 +7,7 @@ aliases:
   - "RabbitMQ1"
 ---
 
-# RabbitMQ1
+# RabbitMQ 01 - 基础与HelloWorld
 
 > 原文：[https://xyf1111.github.io/rabbitmq1/](https://xyf1111.github.io/rabbitmq1/)
 
