@@ -24,25 +24,12 @@ title: Wiki
 | 🎯 [[golang/面试/]] | Go Interview 01-09 · 面试题汇总 |
 | 🗺️ [[golang/路线/]] | Go 工程师学习路线 — 7 阶段完整路径 |
 
-## 数据库 (MySQL 9篇 · Redis 8篇)
+## 数据库
 
-- [[database/mysql/MySQL 01 - ACID与隔离级别|MySQL 01 - ACID与隔离级别]]
-- [[database/mysql/MySQL 02 - 存储引擎对比|MySQL 02 - 存储引擎对比]]
-- [[database/mysql/MySQL 03 - 索引原理与B+Tree|MySQL 03 - 索引原理与B+Tree]]
-- [[database/mysql/MySQL 04 - 锁机制与MVCC|MySQL 04 - 锁机制与MVCC]]
-- [[database/mysql/MySQL 05 - SQL执行顺序|MySQL 05 - SQL执行顺序]]
-- [[database/mysql/MySQL 06 - 慢查询与Explain|MySQL 06 - 慢查询与Explain]]
-- [[database/mysql/MySQL 07 - drop delete truncate对比|MySQL 07 - DDL对比]]
-- [[database/mysql/MySQL 08 - 分库分表与读写分离|MySQL 08 - 分库分表]]
-- [[database/mysql/MySQL 09 - 主从复制与高可用|MySQL 09 - 主从复制]]
-- [[database/redis/Redis 01 - 基础与NoSQL概述|Redis 01 - 基础与NoSQL]]
-- [[database/redis/Redis 02 - 五大数据类型|Redis 02 - 五大数据类型]]
-- [[database/redis/Redis 03 - 特殊数据类型与事务|Redis 03 - 特殊数据类型]]
-- [[database/redis/Redis 04 - 主从复制|Redis 04 - 主从复制]]
-- [[database/redis/Redis 05 - 持久化与数据类型|Redis 05 - 持久化]]
-- [[database/redis/Redis 06 - 过期策略与缓存异常|Redis 06 - 过期策略与缓存]]
-- [[database/redis/Redis 07 - 分布式锁|Redis 07 - 分布式锁]]
-- [[database/redis/Redis 08 - Cluster集群|Redis 08 - Cluster集群]]
+| 分类 | 内容 |
+|------|------|
+| 🐬 [[database/mysql/]] | MySQL 01-09 · 事务·索引·锁·分库分表·主从复制·慢查询 |
+| 📗 [[database/redis/]] | Redis 01-08 · 数据类型·持久化·过期策略·分布式锁·Cluster |
 
 ## 中间件
 
