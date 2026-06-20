@@ -43,14 +43,26 @@ title: Wiki
 | 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-04 · 索引·映射·查询·集群优化 |
 | ⚡ [[search-engine/meilisearch/]] | Meilisearch 01 · 快速入门·前端集成·对比ES |
 
-## Linux & 网络
+## Linux
 
 | 分类 | 内容 |
 |------|------|
-| 🐧 [[linux/]] | Linux 01-03 · 基础命令·文件系统·进程管理·网络排查 |
-| 🌐 [[linux-network/]] | 网络 01-03 · 协议基础·Socket编程·TCP握手挥手 |
-| 📡 [[http-tcpip/]] | HTTP TCPIP 01-02 · OSI模型·HTTP协议·HTTPS·HTTP2/3 |
-| 🔧 [[git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
+| 🐧 [[linux/]] | Linux 01-03 · 基础命令·文件系统·权限·进程管理·网络排查 |
+
+## 网络
+
+| 分类 | 内容 |
+|------|------|
+| 🌐 [[network/]] | 网络 01-05 · 协议基础·Socket·TCP握手·OSI模型·HTTP协议·HTTPS |
+
+## DevOps
+
+| 分类 | 内容 |
+|------|------|
+| 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
+| 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
+| ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
+| 🔄 [[devops/cicd/]] | CI/CD 01-03 · 概念·GitHub Actions·GitOps/ArgoCD |
 
 ## 学习方法
 

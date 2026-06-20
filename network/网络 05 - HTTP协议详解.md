@@ -1,10 +1,10 @@
 ---
-title: "HTTP TCPIP 02 - HTTP协议详解"
+title: "网络 05 - HTTP协议详解"
 date: 2024-01-01
-tags: [HTTP, TCP/IP]
+tags: [网络, HTTP]
 ---
 
-# HTTP TCPIP 02 - HTTP 协议详解
+# 网络 05 - HTTP 协议详解
 
 ## HTTP 请求结构
 

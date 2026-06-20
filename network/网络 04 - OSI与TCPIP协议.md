@@ -1,9 +1,9 @@
 ---
-title: "HTTP TCPIP 01 - OSI与TCPIP协议"
+title: "网络 04 - OSI与TCPIP协议"
 date: 2021-03-25
-tags: [Http,TCP/IP]
-source: "https://xyf1111.github.io/httptcpip-study-01/"
+tags: [网络, TCP/IP]
 aliases:
+  - "OSI与TCPIP协议"
   - "Httptcpip Study 01"
 ---
 
