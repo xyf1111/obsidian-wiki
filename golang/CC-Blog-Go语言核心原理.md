@@ -237,6 +237,6 @@ Go 1.5+ 使用 **非分代、非移动、并发、三色标记清除** 算法。
 
 ## 相关笔记
 
-- [[other/CC-Blog-目录]] — 全部文章索引
-- [[other/CC-Blog-面试题汇总]] — Go 面试题整理
-- [[other/CC-Blog-MySQL与Redis]] — 数据库笔记
+- [[index|📚 返回知识库首页]]
+- [[golang/面试/CC-Blog-面试题汇总|面试题汇总]] — Go 面试题整理
+- [[database/CC-Blog-MySQL与Redis|MySQL与Redis]] — 数据库笔记

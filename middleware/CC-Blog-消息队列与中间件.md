@@ -70,6 +70,6 @@ tags:
 
 ## 相关笔记
 
-- [[other/CC-Blog-目录]] — 全部文章索引
-- [[other/CC-Blog-Go语言核心原理]] — gRPC 详解
-- [[other/CC-Blog-MySQL与Redis]] — 数据库笔记
+- [[index|📚 返回知识库首页]]
+- [[golang/CC-Blog-Go语言核心原理|Go语言核心原理]] — gRPC 详解
+- [[database/CC-Blog-MySQL与Redis|MySQL与Redis]] — 数据库笔记
