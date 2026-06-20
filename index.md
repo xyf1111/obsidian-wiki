@@ -43,17 +43,17 @@ title: Wiki
 | 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-04 · 索引·映射·查询·集群优化 |
 | ⚡ [[search-engine/meilisearch/]] | Meilisearch 01 · 快速入门·前端集成·对比ES |
 
-## Linux
+## 操作系统
 
 | 分类 | 内容 |
 |------|------|
-| 🐧 [[linux/]] | Linux 01-03 · 基础命令·文件系统·权限·进程管理·网络排查 |
+| 🐧 [[os/linux/]] | Linux 命令·文件系统·进程管理·包管理·Shell·服务管理 — 6 篇 |
 
 ## 网络
 
 | 分类 | 内容 |
 |------|------|
-| 🌐 [[network/]] | 网络 01-05 · 协议基础·Socket·TCP握手·OSI模型·HTTP协议·HTTPS |
+| 🌐 [[network/]] | 网络 01-08 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket |
 
 ## DevOps
 

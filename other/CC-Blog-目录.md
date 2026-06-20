@@ -13,7 +13,7 @@ aliases:
 # CC's Blog 文章目录
 
 > 来源：[xyf1111.github.io](https://xyf1111.github.io/) - Hugo 博客 (LoveIt 主题)，作者 CC。
-> 共 **124 篇**独立笔记，点击标题即可阅读全文。
+> 共 **130 篇**独立笔记，点击标题即可阅读全文。
 
 ## 编程语言 (88篇)
 
@@ -242,19 +242,27 @@ aliases:
 - [[java/进阶/Java 21 - 异常处理机制|Java 21 - 异常处理机制]]
 |- [[java/进阶/Java 22 - 网络编程|Java 22 - 网络编程]]
 
-## Linux (3篇)
+## 操作系统 (6篇)
 
-- [[linux/Linux 01 - 基础命令|Linux 01 - 基础命令]]
-- [[linux/Linux 02 - 文件系统与权限|Linux 02 - 文件系统与权限]]
-- [[linux/Linux 03 - 进程管理与网络排查|Linux 03 - 进程管理与网络排查]]
+### Linux (6篇)
 
-## 网络 (5篇)
+- [[os/linux/Linux 01 - 基础命令|Linux 01 - 基础命令]]
+- [[os/linux/Linux 02 - 文件系统与权限|Linux 02 - 文件系统与权限]]
+- [[os/linux/Linux 03 - 进程管理与网络排查|Linux 03 - 进程管理与网络排查]]
+- [[os/linux/Linux 04 - 软件包管理|Linux 04 - 软件包管理]]
+- [[os/linux/Linux 05 - Shell脚本基础|Linux 05 - Shell脚本基础]]
+- [[os/linux/Linux 06 - 服务管理与systemd|Linux 06 - 服务管理与systemd]]
+
+## 网络 (8篇)
 
 - [[network/网络 01 - 协议基础|网络 01 - 协议基础]]
 - [[network/网络 02 - Socket编程|网络 02 - Socket编程]]
 - [[network/网络 03 - TCP三次握手与四次挥手|网络 03 - TCP三次握手与四次挥手]]
 - [[network/网络 04 - OSI与TCPIP协议|网络 04 - OSI与TCPIP协议]]
 - [[network/网络 05 - HTTP协议详解|网络 05 - HTTP协议详解]]
+- [[network/网络 06 - UDP与DNS|网络 06 - UDP与DNS]]
+- [[network/网络 07 - HTTPS与TLS|网络 07 - HTTPS与TLS]]
+- [[network/网络 08 - HTTP2与HTTP3及WebSocket|网络 08 - HTTP2/HTTP3/WebSocket]]
 
 ## DevOps (10篇)
 

@@ -13,70 +13,75 @@ tags: [网络]
   │                               │
   ├── SYN=1, seq=x ──────────────►│  1. SYN（客户端请求连接）
   │                               │
-  │◄── SYN=1, ACK=1, seq=y, ack=x+1──┤  2. SYN+ACK（服务端确认）
+  │◄── SYN=1, ACK=1, seq=y, ack=x+1 ─┤  2. SYN+ACK（服务端同意）
   │                               │
-  ├── ACK=1, seq=x+1, ack=y+1 ──►│  3. ACK（客户端确认建立）
+  ├── ACK=1, seq=x+1, ack=y+1 ──►│  3. ACK（客户端确认）
   │                               │
-  │◄══════ 连接建立，传输数据 ════►│
+  │        连接建立成功            │
 ```
 
-### 为什么是三次而不是两次？
+### 目的
 
-- **防止已过期的连接请求到达服务端**：如果客户端第一个 SYN 在网络中滞留，重传后又收到 ACK，三次握手让服务端等待客户端的最后一次 ACK，避免创建空的连接
-- **同步初始序列号**：双方都需要确认对方的 ISN（Initial Sequence Number）
+| 目的 | 说明 |
+|------|------|
+| **确认双方收发能力正常** | 客户端能发能收，服务端能发能收 |
+| **同步初始序列号** | 双方告知自己的 ISN，用于后续可靠传输 |
+| **协商参数** | MSS、窗口缩放因子等 |
 
-### 为什么不是四次？
+### 为什么三次而不是两次？
 
-三次已经足够完成双方 ISN 的确认，四次多余。
+- 防止**已失效的连接请求**到达服务端
+- 如果只有两次，服务端收到一个迟到的旧 SYN 就会建立连接，浪费资源
+- 第三次 ACK 让服务端确认客户端确实收到了 SYN+ACK
 
-## 四次挥手（断开连接）
+## 四次挥手（关闭连接）
 
 ```
 客户端                         服务端
   │                               │
-  ├── FIN=1, seq=u ─────────────►│  1. FIN（客户端关闭写）
+  ├── FIN=1, seq=u ─────────────►│  1. FIN（客户端要关闭）
   │                               │
-  │◄── ACK=1, seq=v, ack=u+1 ──────┤  2. ACK（服务端确认收到）
+  │◄── ACK=1, seq=v, ack=u+1 ────┤  2. ACK（服务端确认）
   │                               │
-  │◄── FIN=1, ACK=1, seq=w, ack=u+1──┤  3. FIN（服务端关闭写）
+  │      （半关闭状态：客户端→服务端通道关闭）  │
   │                               │
-  ├── ACK=1, seq=u+1, ack=w+1 ──►│  4. ACK（客户端确认关闭）
+  │◄── FIN=1, ACK=1, seq=w, ack=u+1 ─┤  3. FIN（服务端也关闭）
   │                               │
-  │     TIME_WAIT (2MSL)          │
+  ├── ACK=1, seq=u+1, ack=w+1 ──►│  4. ACK（客户端确认）
+  │                               │
+  │         连接关闭              │
 ```
 
-### 状态迁移
+### 为什么四次而不是三次？
 
-```
-客户端：ESTABLISHED → FIN_WAIT_1 → FIN_WAIT_2 → TIME_WAIT → CLOSED
-服务端：ESTABLISHED → CLOSE_WAIT → LAST_ACK → CLOSED
-```
+服务端收到 FIN 时可能还有数据要发送，先 ACK 确认，等数据发完再发 FIN。ACK 和 FIN 不能合并。
 
-### 为什么要 TIME_WAIT？
+### TIME_WAIT 状态
 
-1. **保证最后一个 ACK 到达服务端** — 如果 ACK 丢失，服务端重发 FIN，客户端还能重发 ACK
-2. **防止旧连接的数据包干扰新连接** — 2MSL（Maximum Segment Lifetime）确保旧数据包在网络中消散
+主动关闭方发送最后一次 ACK 后进入 TIME_WAIT（2MSL，约 2 分钟）：
 
-### TIME_WAIT 过多
-
-服务端（尤其是短连接服务）可能出现大量 TIME_WAIT：
-
-```bash
-# 查看 TIME_WAIT 数量
-netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
-
-# 内核参数调优
-# /etc/sysctl.conf
-net.ipv4.tcp_tw_reuse = 1      # 允许重用 TIME_WAIT 连接（客户端）
-net.ipv4.tcp_fin_timeout = 30  # 减小 FIN-WAIT-2 超时
-```
-
-## 常见面试场景
-
-| 问题 | 答案 |
+| 目的 | 说明 |
 |------|------|
-| 为什么连接是三次，断开是四次？ | SYN 和 ACK 可以合并（三次），FIN 和 ACK 不能合并（服务端可能还有数据要发） |
-| TCP 粘包怎么处理？ | 应用层定长/定界符/长度字段（消息头+消息体） |
-| 大量 CLOSE_WAIT 说明什么？ | 服务端程序没有正确关闭连接（没有调用 close） |
-| 大量 TIME_WAIT 怎么办？ | 开启 tcp_tw_reuse，使用长连接代替短连接 |
-| SYN Flood 攻击？ | 服务端收到大量 SYN 但不完成握手，占用半连接队列。启用 SYN Cookie 防御 |
+| **确保 ACK 到达** | 以防 ACK 丢失，服务端重发 FIN |
+| **使旧连接分组失效** | 确保本连接所有分组在网络中消失 |
+
+## TCP 状态转换
+
+```
+客户端：
+CLOSED → SYN_SENT → ESTABLISHED → FIN_WAIT_1 → FIN_WAIT_2 → TIME_WAIT → CLOSED
+
+服务端：
+CLOSED → LISTEN → SYN_RCVD → ESTABLISHED → CLOSE_WAIT → LAST_ACK → CLOSED
+```
+
+## TCP 特性总结
+
+| 特性 | 说明 |
+|------|------|
+| 面向连接 | 三次握手建立连接 |
+| 可靠传输 | 确认重传、序号、校验和 |
+| 流量控制 | 滑动窗口 |
+| 拥塞控制 | 慢启动、拥塞避免、快重传、快恢复 |
+| 全双工 | 双方可同时收发数据 |
+| 面向字节流 | 以字节为单位传输，不保留报文边界 |

@@ -7,7 +7,7 @@ aliases:
   - "Httptcpip Study 01"
 ---
 
-# HTTP TCPIP 01 - OSI 与 TCP/IP 协议
+# 网络 04 - OSI 与 TCP/IP 协议
 
 > 原文：[https://xyf1111.github.io/httptcpip-study-01/](https://xyf1111.github.io/httptcpip-study-01/)
 
