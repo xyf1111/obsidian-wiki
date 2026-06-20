@@ -13,9 +13,9 @@ aliases:
 # CC's Blog 文章目录
 
 > 来源：[xyf1111.github.io](https://xyf1111.github.io/) - Hugo 博客 (LoveIt 主题)，作者 CC。
-> 共 **97 篇**独立笔记，点击标题即可阅读全文。
+> 共 **117 篇**独立笔记，点击标题即可阅读全文。
 
-## 编程语言 (68篇)
+## 编程语言 (88篇)
 
 ### Go 语言 (66篇)
 
@@ -204,10 +204,43 @@ aliases:
 - [[career/Resume|Resume]]
 - [[career/花开简历|花开简历]]
 
-### Java (2篇)
+### Java (22篇)
 
-- [[java/Java01|Java01]]
-- [[java/Java02|Java02]]
+#### 基础
+- [[java/基础/Java 01 - 语言特性与三大版本|Java 01 - 语言特性与三大版本]]
+- [[java/基础/Java 02 - JDK JRE JVM|Java 02 - JDK JRE JVM]]
+- [[java/基础/Java 03 - 标识符与数据类型|Java 03 - 标识符与数据类型]]
+- [[java/基础/Java 04 - 类型转换、变量与常量|Java 04 - 类型转换、变量与常量]]
+- [[java/基础/Java 05 - 运算符与流程控制|Java 05 - 运算符与流程控制]]
+
+#### 面向对象
+- [[java/面向对象/Java 06 - 类与对象|Java 06 - 类与对象]]
+- [[java/面向对象/Java 07 - 继承与多态|Java 07 - 继承与多态]]
+- [[java/面向对象/Java 08 - 抽象类与接口|Java 08 - 抽象类与接口]]
+- [[java/面向对象/Java 09 - 内部类与Lambda表达式|Java 09 - 内部类与Lambda表达式]]
+
+#### 集合
+- [[java/集合/Java 10 - Collection与List|Java 10 - Collection与List]]
+- [[java/集合/Java 11 - Set与Map|Java 11 - Set与Map]]
+- [[java/集合/Java 12 - 泛型与Collections工具类|Java 12 - 泛型与Collections工具类]]
+
+#### IO
+- [[java/IO/Java 13 - File与IO流|Java 13 - File与IO流]]
+- [[java/IO/Java 14 - NIO与序列化|Java 14 - NIO与序列化]]
+
+#### 多线程
+- [[java/多线程/Java 15 - 线程基础|Java 15 - 线程基础]]
+- [[java/多线程/Java 16 - 锁与并发工具|Java 16 - 锁与并发工具]]
+
+#### JVM
+- [[java/JVM/Java 17 - JVM内存模型与GC|Java 17 - JVM内存模型与GC]]
+- [[java/JVM/Java 18 - 类加载机制|Java 18 - 类加载机制]]
+
+#### 进阶
+- [[java/进阶/Java 19 - 反射机制|Java 19 - 反射机制]]
+- [[java/进阶/Java 20 - 注解与元注解|Java 20 - 注解与元注解]]
+- [[java/进阶/Java 21 - 异常处理机制|Java 21 - 异常处理机制]]
+- [[java/进阶/Java 22 - 网络编程|Java 22 - 网络编程]]
 
 ## 其他 (3篇)
 
