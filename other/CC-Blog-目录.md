@@ -13,7 +13,7 @@ aliases:
 # CC's Blog 文章目录
 
 > 来源：[xyf1111.github.io](https://xyf1111.github.io/) - Hugo 博客 (LoveIt 主题)，作者 CC。
-> 共 **134 篇**独立笔记，点击标题即可阅读全文。
+> 共 **136 篇**独立笔记，点击标题即可阅读全文。
 
 ## 编程语言 (88篇)
 
@@ -253,6 +253,9 @@ aliases:
 - [[os/linux/Linux 05 - Shell脚本基础|Linux 05 - Shell脚本基础]]
 - [[os/linux/Linux 06 - 服务管理与systemd|Linux 06 - 服务管理与systemd]]
 
+### DOS (1篇)
+- [[os/Dos 01 - 常用命令速查|DOS 01 - 常用命令速查]]
+
 ## 网络 (8篇)
 
 - [[network/网络 01 - 协议基础|网络 01 - 协议基础]]
@@ -309,6 +312,10 @@ aliases:
 - [[hermes/hermes-skills-system|技能系统详解]]
 - [[hermes/hermes-setup-guide|安装与配置]]
 - [[hermes/hermes-documentation-links|文档与资源]]
+
+## 工具 (1篇)
+
+- [[tools/工具 01 - Markdown 语法速查|Markdown 语法速查]]
 
 ## 站点 (6篇)
 
