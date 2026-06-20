@@ -64,29 +64,29 @@ title: Wiki
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
 | 🔄 [[devops/cicd/]] | CI/CD 01-03 · 概念·GitHub Actions·GitOps/ArgoCD |
 
-## 学习方法
+## 📚 方法论
 
-- [[learning/持续学习的方法论与实践|持续学习的方法论与实践]]
-- [[learning/提问的智慧|提问的智慧 — 如何高效提问]]
+| 分类 | 内容 |
+|------|------|
+| 📖 [[learning/]] | 提问的智慧·持续学习的方法论与实践 |
+| 🎯 [[career/]] | 简历·面试感悟·学习路线（6篇） |
 
-## 周报
+## 📡 周报
 
-- [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]]
-- [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]]
+- [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]] — Go 生态周报（2026-06-19）
+- [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]] — Go 生态周报
 
-## Hermes Agent
+## 🤖 AI
 
-- [[hermes/hermes-agent|Hermes Agent 概述]]
-- [[hermes/hermes-skills-system|技能系统详解]]
-- [[hermes/hermes-setup-guide|安装与配置]]
-- [[other/hermes-documentation-links|文档与资源]]
+| 分类 | 内容 |
+|------|------|
+| 🧠 [[hermes/]] | Hermes Agent 概述·技能系统·安装配置·文档资源 |
 
-## 其他
+## 📋 站点
 
-- [[other/CC-Blog-目录|CC's Blog 目录]]
-- [[other/项目换电脑部署指南|换电脑部署指南]]
-- [[other/CC-Blog-个人经历|个人经历]]
-- Markdown 入门 · First Post · DOS 命令
+| 分类 | 内容 |
+|------|------|
+| 📑 [[other/]] | CC 目录·部署指南·主题摘要 |
 
 ## 最近活动
 

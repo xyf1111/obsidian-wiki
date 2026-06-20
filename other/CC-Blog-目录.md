@@ -13,7 +13,7 @@ aliases:
 # CC's Blog 文章目录
 
 > 来源：[xyf1111.github.io](https://xyf1111.github.io/) - Hugo 博客 (LoveIt 主题)，作者 CC。
-> 共 **130 篇**独立笔记，点击标题即可阅读全文。
+> 共 **134 篇**独立笔记，点击标题即可阅读全文。
 
 ## 编程语言 (88篇)
 
@@ -288,18 +288,35 @@ aliases:
 - [[devops/cicd/CI CD 02 - GitHub Actions 实践|CI/CD 02 - GitHub Actions]]
 - [[devops/cicd/CI CD 03 - GitOps与ArgoCD|CI/CD 03 - GitOps]]
 
-## 其他 (3篇)
+## 学习方法 (2篇)
 
-- [[other/Dos Code|Dos Code]]
-- [[other/Markdown Study01|Markdown Study01]]
-- [[other/First post|First post]]
+- [[learning/提问的智慧|提问的智慧]]
+- [[learning/持续学习的方法论与实践|持续学习的方法论与实践]]
 
----
+## 职业经历 (7篇)
 
-## 主题笔记（摘要汇总）
+- [[career/20211028感慨|20211028感慨]]
+- [[career/2021秋季面试|2021秋季面试]]
+- [[career/Interview 2021 04 06|Interview 2021 04 06]]
+- [[career/Learning Process|Learning Process]]
+- [[career/Resume|Resume]]
+- [[career/花开简历|花开简历]]
+- [[career/CC-Blog-个人经历|个人经历]]
 
+## AI (4篇)
+
+- [[hermes/hermes-agent|Hermes Agent 概述]]
+- [[hermes/hermes-skills-system|技能系统详解]]
+- [[hermes/hermes-setup-guide|安装与配置]]
+- [[hermes/hermes-documentation-links|文档与资源]]
+
+## 站点 (6篇)
+
+- [[other/CC-Blog-目录|CC's Blog 目录]]
+- [[other/项目换电脑部署指南|项目换电脑部署指南]]
 - [[other/CC-Blog-Go语言核心原理]] - Go 底层原理深度总结
 - [[other/CC-Blog-面试题汇总]] - 面试题系统整理
 - [[other/CC-Blog-MySQL与Redis]] - 数据库与缓存知识点
 - [[other/CC-Blog-消息队列与中间件]] - RabbitMQ 与 gRPC
-- [[other/CC-Blog-个人经历]] - 简历与学习经历
+
+---
