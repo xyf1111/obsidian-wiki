@@ -8,6 +8,8 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-07-09|Go GitHub Weekly 2026-07-09]] — Go 生态周报（2026-07-09）
+- [[weekly/Go GitHub Weekly 2026-07-02|Go GitHub Weekly 2026-07-02]] — Go 生态周报（2026-07-02）
 - [[learning/提问的智慧|提问的智慧]] — GitHub 40K+ stars 经典：如何正确提问以高效获取帮助
 - [[learning/持续学习的方法论与实践|持续学习的方法论与实践]] — 在技术快速迭代中保持竞争力的方法论与习惯
 - [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]] — Go 生态周报（2026-06-19）
@@ -74,6 +76,8 @@ title: Wiki
 
 ## 📡 周报
 
+- [[weekly/Go GitHub Weekly 2026-07-09|Go GitHub Weekly 2026-07-09]] — Go 生态周报（2026-07-09）
+- [[weekly/Go GitHub Weekly 2026-07-02|Go GitHub Weekly 2026-07-02]] — Go 生态周报（2026-07-02）
 - [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]] — Go 生态周报（2026-06-19）
 - [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]] — Go 生态周报
 
@@ -97,6 +101,8 @@ title: Wiki
 
 ## 最近活动
 
+- [2026-07-09] Go GitHub Weekly 2026-07-09 周报
+- [2026-07-02] Go GitHub Weekly 2026-07-02 周报
 - [2026-06-19] Go GitHub Weekly 2026-06-19 周报（Go 1.25 Beta·Gin v1.11·GORM v1.26·OpenTelemetry slog集成）
 - [2026-06-19] 搜索引擎分类：Elasticsearch 4篇 + Meilisearch 1篇
 - [2026-06-19] 中间件补全：RabbitMQ 6→9篇 + Kafka 8篇 + Nginx 6篇
