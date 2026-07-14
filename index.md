@@ -67,7 +67,7 @@ title: Wiki
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
 | 🔄 [[devops/cicd/]] | CI/CD 01-03 · 概念·GitHub Actions·GitOps/ArgoCD |
-| 🛠️ [[devops/DevOps 04 - 前端问题排错指南|DevOps 04·前端问题排错指南]] | 前端开发常见问题排查思路与解决方案 |
+| 🛠️ [[devops/DevOps 01 - 前端问题排错指南|DevOps 01·前端问题排错指南]] | 前端开发常见问题排查思路与解决方案 |
 
 ## 📚 方法论
 
