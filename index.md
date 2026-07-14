@@ -67,7 +67,7 @@ title: Wiki
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
 | 🔄 [[devops/cicd/]] | CI/CD 01-03 · 概念·GitHub Actions·GitOps/ArgoCD |
-| 🛠️ [[devops/]] | DevOps 04 · 前端问题排错指南（持续消化整合中） |
+| 🛠️ [[devops/DevOps 04 - 前端问题排错指南|DevOps 04·前端问题排错指南]] | 前端开发常见问题排查思路与解决方案 |
 
 ## 📚 方法论
 
@@ -101,28 +101,9 @@ title: Wiki
 |------|------|
 | 📋 [[other/]] | 项目换电脑部署指南 |
 
-## ⭐ 编程导航·鱼皮编程宝典
-
-| 分类 | 文件数 | 内容 |
-|------|:-----:|------|
-| 📚 [[codefather/README|📖 首页]] | 1 | 编程宝典首页与导航 |
-| 🗺️ [[codefather/学习路线/]] | 98 | Java/前端/C++/Python/SQL/算法等学习路线 |
-| 💡 [[codefather/知识碎片/]] | 114 | 技术知识点快速查阅 |
-| 📝 [[codefather/高频面试题/]] | 254 | 各语言/岗位面试题汇总 |
-| 🎯 [[codefather/编程分享/]] | 327 | 编程学习/求职/职场干货 |
-| 🧭 [[codefather/编程导航/]] | 81 | 编程导航社区内容 |
-| 🛤️ [[codefather/自学之路/]] | 72 | 鱼皮从0到1编程经历 |
-| 🏗️ [[codefather/项目实战/]] | 19 | 原创实战项目教程 |
-| 🐛 [[codefather/Bug手册/]] | 18 | Bug 修复手册 |
-| 🚀 [[codefather/产品服务/]] | 13 | 编程产品服务 |
-| 👤 [[codefather/作者|👤 作者介绍]] | 1 | 程序员鱼皮 |
-
-*此目录自动从 [codefather](https://github.com/liyupi/codefather) 仓库同步*
-
 ## 最近活动
 
-- [2026-07-14] 消化整合 codefather [Bug手册/README.md, Bug手册/经典 Bug 解决方案/前端接口请求及框架初始化错误] → devops/前端问题排错
-- [2026-07-14] 导入鱼皮编程宝典（codefather）— 998 篇编程学习资料
+- [2026-07-14] 消化整合 codefather [Bug手册/前端接口请求及框架初始化错误] → 融合到 devops
 - [2026-07-09] Go GitHub Weekly 2026-07-09 周报
 - [2026-07-02] Go GitHub Weekly 2026-07-02 周报
 - [2026-06-19] Go GitHub Weekly 2026-06-19 周报（Go 1.25 Beta·Gin v1.11·GORM v1.26·OpenTelemetry slog集成）
