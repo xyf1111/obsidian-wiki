@@ -67,7 +67,6 @@ title: Wiki
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
 | 🔄 [[devops/cicd/]] | CI/CD 01-03 · 概念·GitHub Actions·GitOps/ArgoCD |
-| 🐛 [[devops/鱼皮-Bug-手册总览\|鱼皮 Bug 手册]] | 编程导航 Bug 修复手册（持续消化整合中） |
 
 ## 📚 方法论
 
@@ -121,7 +120,6 @@ title: Wiki
 
 ## 最近活动
 
-- [2026-07-14] 开始消化整合鱼皮编程宝典（codefather）— 每日3批，将995篇文档逐步整合到各分类目录
 - [2026-07-14] 导入鱼皮编程宝典（codefather）— 998 篇编程学习资料
 - [2026-07-09] Go GitHub Weekly 2026-07-09 周报
 - [2026-07-02] Go GitHub Weekly 2026-07-02 周报
