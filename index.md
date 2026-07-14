@@ -120,6 +120,7 @@ title: Wiki
 
 ## 最近活动
 
+- [2026-07-14] 消化整合 codefather [Bug手册/README.md, Bug手册/经典 Bug 解决方案/前端接口请求及框架初始化错误] → devops/前端问题排错
 - [2026-07-14] 导入鱼皮编程宝典（codefather）— 998 篇编程学习资料
 - [2026-07-09] Go GitHub Weekly 2026-07-09 周报
 - [2026-07-02] Go GitHub Weekly 2026-07-02 周报
