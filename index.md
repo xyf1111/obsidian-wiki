@@ -4,17 +4,15 @@ title: Wiki
 
 # 知识库
 
-*此页面自动维护，最后更新于 2026-06-11*
+*🔥 最新 = 最近修改的 5 条笔记（自动维护） · 📋 最近活动 = [[最近活动|点击查看]]*
 
 ## 🔥 最新
 
-- [[weekly/Go GitHub Weekly 2026-07-09|Go GitHub Weekly 2026-07-09]] — Go 生态周报（2026-07-09）
-- [[weekly/Go GitHub Weekly 2026-07-02|Go GitHub Weekly 2026-07-02]] — Go 生态周报（2026-07-02）
-- [[learning/提问的智慧|提问的智慧]] — GitHub 40K+ stars 经典：如何正确提问以高效获取帮助
-- [[learning/持续学习的方法论与实践|持续学习的方法论与实践]] — 在技术快速迭代中保持竞争力的方法论与习惯
-- [[weekly/Go GitHub Weekly 2026-06-19|Go GitHub Weekly 2026-06-19]] — Go 生态周报（2026-06-19）
-- [[weekly/Go GitHub Weekly 2026-06-11|Go GitHub Weekly 2026-06-11]] — Go 生态周报
-- [[codefather/README|📚 编程导航·鱼皮编程宝典]] — 998 篇编程学习资料（学习路线·知识碎片·面试题·项目实战·Bug手册·编程分享）
+- [[tools/前端/工具 01 - 前端问题排错指南|工具 01 - 前端问题排错指南]] — *更新于 07-15*
+- [[weekly/Go GitHub Weekly 2026-07-09|Go GitHub 周报 - 2026-07-09]] — *更新于 07-09*
+- [[weekly/Go GitHub Weekly 2026-07-02|Go GitHub 周报 - 2026-07-02]] — *更新于 07-02*
+- [[weekly/Go GitHub Weekly 2026-06-26|Go GitHub 周报 - 2026-06-26]] — *更新于 06-26*
+- [[golang/面试/CC-Blog-面试题汇总|CC's Blog - 面试题汇总]] — *更新于 06-20*
 
 ## 编程语言
 
@@ -101,22 +99,13 @@ title: Wiki
 |------|------|
 | 📋 [[other/]] | 项目换电脑部署指南 |
 
-## 最近活动
+## 🔗 最近活动
 
-- [2026-07-14] 消化整合 codefather [Bug手册/前端接口请求及框架初始化错误] → 融合到 devops
-- [2026-07-09] Go GitHub Weekly 2026-07-09 周报
-- [2026-07-02] Go GitHub Weekly 2026-07-02 周报
-- [2026-06-19] Go GitHub Weekly 2026-06-19 周报（Go 1.25 Beta·Gin v1.11·GORM v1.26·OpenTelemetry slog集成）
-- [2026-06-19] 搜索引擎分类：Elasticsearch 4篇 + Meilisearch 1篇
-- [2026-06-19] 中间件补全：RabbitMQ 6→9篇 + Kafka 8篇 + Nginx 6篇
-- [2026-06-19] 数据库补全：MySQL 9篇 + Redis 8篇 + MongoDB 3篇
-- [2026-06-11] 全新目录结构：golang/database/middleware/learning/career 分类整理
-- [2026-06-11] 新增提问的智慧（GitHub 经典）、持续学习方法论、Go 周报等笔记
-- [2026-06-09] 从 xyf1111.github.io 导入 CC's Blog（98 篇 → 93 篇笔记）
-- [2026-06-07] 导入 Hermes Agent 知识库
-- [2026-06-06] 知识库初始化
+→ [[最近活动|📋 查看完整活动记录]]
 
 ## 订阅
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
+
