@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[devops/java/Java 项目 01 - 启动与依赖服务排错|Java 项目 01 - 启动与依赖服务排错]] — *更新于 07-15*
 - [[tools/前端/工具 01 - 前端问题排错指南|工具 01 - 前端问题排错指南]] — *更新于 07-15*
 - [[weekly/Go GitHub Weekly 2026-07-09|Go GitHub 周报 - 2026-07-09]] — *更新于 07-09*
 - [[weekly/Go GitHub Weekly 2026-07-02|Go GitHub 周报 - 2026-07-02]] — *更新于 07-02*
 - [[weekly/Go GitHub Weekly 2026-06-26|Go GitHub 周报 - 2026-06-26]] — *更新于 06-26*
-- [[golang/面试/CC-Blog-面试题汇总|CC's Blog - 面试题汇总]] — *更新于 06-20*
 
 ## 编程语言
 
@@ -107,6 +107,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
