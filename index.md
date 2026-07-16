@@ -56,7 +56,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🌐 [[network/]] | 网络 01-08 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket |
+| 🌐 [[network/]] | 网络 01-09 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解 |
 
 ## DevOps
 
@@ -73,6 +73,7 @@ title: Wiki
 |------|------|
 | 📖 [[learning/]] | 提问的智慧·持续学习的方法论与实践 |
 | 🎯 [[career/]] | 简历·面试感悟·学习路线（6篇） |
+| 🧪 [[concepts/概念 01 - 常见 Bug 原因分析.md|概念 01 - 常见 Bug 原因分析]] | 编码规范·硬编码·资源泄漏·圈复杂度·依赖冲突·自测评估 |
 
 ## 📡 周报
 
