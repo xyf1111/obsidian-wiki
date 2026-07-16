@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[concepts/概念 02 - 解决 Bug 的流程套路|概念 02 - 解决 Bug 的流程套路]] — *更新于 07-16*
 - [[concepts/概念 01 - 常见 Bug 原因分析|概念 01 - 常见 Bug 原因分析]] — *更新于 07-16*
 - [[network/网络 09 - HTTP 状态码详解与排错|网络 09 - HTTP 状态码详解与排错]] — *更新于 07-16*
 - [[tools/前端/工具 01 - 前端问题排错指南|工具 01 - 前端问题排错指南]] — *更新于 07-16*
 - [[weekly/Go GitHub Weekly 2026-07-16|Go GitHub 周报 - 2026-07-16]] — *更新于 07-16*
-- [[devops/java/Java 项目 01 - 启动与依赖服务排错|Java 项目 01 - 启动与依赖服务排错]] — *更新于 07-15*
 
 ## 编程语言
 
@@ -111,6 +111,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
