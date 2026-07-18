@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[learning/DevOps 学习路线|DevOps 学习路线]] — *更新于 07-18*
+- [[learning/C 语言学习路线|C 语言学习路线]] — *更新于 07-18*
+- [[devops/cicd/CI CD 04 - 学习路线与系统指南|CI CD 04 - 学习路线与系统指南]] — *更新于 07-18*
 - [[learning/C++ 学习路线|C++ 学习路线]] — *更新于 07-18*
 - [[learning/C# 学习路线|C# 学习路线]] — *更新于 07-18*
-- [[learning/BI 商业智能学习路线|BI 商业智能学习路线]] — *更新于 07-18*
-- [[learning/AI 大模型应用开发学习路线|AI 大模型应用开发学习路线]] — *更新于 07-18*
-- [[learning/AI Agent 应用开发学习路线|AI Agent 应用开发学习路线]] — *更新于 07-18*
 
 ## 编程语言
 
@@ -115,6 +115,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
