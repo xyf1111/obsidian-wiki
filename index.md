@@ -67,6 +67,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🌐 [[network/]] | 网络 01-09 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解 |
+| 🔷 [[network/graphql/]] | GraphQL 01 · 学习路线 |
 
 ## DevOps
 
@@ -76,9 +77,14 @@ title: Wiki
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
 | 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] |
-| 🐳 [[devops/graphql/]] | GraphQL 01 · 学习路线 |
-| 📱 [[devops/flutter/]] | Flutter 01 · 学习路线 |
-| ⚛️ [[devops/electron/]] | Electron 01 · 桌面应用开发学习路线 |
+| 🐳 [[devops/java/]] | Java 项目 01 · 启动与依赖服务排错 |
+
+## 📱 跨平台
+
+| 分类 | 内容 |
+|------|------|
+| 🦋 [[mobile/flutter/]] | Flutter 01 · 学习路线 |
+| ⚛️ [[mobile/electron/]] | Electron 01 · 桌面应用开发学习路线 |
 
 ## 📚 方法论
 
