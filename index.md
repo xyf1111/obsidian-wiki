@@ -19,8 +19,11 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🐹 [[golang/]] | **Go 语言**：基础·并发·底层·进阶·实战·面试·路线·核心原理·面试汇总 — 90 篇 |
-| ☕ [[java/]] | **Java**：基础·面向对象·集合·IO·多线程·JVM·进阶 — 22 篇 |
+| ☕ [[java/]] | **Java**：基础·面向对象·集合·IO·多线程·JVM·进阶 — 22 篇 · [[java/Java 00 - AI 应用开发学习路线.md|AI 应用开发学习路线]] |
 | 🐛 [[java/错误排查/]] | **Java 错误排查**：[[java/错误排查/Java 错误排查 01 - 数据查询为空或错误.md|数据查询为空]] · [[java/错误排查/Java 错误排查 02 - 无法正常登录或获取不到用户信息.md|登录鉴权]] · [[java/错误排查/Java 错误排查 03 - 无法访问线上服务.md|线上故障]] · [[devops/java/Java 项目 01 - 启动与依赖服务排错.md|项目启动]] |
+| 🅲 [[c/]] | **C 语言**：学习路线 |
+| ➕ [[cpp/]] | **C++**：学习路线 |
+| ＃ [[csharp/]] | **C#**：学习路线 |
 
 ## 数据库
 
@@ -37,6 +40,13 @@ title: Wiki
 | 🐰 [[middleware/rabbitmq/]] | RabbitMQ 01-09 · 工作队列·发布订阅·死信队列·可靠性·集群 |
 | 📨 [[middleware/kafka/]] | Kafka 01-08 · 生产者·消费者·分区·Streams·Connect·集群运维 |
 | 🌐 [[middleware/nginx/]] | Nginx 01-06 · 反向代理·SSL·缓存·限流·调优 |
+
+## 大数据
+
+| 分类 | 内容 |
+|------|------|
+| 📊 [[bigdata/bi/]] | BI 01 · 商业智能学习路线 |
+| ⚡ [[bigdata/flink/]] | Flink 01 · 实时计算学习路线 |
 
 ## 搜索引擎
 
@@ -65,13 +75,16 @@ title: Wiki
 | 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
-| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 |
+| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] |
+| 🐳 [[devops/graphql/]] | GraphQL 01 · 学习路线 |
+| 📱 [[devops/flutter/]] | Flutter 01 · 学习路线 |
+| ⚛️ [[devops/electron/]] | Electron 01 · 桌面应用开发学习路线 |
 
 ## 📚 方法论
 
 | 分类 | 内容 |
 |------|------|
-| 📖 [[learning/]] | 提问的智慧·持续学习的方法论与实践 · C 语言学习路线 · DevOps 学习路线 · BI 商业智能学习路线 · C# 学习路线 · C++ 学习路线 · GraphQL 学习路线 · Java AI 应用开发学习路线 |
+| 📖 [[learning/]] | 提问的智慧 · 持续学习的方法论与实践 |
 | 🎯 [[career/]] | 简历·面试感悟·学习路线（6篇） |
 
 ## 🧪 概念与排错
@@ -93,6 +106,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🧠 [[hermes/]] | Hermes Agent 概述·技能系统·安装配置·文档资源 |
+| 🤖 [[ai/]] | AI Agent 应用开发 · AI 大模型应用开发 · 学习路线 |
 
 ## 🛠️ 工具
 
