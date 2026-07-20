@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/Java 01 - 学习路线|Java 01 - 学习路线]] — *更新于 07-20*
+- [[javascript/JavaScript 01 - 学习路线|JavaScript 01 - 学习路线]] — *更新于 07-20*
+- [[middleware/kafka/Kafka 09 - 学习路线|Kafka 09 - 学习路线]] — *更新于 07-20*
 - [[ai/AI 大模型 01 - 应用开发学习路线|AI 大模型应用开发学习路线]] — *更新于 07-20*
 - [[ai/AI Agent 01 - 应用开发学习路线|AI Agent 应用开发学习路线]] — *更新于 07-20*
-- [[csharp/C# 01 - 学习路线|C# 学习路线]] — *更新于 07-20*
-- [[cpp/C++ 01 - 学习路线|C++ 学习路线]] — *更新于 07-20*
-- [[c/C 01 - 语言学习路线|C 语言学习路线]] — *更新于 07-20*
 
 ## 编程语言
 
@@ -135,6 +135,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
