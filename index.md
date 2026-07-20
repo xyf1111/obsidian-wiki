@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[devops/java/Java 项目 02 - 一键部署到Linux环境|Java 项目 02 - 一键部署到Linux环境]] — *更新于 07-20*
+- [[java/面向对象/Java 09 - 内部类与Lambda表达式|Java 09 - 内部类与Lambda表达式]] — *更新于 07-20*
 - [[java/Java 01 - 学习路线|Java 01 - 学习路线]] — *更新于 07-20*
 - [[javascript/JavaScript 01 - 学习路线|JavaScript 01 - 学习路线]] — *更新于 07-20*
 - [[middleware/kafka/Kafka 09 - 学习路线|Kafka 09 - 学习路线]] — *更新于 07-20*
-- [[ai/AI 大模型 01 - 应用开发学习路线|AI 大模型应用开发学习路线]] — *更新于 07-20*
-- [[ai/AI Agent 01 - 应用开发学习路线|AI Agent 应用开发学习路线]] — *更新于 07-20*
 
 ## 编程语言
 
@@ -135,6 +135,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
