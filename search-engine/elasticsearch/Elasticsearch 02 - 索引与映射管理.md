@@ -149,13 +149,21 @@ POST /_reindex
 
 需要安装 IK 分词插件：
 
+**方式一（命令行安装）：**
+
 ```bash
 elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/...
 ```
 
+**方式二（手动安装，Windows 适用）：**
+
+下载 `elasticsearch-analysis-ik-{version}.zip`，解压后放入 ES 安装目录的 `plugins/` 下，重启 ES 即可。
+
+**版本兼容：** 如报错提示分词器版本不兼容，编辑分词器目录下的 `plugin-descriptor.properties`，将 `elasticsearch.version` 改为当前 ES 版本。
+
 ```json
-// ik_smart — 最细粒度
-// ik_max_word — 粗粒度（推荐索引用）
+// ik_smart — 粗粒度（推荐搜索用）
+// ik_max_word — 最细粒度（推荐索引用）
 
 PUT /articles
 {
@@ -178,3 +186,93 @@ POST /articles/_analyze
 }
 // 结果: 中华人民共和国, 中华人民, 中华, 华人, 人民共和国, 人民, 共和国
 ```
+
+## 文档 CRUD
+
+### 新增文档
+
+```json
+# 指定 ID
+POST /products/_doc/1
+{
+  "title": "iPhone 15",
+  "price": 7999,
+  "stock": 100
+}
+
+# 不指定 ID（自动生成随机 ID）
+POST /products/_doc
+{
+  "title": "MacBook Pro",
+  "price": 14999
+}
+```
+
+> 字段类型声明为 `float` 但仍可插入数组——ES 没有数组类型，允许一个字段接受多个值。
+
+### 查询文档
+
+```json
+GET /products/_doc/1
+```
+
+### 删除文档
+
+```json
+DELETE /products/_doc/1
+```
+
+### 修改文档
+
+**全量修改：** 覆盖原文档（本质是删除 + 新增）
+
+```json
+PUT /products/_doc/1
+{
+  "title": "iPhone 15 Pro",
+  "price": 8999,
+  "stock": 50
+}
+```
+
+> 如果指定 ID 不存在，则从修改变为新增操作。
+
+**增量修改：** 只更新部分字段
+
+```json
+POST /products/_update/1
+{
+  "doc": {
+    "price": 7999
+  }
+}
+```
+
+## Java 客户端使用
+
+### 引入依赖
+
+```xml
+<dependency>
+    <groupId>org.elasticsearch.client</groupId>
+    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+</dependency>
+```
+
+注意覆盖 Spring Boot 管理的 ES 版本：
+
+```xml
+<properties>
+    <elasticsearch.version>7.12.1</elasticsearch.version>
+</properties>
+```
+
+### 初始化客户端
+
+```java
+RestHighLevelClient client = new RestHighLevelClient(
+    RestClient.builder(HttpHost.create("http://localhost:9200"))
+);
+```
+
+> 来源：鱼皮·编程导航 / codefather

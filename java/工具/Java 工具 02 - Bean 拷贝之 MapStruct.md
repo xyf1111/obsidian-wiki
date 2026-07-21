@@ -139,6 +139,107 @@ public void test() {
 }
 ```
 
+## 替代方案：BaseData 反射工具类
+
+当无法安装 MapStruct 插件（如云桌面受限环境）时，可使用基于反射的 `BaseData` 接口方案，通过 `BeanUtils.copyProperties` + 自定义接口实现对象转换。
+
+### 问题场景
+
+Spring 的 `BeanUtils.copyProperties()` 有两个缺点：
+1. 目标对象需要手动 `new` 实例
+2. 字段需要手动 `set` 时会导致代码冗长
+3. 集合转换时 Sonar 会报「不能在循环中创建对象」
+
+### BaseData 接口实现
+
+```java
+public interface BaseData {
+
+    /** 将当前对象转换为目标对象，并执行额外操作 */
+    default <V> V asTargetObject(Class<V> clazz, Consumer<V> consumer) {
+        V v = this.asTargetObject(clazz);
+        consumer.accept(v);
+        return v;
+    }
+
+    /** 将当前对象转换为目标对象 */
+    default <V> V asTargetObject(Class<V> clazz) {
+        try {
+            Field[] declaredFields = clazz.getDeclaredFields();
+            Constructor<V> constructor = clazz.getConstructor();
+            V v = constructor.newInstance();
+            Arrays.stream(declaredFields).forEach(declaredField -> convert(declaredField, v));
+            return v;
+        } catch (ReflectiveOperationException e) {
+            throw new BusinessException(ErrorCode.CAST_OBJECT_ERROR);
+        }
+    }
+
+    /** 字段转换并赋值 */
+    default void convert(Field field, Object vo) {
+        try {
+            Field source = this.getClass().getDeclaredField(field.getName());
+            ReflectionUtils.makeAccessible(field);
+            ReflectionUtils.makeAccessible(source);
+            Method sourceGetter = this.getClass().getMethod("get" + capitalize(field.getName()));
+            Method targetSetter = vo.getClass().getMethod("set" + capitalize(field.getName()), field.getType());
+            Object value = sourceGetter.invoke(this);
+            targetSetter.invoke(vo, value);
+        } catch (NoSuchFieldException | InvocationTargetException | IllegalAccessException |
+                 NoSuchMethodException ignored) {
+            // 忽略字段数不一致的异常，额外字段可在 consumer 中处理
+        }
+    }
+
+    default String capitalize(String str) {
+        if (str == null || str.isEmpty()) return str;
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    }
+}
+```
+
+### 使用方式
+
+**1. DTO 实现 BaseData 接口：**
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AccountDTO implements BaseData {
+    private Long id;
+    private String username;
+    private String gender;
+    // ...
+}
+```
+
+**2. 单个对象转换：**
+
+```java
+AccountDTO accountDTO = new AccountDTO(1L, "test", "男", ...);
+AccountVO accountVO = accountDTO.asTargetObject(AccountVO.class, v -> {
+    v.setGenderNum(Objects.equals(accountDTO.getGender(), "男") ? "1" : "0");
+});
+```
+
+**3. 集合转换：**
+
+```java
+List<AccountVO> list = accountDTOList.stream()
+    .map(source -> source.asTargetObject(AccountVO.class, v -> {
+        v.setGenderNum(Objects.equals(source.getGender(), "男") ? "1" : "0");
+    }))
+    .collect(Collectors.toList());
+```
+
+### 注意事项
+
+- 两个类中**相同字段名的字段类型必须完全一致**
+- Lombok 版本建议 1.18.28+，`isDelete` 等 `is` 开头字段自动支持
+- 未使用 Lombok 时需手动添加 `getIsDelete()` 等方法
+- 反射方案有少量运行时开销，适合数据量较小的场景；高性能场景仍推荐 MapStruct
+
 ## 工作原理
 
 MapStruct 在 **编译时** 生成映射器实现类（而非运行时反射），生成的是普通的 Java setter 代码，无反射开销。
