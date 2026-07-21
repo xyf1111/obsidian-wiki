@@ -142,3 +142,41 @@ git push origin :refs/tags/v1.0
 | Repository not found | 没有仓库访问权限 | 检查仓库 URL 和权限 |
 | failed to push some refs | 远程有本地没有的提交 | `git pull --rebase` 后重试 |
 | Updates were rejected | 强制推送被拒绝 | `--force-with-lease` 或先 pull |
+
+## 多远程仓库管理
+
+### 添加多个远程仓库
+
+一个本地仓库可同时关联多个远程仓库（如 GitHub + Gitee），实现同时推送：
+
+```bash
+# 查看已有远程仓库
+git remote -v
+
+# 添加多个远程仓库（不同名称）
+git remote add github https://github.com/user/repo.git
+git remote add gitee https://gitee.com/user/repo.git
+```
+
+### 在 IDEA 中配置多远程仓库
+
+1. 本地初始化 Git 仓库后，进入 **Git → Manage Remotes**
+2. 添加多个远程地址，分别命名（如 `github`、`gitee`）
+3. Push 时可选择推送到指定远程仓库
+4. 也可分别推送：先 Push 到 GitHub，再 Push 到 Gitee
+
+### 同时推送到所有远程
+
+```bash
+# 先设置两个 remote
+git remote add github <url>
+git remote add gitee <url>
+
+# 推送时指定
+git push github main
+git push gitee main
+
+# 或在 .git/config 中配置 push 所有 remote
+git remote set-url --add --push origin <url1>
+git remote set-url --add --push origin <url2>
+```
