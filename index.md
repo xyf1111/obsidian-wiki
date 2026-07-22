@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/进阶/Java 23 - Stream 流快速入门|Java 23 - Stream 流快速入门]] — *更新于 07-22*
+- [[devops/java/Java 项目 03 - IDEA Docker远程部署SpringBoot|Java 项目 03 - IDEA Docker远程部署SpringBoot]] — *更新于 07-22*
+- [[java/工具/Java 工具 04 - LiteFlow 编排式编程|Java 工具 04 - LiteFlow 编排式编程]] — *更新于 07-22*
 - [[concepts/概念 04 - Hexo 博客搭建教程|概念 04 - Hexo 博客搭建教程]] — *更新于 07-21*
 - [[devops/git/Git 02 - SSH与远程仓库|Git 02 - SSH与远程仓库]] — *更新于 07-21*
-- [[devops/git/Git 01 - 配置与基础操作|Git 01 - 配置与基础操作]] — *更新于 07-21*
-- [[search-engine/elasticsearch/Elasticsearch 02 - 索引与映射管理|Elasticsearch 02 - 索引与映射管理]] — *更新于 07-21*
-- [[java/工具/Java 工具 03 - EasyExcel 导出文件|Java 工具 - EasyExcel 导出文件]] — *更新于 07-21*
 
 ## 编程语言
 
@@ -135,6 +135,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
