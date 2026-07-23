@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[database/redis/Redis 09 - 文章点赞功能设计|Redis 09 - 文章点赞功能设计]] — *更新于 07-23*
+- [[middleware/rabbitmq/RabbitMQ 07 - 死信队列与延迟队列|RabbitMQ 07 - 死信队列与延迟队列]] — *更新于 07-23*
+- [[java/进阶/Java 25 - Spring Boot RESTful 接口实现与测试|Java 25 - Spring Boot RESTful 接口实现与测试]] — *更新于 07-23*
 - [[java/进阶/Java 24 - OJ竞赛排行榜设计|Java 进阶 - OJ 竞赛排行榜设计]] — *更新于 07-23*
 - [[database/mysql/MySQL 13 - Oracle到MySQL函数替换方案|MySQL - Oracle 到 MySQL 函数替换方案]] — *更新于 07-23*
-- [[middleware/Nacos 配置中心|中间件 - Nacos 配置中心]] — *更新于 07-23*
-- [[database/mysql/MySQL 12 - SQL基础语法（DDL DML DQL DCL TPL）|MySQL 12 - SQL基础语法（DDL DML DQL DCL TPL）]] — *更新于 07-23*
-- [[database/mysql/MySQL 安装 - ZIP绿色版部署|MySQL ZIP绿色版安装（Windows）]] — *更新于 07-23*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
