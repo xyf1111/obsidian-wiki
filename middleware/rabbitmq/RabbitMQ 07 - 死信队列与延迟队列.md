@@ -143,6 +143,108 @@ ch.Publish("delayed.exchange", "order.created", false, false, amqp.Publishing{
 | 定时通知 | 定时 | 预约提醒、活动开始前通知 |
 | 数据同步 | 延迟 | 延迟写入，允许数据聚合/去重 |
 
+## Spring Boot 配置示例（Java）
+
+除了 Go，RabbitMQ 死信队列在 Java/Spring Boot 项目中同样常用。以下是在 Spring Boot 项目中声明死信队列的配置类。
+
+### 交换机、队列和 RoutingKey 配置
+
+```java
+@Configuration
+public class TtlQueueConfig {
+    private final String COMMON_EXCHANGE = "bi_common_exchange";
+    private final String COMMON_QUEUE = "bi_common_queue";
+    private final String DEAD_LETTER_EXCHANGE = "bi_dead_letter_exchange";
+    private final String DEAD_LETTER_QUEUE = "bi_dead_letter_queue";
+    private final String COMMON_ROUTINGKEY = "bi_common_routingKey";
+    private final String DEAD_LETTER_ROUTINGKEY = "bi_dead_letter_routingKey";
+
+    @Bean("commonExchange")
+    public DirectExchange commonExchange() {
+        return new DirectExchange(COMMON_EXCHANGE);
+    }
+
+    @Bean("deadLetterExchange")
+    public DirectExchange deadLetterExchange() {
+        return new DirectExchange(DEAD_LETTER_EXCHANGE);
+    }
+
+    @Bean("commonQueue")
+    public Queue commonQueue() {
+        Map<String, Object> map = new HashMap<>(3);
+        map.put("x-message-ttl", 20000);
+        map.put("x-dead-letter-exchange", DEAD_LETTER_EXCHANGE);
+        map.put("x-dead-letter-routing-key", DEAD_LETTER_ROUTINGKEY);
+        return QueueBuilder.durable(COMMON_QUEUE).withArguments(map).build();
+    }
+
+    @Bean("deadLetterQueue")
+    public Queue deadLetterQueue() {
+        return QueueBuilder.durable(DEAD_LETTER_QUEUE).build();
+    }
+
+    @Bean
+    public Binding commonQueueBindingCommonExchange(
+            @Qualifier("commonQueue") Queue commonQueue,
+            @Qualifier("commonExchange") DirectExchange commonExchange) {
+        return BindingBuilder.bind(commonQueue).to(commonExchange).with(COMMON_ROUTINGKEY);
+    }
+
+    @Bean
+    public Binding deadQueueBindingDeadExchange(
+            @Qualifier("deadLetterQueue") Queue deadLetterQueue,
+            @Qualifier("deadLetterExchange") DirectExchange deadLetterExchange) {
+        return BindingBuilder.bind(deadLetterQueue).to(deadLetterExchange).with(DEAD_LETTER_ROUTINGKEY);
+    }
+}
+```
+
+### 普通消费者（异步处理 + 拒绝后投递到死信队列）
+
+```java
+@Component
+@Slf4j
+public class BIMessageConsumer {
+    @Resource
+    private ChartService chartService;
+
+    @SneakyThrows
+    @RabbitListener(queues = {"bi_common_queue"}, ackMode = "MANUAL")
+    public void receiveMessage(String message, Channel channel,
+                               @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) {
+        if (StringUtils.isBlank(message)) {
+            channel.basicNack(deliveryTag, false, false);
+            log.info("消息为空拒绝接收，转发到死信队列");
+            return;
+        }
+        // ... 业务处理失败时 channel.basicNack(deliveryTag, false, false);
+
+        // 处理成功后手动确认
+        channel.basicAck(deliveryTag, false);
+    }
+}
+```
+
+### 死信队列消费者
+
+```java
+@Component
+@Slf4j
+public class DeadLetterConsumer {
+    @Resource
+    private BIMessageProducer biMessageProducer;
+
+    @SneakyThrows
+    @RabbitListener(queues = "bi_dead_letter_queue", ackMode = "MANUAL")
+    public void consumeDeadLetter(String message, Channel channel,
+                                  @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) {
+        log.info("收到死信消息：{}", message);
+        biMessageProducer.sendMessage(message); // 重试或转存
+        channel.basicAck(deliveryTag, false);
+    }
+}
+```
+
 ## 注意事项
 
 1. **死信循环**：避免死信队列未消费，消息又被转发回原队列 — 检查 `x-dead-letter-exchange` 配置是否正确
