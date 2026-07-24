@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[devops/docker/Docker 06 - MinIO 对象存储服务搭建|Docker - MinIO 对象存储服务搭建]] — *更新于 07-24*
+- [[java/工具/Java 工具 06 - MyBatis 多数据源整合|Java 工具 06 - MyBatis 多数据源整合]] — *更新于 07-24*
+- [[middleware/rabbitmq/RabbitMQ 10 - Spring Boot 集成配置|RabbitMQ 10 - Spring Boot 集成配置]] — *更新于 07-24*
 - [[devops/java/Java 项目 04 - ELK 日志采集与监控|Java 项目 04 - ELK 日志采集与监控]] — *更新于 07-24*
 - [[java/进阶/Java 26 - Quartz 定时任务|Java 26 - Quartz 定时任务]] — *更新于 07-24*
-- [[database/redis/Redis 07 - 分布式锁|Redis 07 - 分布式锁]] — *更新于 07-24*
-- [[database/redis/Redis 09 - 文章点赞功能设计|Redis 09 - 文章点赞功能设计]] — *更新于 07-23*
-- [[middleware/rabbitmq/RabbitMQ 07 - 死信队列与延迟队列|RabbitMQ 07 - 死信队列与延迟队列]] — *更新于 07-23*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
