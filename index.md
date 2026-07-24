@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/进阶/Java 28 - String 的 intern() 方法|Java - String 的 intern() 方法]] — *更新于 07-24*
+- [[middleware/Nacos 配置中心|中间件 - Nacos 配置中心]] — *更新于 07-24*
+- [[java/进阶/Java 27 - Spring Security OAuth2 整合|Java - Spring Security OAuth2 整合]] — *更新于 07-24*
 - [[devops/docker/Docker 06 - MinIO 对象存储服务搭建|Docker - MinIO 对象存储服务搭建]] — *更新于 07-24*
 - [[java/工具/Java 工具 06 - MyBatis 多数据源整合|Java 工具 06 - MyBatis 多数据源整合]] — *更新于 07-24*
-- [[middleware/rabbitmq/RabbitMQ 10 - Spring Boot 集成配置|RabbitMQ 10 - Spring Boot 集成配置]] — *更新于 07-24*
-- [[devops/java/Java 项目 04 - ELK 日志采集与监控|Java 项目 04 - ELK 日志采集与监控]] — *更新于 07-24*
-- [[java/进阶/Java 26 - Quartz 定时任务|Java 26 - Quartz 定时任务]] — *更新于 07-24*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
