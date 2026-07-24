@@ -219,8 +219,44 @@ func (r *RedLock) Lock(ctx context.Context, key, value string, ttl time.Duration
 }
 ```
 
+## Redisson（Java 客户端）异常处理
+
+Redisson 是 Java 生态中最常用的 Redis 分布式锁客户端。以下为两个常见问题和解决方案。
+
+### 解锁异常："attempt to unlock lock, not locked by current thread"
+
+**异常原因：**
+
+1. **锁被其他线程或节点持有**：一个线程/节点获得锁后，另一个线程尝试解锁
+2. **锁超时自动释放**：业务处理时间超过锁的 TTL，锁已自动释放，这时不应再手动解锁
+
+**解决方案：**
+
+在解锁前使用 `isHeldByCurrentThread()` 检查当前线程是否仍持有锁：
+
+```java
+RLock lock = redissonClient.getLock("myLock");
+try {
+    // 尝试获取锁，等待10秒，锁30秒自动释放
+    boolean isLocked = lock.tryLock(10, 30, TimeUnit.SECONDS);
+    if (isLocked) {
+        // 执行业务代码
+    } else {
+        log.info("获取Redisson锁失败");
+    }
+} catch (InterruptedException e) {
+    Thread.currentThread().interrupt();
+} finally {
+    // 解锁前检查当前线程是否持有该锁
+    if (lock != null && lock.isHeldByCurrentThread()) {
+        lock.unlock();
+    }
+}
+```
+
 ## 参考资料
 
 - [Redis SETNX 文档](https://redis.io/commands/setnx/)
 - [RedLock 算法](https://redis.io/docs/reference/patterns/distributed-locks/)
 - [go-redis 分布式锁](https://github.com/go-redsync/redsync)
+- [Redisson 官方文档](https://github.com/redisson/redisson)
