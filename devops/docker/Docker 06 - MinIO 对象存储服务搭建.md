@@ -143,4 +143,161 @@ public class FileController {
 }
 ```
 
+### 5. MinioUtils 工具类
+
+完整的文件操作工具类，包含上传、下载、删除、列表、获取访问地址：
+
+```java
+@Service
+@Slf4j
+public class MinioUtils {
+
+    @Autowired
+    private MinioClient minioClient;
+    @Autowired
+    private MinioConfiguration minioConfig;
+
+    /** 获取文件列表 */
+    public List<String> listObjects() {
+        List<String> list = new ArrayList<>();
+        try {
+            ListObjectsArgs args = ListObjectsArgs.builder()
+                    .bucket(minioConfig.getBucket()).build();
+            for (Result<Item> result : minioClient.listObjects(args)) {
+                Item item = result.get();
+                list.add(item.objectName());
+            }
+        } catch (Exception e) {
+            log.error("MinIO list error", e);
+        }
+        return list;
+    }
+
+    /** 上传文件 */
+    public void uploadObject(InputStream is, String fileName, String contentType) {
+        try {
+            minioClient.putObject(PutObjectArgs.builder()
+                    .bucket(minioConfig.getBucket())
+                    .object(fileName)
+                    .contentType(contentType)
+                    .stream(is, is.available(), -1)
+                    .build());
+            is.close();
+        } catch (Exception e) {
+            log.error("MinIO upload error", e);
+        }
+    }
+
+    /** 删除文件 */
+    public void deleteObject(String objectName) {
+        try {
+            minioClient.removeObject(RemoveObjectArgs.builder()
+                    .bucket(minioConfig.getBucket())
+                    .object(objectName).build());
+        } catch (Exception e) {
+            log.error("MinIO delete error", e);
+        }
+    }
+
+    /** 生成预签名下载地址（7 天有效） */
+    public String getObjectUrl(String objectName) {
+        try {
+            return minioClient.getPresignedObjectUrl(
+                    GetPresignedObjectUrlArgs.builder()
+                    .method(Method.GET)
+                    .bucket(minioConfig.getBucket())
+                    .object(objectName)
+                    .expiry(7, TimeUnit.DAYS).build());
+        } catch (Exception e) {
+            log.error("MinIO getUrl error", e);
+        }
+        return "";
+    }
+
+    /** 下载文件流 */
+    public InputStream getObject(String objectName) {
+        try {
+            return minioClient.getObject(GetObjectArgs.builder()
+                    .bucket(minioConfig.getBucket())
+                    .object(objectName).build());
+        } catch (Exception e) {
+            log.error("MinIO download error", e);
+        }
+        return null;
+    }
+}
+```
+
+### 6. 完整 Controller
+
+```java
+@RestController
+@RequestMapping("/minio")
+public class MinioController {
+
+    @Autowired
+    private MinioUtils minioService;
+
+    @GetMapping("/list")
+    public BaseResponse<List<String>> list() {
+        return ResultUtils.success(minioService.listObjects());
+    }
+
+    @DeleteMapping("/delete")
+    public BaseResponse<Boolean> delete(@RequestParam String filename) {
+        minioService.deleteObject(filename);
+        return ResultUtils.success(true);
+    }
+
+    @PostMapping("/upload")
+    public BaseResponse<String> upload(@RequestParam("file") MultipartFile file) {
+        try {
+            String fileName = System.currentTimeMillis() + "."
+                    + StringUtils.substringAfterLast(
+                            file.getOriginalFilename(), ".");
+            minioService.uploadObject(
+                    file.getInputStream(), fileName, file.getContentType());
+            return ResultUtils.success(fileName);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "上传失败");
+        }
+    }
+
+    @GetMapping("/download")
+    public void download(@RequestParam String filename,
+                         HttpServletResponse response) {
+        try (InputStream in = minioService.getObject(filename)) {
+            response.setHeader("Content-Disposition",
+                    "attachment;filename=" + filename);
+            IOUtils.copy(in, response.getOutputStream());
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "下载失败");
+        }
+    }
+
+    @GetMapping("/getUrl")
+    public BaseResponse<String> getUrl(@RequestParam String filename) {
+        return ResultUtils.success(minioService.getObjectUrl(filename));
+    }
+}
+```
+
+### 7. 文件上传配置
+
+```yaml
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 100MB
+```
+
+## 使用建议
+
+- **访问策略**：Bucket 需设置为 Public，否则文件 URL 访问返回 403
+- **域名绑定**：可通过域名解析将 IP 映射到域名，避免暴露服务器 IP
+- **安全组**：云服务器需在安全组中开放 9000（API）和 9001（控制台）端口
+- **数据持久化**：Docker 部署时务必挂载数据卷，防止容器重启后数据丢失
+
 > 来源：鱼皮·编程导航 / codefather
