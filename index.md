@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[os/linux/Linux 07 - 学习路线|Linux 07 - 学习路线]] — *更新于 07-25*
+- [[ai/LangChain 01 - 学习路线|AI - LangChain 学习路线（Python）]] — *更新于 07-25*
+- [[ai/LangGraph4j 01 - 学习路线|AI - LangGraph4j 学习路线]] — *更新于 07-25*
 - [[ai/LangChain4j 01 - 学习路线|AI - LangChain4j 学习路线]] — *更新于 07-25*
 - [[devops/kubernetes/Kubernetes 05 - 学习路线|DevOps - Kubernetes 学习路线]] — *更新于 07-25*
-- [[mobile/android/Kotlin 01 - 学习路线|移动端 - Kotlin 学习路线]] — *更新于 07-25*
-- [[tools/前端/工具 03 - Vue3 文件上传 OSS|工具 03 - Vue3 文件上传 OSS]] — *更新于 07-25*
-- [[concepts/概念 05 - TextCNN 文本分类与评论审核|概念 05 - TextCNN 文本分类与评论审核]] — *更新于 07-25*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
