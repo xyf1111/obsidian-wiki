@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[ai/LangChain4j 01 - 学习路线|AI - LangChain4j 学习路线]] — *更新于 07-25*
+- [[devops/kubernetes/Kubernetes 05 - 学习路线|DevOps - Kubernetes 学习路线]] — *更新于 07-25*
+- [[mobile/android/Kotlin 01 - 学习路线|移动端 - Kotlin 学习路线]] — *更新于 07-25*
 - [[tools/前端/工具 03 - Vue3 文件上传 OSS|工具 03 - Vue3 文件上传 OSS]] — *更新于 07-25*
 - [[concepts/概念 05 - TextCNN 文本分类与评论审核|概念 05 - TextCNN 文本分类与评论审核]] — *更新于 07-25*
-- [[java/进阶/Java 29 - Synchronized 关键字详解|Java 29 - Synchronized 关键字详解]] — *更新于 07-25*
-- [[java/进阶/Java 28 - String 的 intern() 方法|Java - String 的 intern() 方法]] — *更新于 07-24*
-- [[middleware/Nacos 配置中心|中间件 - Nacos 配置中心]] — *更新于 07-24*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
