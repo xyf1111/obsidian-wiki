@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/基础/Java 06 - 常量与枚举|Java 基础 - 常量与枚举]] — *更新于 07-26*
+- [[tools/前端/工具 04 - Ajax异步通信|工具 - Ajax 异步通信]] — *更新于 07-26*
+- [[java/集合/Java 13 - fail-fast机制|Java 集合 - fail-fast 机制]] — *更新于 07-26*
 - [[network/网络 08 - HTTP2与HTTP3及WebSocket|网络 08 - HTTP2与HTTP3及WebSocket]] — *更新于 07-26*
 - [[java/进阶/Java 30 - SSE流式响应与AI接口集成|Java 30 - SSE流式响应与AI接口集成]] — *更新于 07-26*
-- [[os/linux/Linux 07 - 学习路线|Linux 07 - 学习路线]] — *更新于 07-25*
-- [[ai/LangChain 01 - 学习路线|AI - LangChain 学习路线（Python）]] — *更新于 07-25*
-- [[ai/LangGraph4j 01 - 学习路线|AI - LangGraph4j 学习路线]] — *更新于 07-25*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
