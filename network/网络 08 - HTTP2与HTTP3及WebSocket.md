@@ -92,3 +92,145 @@ Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
 | 延迟 | 受轮询间隔影响 | 实时 |
 | 带宽 | 每次建立 HTTP 连接 | 一次连接，持续通信 |
 | 服务端压力 | 高（大量无效请求） | 低（事件触发） |
+
+### JavaScript 客户端 API
+
+```js
+// 建立连接
+const ws = new WebSocket('ws://localhost:8080/channel/echo');
+
+// 接收消息
+ws.addEventListener('message', (event) => {
+    console.log('收到:', event.data);
+});
+// 或 ws.onmessage = (event) => { ... };
+
+// 发送消息
+ws.send('Hello, server!');
+
+// 关闭连接
+ws.close();
+
+// 连接状态
+if (ws.readyState === WebSocket.OPEN) { /* 连接打开 */ }
+
+// 事件监听
+ws.addEventListener('open', (e) => console.log('已连接'));
+ws.addEventListener('close', (e) => console.log('已关闭'));
+ws.addEventListener('error', (e) => console.error('异常:', e.error));
+```
+
+> WebSocket 没有跨域限制，可在任意页面控制台直接连接测试。
+
+## Spring Boot WebSocket 实战
+
+Spring Boot 整合 WebSocket 有两种方式：Jakarta EE 规范（`@ServerEndpoint`）和 Spring WebSocket 模块。
+
+### 方式一：Jakarta EE @ServerEndpoint（推荐）
+
+**添加依赖：**
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-websocket</artifactId>
+</dependency>
+```
+
+**开发端点：**
+```java
+@ServerEndpoint(value = "/channel/echo")
+public class EchoChannel {
+
+    private Session session;
+
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        this.session = session;
+    }
+
+    @OnMessage
+    public void onMessage(String message) throws IOException {
+        if ("bye".equalsIgnoreCase(message)) {
+            this.session.close(
+                new CloseReason(CloseReason.CloseCodes.NORMAL_CLOSURE, "Bye"));
+            return;
+        }
+        this.session.getAsyncRemote()
+            .sendText("[" + Instant.now().toEpochMilli() + "] Hello " + message);
+    }
+
+    @OnClose
+    public void onClose(CloseReason reason) { /* 断开处理 */ }
+
+    @OnError
+    public void onError(Throwable t) throws IOException {
+        this.session.close(new CloseReason(
+            CloseReason.CloseCodes.UNEXPECTED_CONDITION, t.getMessage()));
+    }
+}
+```
+
+**配置注册：**
+```java
+@Configuration
+public class WebSocketConfig {
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+}
+```
+
+也可在端点上加 `@Component` 让 Spring 自动扫描注册。
+
+### 注入 Bean 的注意事项
+
+`@ServerEndpoint` 实例由 WebSocket 容器（Tomcat）创建，**不受 Spring 管理**，所以 `@Autowired` 注入会空指针。正确做法：
+
+```java
+@ServerEndpoint("/channel/echo")
+@Component
+public class EchoChannel implements ApplicationContextAware {
+
+    private static ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext ctx) {
+        applicationContext = ctx;
+    }
+
+    private UserService userService;
+
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        this.session = session;
+        // 连接创建时从 ApplicationContext 获取 Bean
+        this.userService = applicationContext.getBean(UserService.class);
+    }
+}
+```
+
+`onOpen` 在整个连接生命周期只执行一次，不会带来通信性能损耗。
+
+### 方式二：Spring WebSocket 模块
+
+通过 `WebSocketHandler` 接口实现，可无缝整合 Spring Security 等模块，代码略（参考 Spring 官方文档）。
+
+### WebSocket 连接状态码
+
+| 状态码 | 含义 |
+|--------|------|
+| 1000 | 正常关闭（NORMAL_CLOSURE） |
+| 1009 | 消息体超过 `@OnMessage` 的 `maxMessageSize` 限制 |
+| 1011 | 服务端意外错误（UNEXPECTED_CONDITION） |
+
+### 发送文件（服务端推送）
+
+```java
+// 服务端主动发送（基于 Session）
+session.getAsyncRemote().sendText("消息内容");
+session.getBasicRemote().sendText("同步消息");
+
+// 群发管理（使用 CopyOnWriteArraySet 维护连接池）
+private static CopyOnWriteArraySet<WebSocketServer> connections = new CopyOnWriteArraySet<>();
+```
