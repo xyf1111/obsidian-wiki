@@ -118,6 +118,35 @@ OK
 (integer) 17
 ```
 
+#### UV/PV 统计应用
+
+- **UV（Unique Visitor）**：独立访客量，同一用户一天内多次访问只计 1 次
+- **PV（Page View）**：页面访问量/点击量，每次打开页面计 1 次
+- PV/UV 比值可衡量网站用户粘度
+
+HyperLogLog 适合 UV 统计场景，原因：
+- 内存占用极低（单键 **<16KB**），即便存储百万级维度的数据
+- 统计结果存在 **<0.81%** 的概率误差，对 UV 统计可忽略
+- 自动去重：`PFADD` 添加时自动去除重复元素
+
+Java（Spring Boot）操作示例：
+
+```java
+// 模拟 100 万用户访问
+String[] users = new String[1000];
+int index = 0;
+for (int i = 0; i < 1000000; i++) {
+    users[index++] = "user_" + i;
+    if (i % 1000 == 0) {
+        index = 0;
+        redisTemplate.opsForHyperLogLog().add("test", users);
+    }
+}
+// 统计数量
+Long size = redisTemplate.opsForHyperLogLog().size("test");
+System.out.println("size=" + size);  // 约 999xxx，接近 100 万
+```
+
 ### bitmaps
 
 
