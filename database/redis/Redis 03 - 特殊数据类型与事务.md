@@ -88,6 +88,164 @@ Redis的GEO
 4) "shanghai"
 ```
 
+## Spring Boot 集成 GEO 实战
+
+将 Redis GEO 应用于伙伴匹配项目，实现用户间距离计算和搜索附近用户功能。
+
+### 数据模型设计
+
+用户表添加经纬度字段：
+
+```sql
+-- 在 user 表追加两个字段
+longitude    decimal(10, 6)     null comment '经度',
+dimension    decimal(10, 6)     null comment '纬度'
+```
+
+UserVO 添加 `distance` 字段，向前端返回用户间的距离：
+
+```java
+@Data
+public class UserVO {
+    // ... 其他字段
+    private Double distance;   // 用户距离，单位 km
+}
+```
+
+### 导入用户地理数据到 Redis
+
+使用 `StringRedisTemplate.opsForGeo().add()` 批量导入。底层用 ZSET 存储，value=用户ID，score=经纬度编码。
+
+```java
+@Test
+public void importUserGEOByRedis() {
+    List<User> userList = userService.list();
+    String key = RedisConstant.USER_GEO_KEY;
+    List<RedisGeoCommands.GeoLocation<String>> locationList = new ArrayList<>(userList.size());
+    for (User user : userList) {
+        locationList.add(new RedisGeoCommands.GeoLocation<>(
+            String.valueOf(user.getId()),
+            new Point(user.getLongitude(), user.getDimension())));
+    }
+    stringRedisTemplate.opsForGeo().add(key, locationList);
+}
+```
+
+### 计算用户间距离
+
+```java
+Distance distance = stringRedisTemplate.opsForGeo()
+    .distance(key, "1", String.valueOf(user.getId()),
+              RedisGeoCommands.DistanceUnit.KILOMETERS);
+```
+
+### 搜索附近用户
+
+`opsForGeo().radius(key, circle, args)` — Circle 由圆心（目标经纬度）和半径（搜索距离）构成，注意排除自身。
+
+```java
+@Test
+public void searchUserByGeo() {
+    User loginUser = userService.getById(1);
+    // 定义圆心与半径
+    Distance geoRadius = new Distance(1500, RedisGeoCommands.DistanceUnit.KILOMETERS);
+    Circle circle = new Circle(
+        new Point(loginUser.getLongitude(), loginUser.getDimension()), geoRadius);
+
+    GeoRadiusCommandArgs args = GeoRadiusCommandArgs.newGeoRadiusArgs().includeCoordinates();
+    GeoResults<RedisGeoCommands.GeoLocation<String>> results =
+        stringRedisTemplate.opsForGeo().radius(USER_GEO_KEY, circle, args);
+
+    for (GeoResult<RedisGeoCommands.GeoLocation<String>> result : results) {
+        // 排除自身
+        if (!result.getContent().getName().equals("1")) {
+            System.out.println(result.getContent().getName());
+        }
+    }
+}
+```
+
+### 与推荐/匹配系统集成
+
+**推荐接口**：分页查询用户后，对每个用户计算距离并设置到 UserVO.distance：
+
+```java
+@GetMapping("/recommend")
+public BaseResponse<List<UserVO>> recommendUsers(long pageSize, long pageNum, HttpServletRequest request) {
+    User loginUser = userService.getLoginUser(request);
+    // 分页查询
+    IPage<User> page = new Page<>(pageNum, pageSize);
+    IPage<User> userIPage = userService.page(page, new QueryWrapper<User>()
+        .ne("id", loginUser.getId()));
+
+    List<UserVO> userVOList = userIPage.getRecords().stream().map(user -> {
+        Distance distance = stringRedisTemplate.opsForGeo()
+            .distance(GEO_KEY, String.valueOf(loginUser.getId()),
+                      String.valueOf(user.getId()), DistanceUnit.KILOMETERS);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);   // 省略重复 setter
+        userVO.setDistance(distance.getValue());
+        return userVO;
+    }).collect(Collectors.toList());
+    return ResultUtils.success(userVOList);
+}
+```
+
+**匹配接口**：基于标签编辑距离排序后，补充距离字段：
+
+```java
+@Override
+public List<UserVO> matchUsers(long num, User loginUser) {
+    // 1. 标签编辑距离排序（省略篇幅，见匹配算法）
+    // 2. 对最终匹配用户列表补充距离
+    List<UserVO> finalUserVOList = finalUserList.stream().map(user -> {
+        Distance distance = stringRedisTemplate.opsForGeo()
+            .distance(GEO_KEY, String.valueOf(loginUser.getId()),
+                      String.valueOf(user.getId()), DistanceUnit.KILOMETERS);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
+        userVO.setDistance(distance.getValue());
+        return userVO;
+    }).collect(Collectors.toList());
+    return finalUserVOList;
+}
+```
+
+**搜索附近接口**：单独实现，仅返回半径内的用户：
+
+```java
+@Override
+public List<UserVO> searchNearby(int radius, User loginUser) {
+    String geoKey = RedisConstant.USER_GEO_KEY;
+    String userId = String.valueOf(loginUser.getId());
+    // 以登录用户为圆心
+    Circle circle = new Circle(
+        new Point(loginUser.getLongitude(), loginUser.getDimension()),
+        new Distance(radius, RedisGeoCommands.DistanceUnit.KILOMETERS));
+
+    GeoResults<RedisGeoCommands.GeoLocation<String>> results =
+        stringRedisTemplate.opsForGeo().radius(geoKey, circle);
+
+    List<Long> userIdList = new ArrayList<>();
+    for (GeoResult<RedisGeoCommands.GeoLocation<String>> result : results) {
+        if (!userId.equals(result.getContent().getName())) {
+            userIdList.add(Long.parseLong(result.getContent().getName()));
+        }
+    }
+    return userIdList.stream().map(id -> {
+        User user = this.getById(id);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
+        Distance distance = stringRedisTemplate.opsForGeo()
+            .distance(geoKey, userId, String.valueOf(id), DistanceUnit.KILOMETERS);
+        userVO.setDistance(distance.getValue());
+        return userVO;
+    }).collect(Collectors.toList());
+}
+```
+
+> 来源：鱼皮·编程导航 / codefather
+
 ### hyperloglog
 
 

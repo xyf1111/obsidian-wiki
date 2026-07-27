@@ -198,6 +198,76 @@ GET /products/_search
 }
 ```
 
+## 搜索建议（Search Suggest）
+
+Elasticsearch 提供了搜索建议（Search Suggest）功能，能够根据用户输入的搜索查询词实时地提供搜索建议或自动完成功能，帮助用户更快速地找到感兴趣的内容。该功能通常用于搜索框下拉列表中。
+
+### Term Suggester（完全匹配建议）
+
+基于用户输入的查询词进行拼写纠正和完全匹配。Elasticsearch 使用编辑距离（Edit Distance）算法来识别和纠正输入中的拼写错误。
+
+```json
+POST /my_index/_search
+{
+  "suggest": {
+    "my_suggestion": {
+      "text": "搜索建议示例",
+      "term": {
+        "field": "suggest_field"
+      }
+    }
+  }
+}
+```
+
+### Context Suggester（上下文建议）
+
+根据用户输入的上下文信息（如搜索历史、地理位置、用户偏好等）提供与上下文相关的搜索建议。
+
+```json
+POST /my_index/_search
+{
+  "suggest": {
+    "my_suggestion": {
+      "text": "搜索建议示例",
+      "context": {
+        "location": {
+          "lat": 40.73,
+          "lon": -74.1
+        }
+      },
+      "completion": {
+        "field": "suggest_field"
+      }
+    }
+  }
+}
+```
+
+### 综合使用
+
+可以同时使用完全匹配建议和上下文建议，提供更加准确和有针对性的搜索建议。
+
+```json
+POST /my_index/_search
+{
+  "suggest": {
+    "my_suggestion": {
+      "text": "搜索建议示例",
+      "term": {
+        "field": "suggest_field"
+      },
+      "context": {
+        "location": {
+          "lat": 40.73,
+          "lon": -74.1
+        }
+      }
+    }
+  }
+}
+```
+
 ## 搜索模板
 
 ```json
@@ -231,3 +301,5 @@ GET /orders/_search/template
 3. **keyword 字段用 term**：不要对 keyword 用 match
 4. **控制返回字段**：用 `_source: ["field1", "field2"]`
 5. **聚合用 `size: 0`**：不需要返回文档时设置 `size: 0`
+
+> 来源：鱼皮·编程导航 / codefather
