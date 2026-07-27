@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[concepts/概念 09 - 接口幂等性设计与实现|概念 - 接口幂等性设计与实现]] — *更新于 07-27*
+- [[concepts/概念 07 - 命令模式入门实战|概念 - 命令模式入门实战]] — *更新于 07-27*
+- [[concepts/概念 08 - 装饰者模式及JDK源码应用|概念 - 装饰者模式及 JDK 源码应用]] — *更新于 07-27*
 - [[concepts/概念 06 - 七大设计原则|概念 06 - 七大设计原则]] — *更新于 07-26*
 - [[database/redis/Redis 03 - 特殊数据类型与事务|Redis 03 - 特殊数据类型与事务]] — *更新于 07-26*
-- [[java/基础/Java 06 - 常量与枚举|Java 基础 - 常量与枚举]] — *更新于 07-26*
-- [[tools/前端/工具 04 - Ajax异步通信|工具 - Ajax 异步通信]] — *更新于 07-26*
-- [[java/集合/Java 13 - fail-fast机制|Java 集合 - fail-fast 机制]] — *更新于 07-26*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
