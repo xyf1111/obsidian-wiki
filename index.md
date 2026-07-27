@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/进阶/Java 32 - FreeMarker 模板引擎|Java 进阶 - FreeMarker 模板引擎]] — *更新于 07-27*
+- [[tools/前端/Node 版本管理 - NVM 使用|前端工具 - NVM 版本管理]] — *更新于 07-27*
+- [[java/进阶/Java 33 - 程序自动构建 Jar 包|Java 进阶 - 程序自动构建 Jar 包]] — *更新于 07-27*
 - [[search-engine/elasticsearch/Elasticsearch 03 - 查询与搜索|Elasticsearch 03 - 查询与搜索]] — *更新于 07-27*
 - [[search-engine/elasticsearch/Elasticsearch 01 - 基础概念与架构|Elasticsearch 01 - 基础概念与架构]] — *更新于 07-27*
-- [[database/redis/Redis 03 - 特殊数据类型与事务|Redis 03 - 特殊数据类型与事务]] — *更新于 07-27*
-- [[java/进阶/Java 31 - AOP与自定义注解实践|Java 31 - AOP 与自定义注解实践]] — *更新于 07-27*
-- [[concepts/概念 09 - 接口幂等性设计与实现|概念 - 接口幂等性设计与实现]] — *更新于 07-27*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
