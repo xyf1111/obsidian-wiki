@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[tools/前端/工具 05 - Ant Design Pro 入门与初始化|前端工具 - Ant Design Pro 入门与初始化]] — *更新于 07-28*
+- [[devops/DevOps 01 - 虚拟机局域网访问配置|虚拟机局域网访问配置]] — *更新于 07-28*
 - [[java/工具/Java 工具 09 - 对象存储文件上传下载|Java 工具 09 - 对象存储文件上传下载]] — *更新于 07-28*
 - [[java/进阶/Java 34 - 函数式接口与Lambda表达式|Java 34 - 函数式接口与Lambda表达式]] — *更新于 07-28*
 - [[middleware/Canal 增量同步|中间件 - Canal 增量同步]] — *更新于 07-28*
-- [[java/工具/Java 工具 07 - Picocli 命令行开发|Java 工具 07 - Picocli 命令行开发]] — *更新于 07-28*
-- [[java/工具/Java 工具 08 - 后端代码生成器|Java 工具 08 - 后端代码生成器]] — *更新于 07-28*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
