@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[concepts/概念 11 - 遗传算法（GA）智能组题|概念 - 遗传算法（GA）智能组题]] — *更新于 07-29*
+- [[java/进阶/Java 37 - 基于 Redis 的短信登录实现|Java - 基于 Redis 的短信登录实现]] — *更新于 07-29*
+- [[concepts/概念 10 - 后端项目分层架构|概念 - 后端项目分层架构]] — *更新于 07-29*
 - [[java/进阶/Java 35 - Spring Boot项目模板架构参考|Java 35 - Spring Boot 项目模板架构参考]] — *更新于 07-29*
 - [[database/mysql/MySQL 14 - 高级SQL写法技巧|MySQL 14 - 高级SQL写法技巧]] — *更新于 07-29*
-- [[java/进阶/Java 36 - 单元测试编写指南|Java 36 - 单元测试编写指南]] — *更新于 07-29*
-- [[tools/前端/工具 05 - Ant Design Pro 入门与初始化|前端工具 - Ant Design Pro 入门与初始化]] — *更新于 07-28*
-- [[devops/DevOps 01 - 虚拟机局域网访问配置|虚拟机局域网访问配置]] — *更新于 07-28*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
