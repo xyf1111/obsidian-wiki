@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/进阶/Java 39 - 多语言代码沙箱设计与实现|Java 进阶 - 多语言代码沙箱设计与实现]] — *更新于 07-29*
+- [[java/工具/Java 工具 10 - 自定义注解Redisson分布式锁|Java 工具 10 - 自定义注解 Redisson 分布式锁]] — *更新于 07-29*
+- [[java/进阶/Java 38 - 基于 Session 的短信登录实现|Java - 基于 Session 的短信登录实现]] — *更新于 07-29*
 - [[concepts/概念 11 - 遗传算法（GA）智能组题|概念 - 遗传算法（GA）智能组题]] — *更新于 07-29*
 - [[java/进阶/Java 37 - 基于 Redis 的短信登录实现|Java - 基于 Redis 的短信登录实现]] — *更新于 07-29*
-- [[concepts/概念 10 - 后端项目分层架构|概念 - 后端项目分层架构]] — *更新于 07-29*
-- [[java/进阶/Java 35 - Spring Boot项目模板架构参考|Java 35 - Spring Boot 项目模板架构参考]] — *更新于 07-29*
-- [[database/mysql/MySQL 14 - 高级SQL写法技巧|MySQL 14 - 高级SQL写法技巧]] — *更新于 07-29*
 
 ## 编程语言
 
@@ -136,6 +136,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
