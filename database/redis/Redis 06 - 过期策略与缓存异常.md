@@ -189,6 +189,107 @@ Redis中单条命令是原子性的，但是事务不保证原子性不支持回
 - 加互斥锁
 
 
+### 实现方案：双重判定锁
+
+从 V1 到 V3 的演进：
+
+**V1：基础方案（缓存穿透）**
+
+先查缓存，缓存不存在则查数据库，查到的数据写入缓存。在高并发下，热点数据过期会导致大量请求直接打到数据库。
+
+```java
+public String queryInfo(String id){
+    // 1. 从缓存中获取对应的数据
+    String cacheData = cache.get(id);
+    // 2.判断获取的数据是否为空
+    if(cacheData == null){
+        // 查询缓存数据为空，查询数据库
+        String dbData = db.queryById(id);
+        if(dbData != null){
+            cache.set(id,data);
+            cacheData = dbData;
+        }
+    }
+    // 返回数据
+    return cacheData; 
+}
+```
+
+> ![](../image/img_cache_breakdown_001.png)<!-- 缓存击穿场景架构图 -->
+
+**V2：加分布式锁**
+
+在查数据库之前先获取分布式锁，保证同一时间只有一个请求能查数据库，其他请求等待。可以有效避免缓存击穿，但存在弊端——拿到锁的每个请求都会查一次数据库，只有第一次有效，造成性能浪费。
+
+```java
+public String queryInfo(String id){
+    // 1. 从缓存中获取对应的数据
+    String cacheData = cache.get(id);
+    // 2.判断获取的数据是否为空
+    if(cacheData == null){
+        // 查询缓存数据为空，查询数据库
+        Lock lock = getLock(id);
+        lock.lock();
+        try{
+            String dbData = db.queryById(id);
+            if(dbData != null){
+                cache.set(id,data);
+                cacheData = dbData;
+            }
+        }finally{
+            lock.unlock();
+        }
+    }
+    // 返回数据
+    return cacheData; 
+}
+```
+
+> ![](../image/img_cache_breakdown_002.png)<!-- 分布式锁流程图 -->
+
+**V3：双重判定锁（Double-Check Locking）**
+
+在 V2 的基础上，获取锁后再次查询缓存。如果缓存中已有数据（可能是第一个线程写入了），直接返回，不再查数据库。只有确认缓存仍然为空时才查数据库。
+
+```java
+public String queryInfo(String id){
+    // 1. 从缓存中获取对应的数据
+    String cacheData = cache.get(id);
+    // 2.判断获取的数据是否为空
+    if(cacheData == null){
+        // 查询缓存数据为空，查询数据库
+        Lock lock = getLock(id);
+        lock.lock();
+        try{
+            // 进行缓存数据的二次判断
+            cacheData = cache.get(id);
+            if(cacheData == null){
+                // 缓存数据为空
+                String dbData = db.queryById(id);
+                if(dbData != null){
+                    cache.set(id,data);
+                    cacheData = dbData;
+                }
+            }
+        }finally{
+            lock.unlock();
+        }
+    }
+    // 返回数据
+    return cacheData; 
+}
+```
+
+> ![](../image/img_cache_breakdown_003.png)<!-- 双重判定锁流程图 -->
+
+**双重判定锁的核心步骤：**
+
+1. **获取锁**：先尝试获取分布式锁，只有一个线程能成功获取锁，其他线程等待。
+2. **二次判断**：获取锁后再次查询缓存，避免拿到锁的每个线程都去查数据库。
+3. **查询数据库**：确认缓存为空后，执行数据库查询获取数据。
+4. **写入缓存**：将数据写入缓存并设置合适的过期时间。
+5. **释放锁**：释放分布式锁，让其他等待的线程继续使用。
+
 ### 缓存预热
 
 
