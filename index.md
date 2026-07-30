@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[devops/git/.gitignore配置与文件忽略|Git - .gitignore 配置与文件忽略]] — *更新于 07-30*
+- [[java/进阶/Java 40 - CompletableFuture 异常处理实践|Java 40 - CompletableFuture 异常处理实践]] — *更新于 07-30*
 - [[weekly/Go GitHub Weekly 2026-07-30|Go GitHub 周报 - 2026-07-30]] — *更新于 07-30*
 - [[java/进阶/Java 39 - 多语言代码沙箱设计与实现|Java 进阶 - 多语言代码沙箱设计与实现]] — *更新于 07-29*
 - [[java/工具/Java 工具 10 - 自定义注解Redisson分布式锁|Java 工具 10 - 自定义注解 Redisson 分布式锁]] — *更新于 07-29*
-- [[java/进阶/Java 38 - 基于 Session 的短信登录实现|Java - 基于 Session 的短信登录实现]] — *更新于 07-29*
-- [[concepts/概念 11 - 遗传算法（GA）智能组题|概念 - 遗传算法（GA）智能组题]] — *更新于 07-29*
 
 ## 编程语言
 
@@ -137,6 +137,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
