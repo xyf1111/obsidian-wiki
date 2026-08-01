@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[python/Python 01 - 学习路线|Python 01 - 学习路线]] — *更新于 08-01*
+- [[ai/Prompt Engineering 01 - 学习路线|Prompt Engineering 01 - 学习路线]] — *更新于 08-01*
+- [[database/postgresql/PostgreSQL 01 - 学习路线|PostgreSQL 01 - 学习路线]] — *更新于 08-01*
 - [[middleware/nginx/Nginx 07 - 学习路线|Nginx 07 - 学习路线]] — *更新于 07-31*
 - [[tools/前端/工具 08 - Node.js 学习路线|工具 08 - Node.js 学习路线]] — *更新于 07-31*
-- [[tools/前端/工具 07 - Next.js 学习路线|工具 07 - Next.js 学习路线]] — *更新于 07-31*
-- [[database/mysql/MySQL 15 - 学习路线|MySQL 15 - 学习路线]] — *更新于 07-31*
-- [[java/进阶/Java 42 - Netty 学习路线|Java 42 - Netty 学习路线]] — *更新于 07-31*
 
 ## 编程语言
 
@@ -137,6 +137,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
