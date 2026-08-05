@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-08-06|Go GitHub 周报 - 2026-08-06]] — *更新于 08-06*
 - [[java/进阶/Java 44 - Spring Boot 学习路线|Java 44 - Spring Boot 学习路线]] — *更新于 08-05*
 - [[java/进阶/Java 43 - Spring AI 学习路线|Java 43 - Spring AI 学习路线]] — *更新于 08-05*
 - [[java/进阶/Java 45 - Spring Cloud 微服务学习路线|Java 45 - Spring Cloud 微服务学习路线]] — *更新于 08-05*
 - [[os/linux/Linux 09 - Shell脚本学习路线|Linux 09 - Shell脚本学习路线]] — *更新于 08-05*
-- [[bigdata/spark/Spark 01 - 大数据学习路线|Spark 01 - 大数据学习路线]] — *更新于 08-05*
 
 ## 编程语言
 
@@ -109,6 +109,7 @@ title: Wiki
 ## 📡 周报
 
 
+- [[weekly/Go GitHub Weekly 2026-08-06|Go GitHub Weekly 2026-08-06]] — Go 生态周报（2026-08-06）
 - [[weekly/Go GitHub Weekly 2026-07-30|Go GitHub Weekly 2026-07-30]] — Go 生态周报（2026-07-30）
 - [[weekly/Go GitHub Weekly 2026-07-23|Go GitHub Weekly 2026-07-23]] — Go 生态周报（2026-07-23）
 - [[weekly/Go GitHub Weekly 2026-07-16|Go GitHub Weekly 2026-07-16]] — Go 生态周报（2026-07-16）
@@ -144,6 +145,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
