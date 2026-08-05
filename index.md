@@ -47,6 +47,13 @@ title: Wiki
 |------|------|
 | 📊 [[bigdata/bi/]] | BI 01 · 商业智能学习路线 |
 | ⚡ [[bigdata/flink/]] | Flink 01 · 实时计算学习路线 |
+| 🔥 [[bigdata/spark/]] | Spark 01 · 大数据学习路线 |
+
+## ⛓️ 区块链
+
+| 分类 | 内容 |
+|------|------|
+| ⛓️ [[blockchain/]] | Solidity 01 · 智能合约学习路线 |
 
 ## 搜索引擎
 

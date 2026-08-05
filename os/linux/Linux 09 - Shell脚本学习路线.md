@@ -16,9 +16,7 @@ source: "鱼皮·编程导航 / codefather"
 
 ### Shell 脚本是什么？
 
-Shell 是 Linux/Unix 系统的命令行解释器，Shell 脚本就是由 Shell 命令组成的可执行文件。通过编写 Shell 脚本，可以将一系列命令组合起来，实现自动化任务，大大提高工作效率。
-
-Shell 脚本广泛应用于系统管理、自动化运维、数据处理、软件部署等场景：自动备份数据库、批量处理文件、定时执行任务、监控系统状态、自动化部署应用等，都可以通过 Shell 脚本完成。
+Shell 是 Linux/Unix 系统的命令行解释器，Shell 脚本就是由 Shell 命令组成的可执行文件。通过编写 Shell 脚本，可以将一系列命令组合起来，实现自动化任务，大大提高工作效率。Shell 脚本广泛应用于系统管理、自动化运维、数据处理、软件部署等场景：自动备份数据库、批量处理文件、定时执行任务、监控系统状态、自动化部署应用等。
 
 ### 为什么要学 Shell 脚本？
 
@@ -54,17 +52,10 @@ Shell 脚本广泛应用于系统管理、自动化运维、数据处理、软�
 
 ### 知识点
 
-- **Shell 基础【必学】**
-  - 什么是 Shell
-  - 常见 Shell 类型（Bash、Zsh、Ksh、Csh）
-  - Shebang（`#!/bin/bash`）
-  - 脚本的执行方式（`bash script.sh`、`./script.sh`、`source script.sh`）
-  - 脚本权限（`chmod +x`）
-- **注释【必学】**
-  - 单行注释（`#`）
-  - 多行注释（`:<<'COMMENT' ... COMMENT`）
+- **Shell 基础【必学】** — 什么是 Shell；常见 Shell 类型（Bash、Zsh、Ksh、Csh）；Shebang（`#!/bin/bash`）；脚本的执行方式（`bash script.sh`、`./script.sh`、`source script.sh`）；脚本权限（`chmod +x`）
+- **注释【必学】** — 单行注释（`#`）；多行注释（`:<<'COMMENT' ... COMMENT`）
 - **输出【必学】** — `echo` 命令、`printf` 命令
-- **输入【必学】** — `read` 命令、命令行参数（`$1`、`$2`、`$@`、`$#`）
+- **输入【必学】** — `read` 命令；命令行参数（`$1`、`$2`、`$@`、`$#`）
 
 ### 学习建议
 
@@ -82,9 +73,6 @@ Shell 脚本广泛应用于系统管理、自动化运维、数据处理、软�
 ```bash
 #!/bin/bash
 # 第一个 Shell 脚本
-# 作者：xxx
-# 日期：2025-11-15
-
 echo "Hello, Shell!"
 echo "当前用户：$USER"
 echo "当前目录：$(pwd)"
@@ -98,64 +86,17 @@ echo "当前目录：$(pwd)"
 
 ### 知识点
 
-- **变量定义【必学】**
-  - 变量定义（等号两边无空格：`name="value"`）
-  - 使用变量（`$name` 或 `${name}`）
-  - 只读变量（`readonly`）
-  - 删除变量（`unset`）
-- **变量类型【必学】**
-  - 局部变量
-  - 环境变量（`export`）
-  - Shell 变量
-- **特殊变量【必学】**
-  - `$0`：脚本名称
-  - `$1`、`$2`...：位置参数
-  - `$#`：参数个数
-  - `$@`：所有参数（列表形式）
-  - `$*`：所有参数（字符串形式）
-  - `$?`：上一条命令的退出状态（0 成功，非 0 失败）
-  - `$$`：当前进程 ID
-- **字符串操作【建议学】**
-  - 字符串拼接
-  - 获取长度（`${#string}`）
-  - 提取子串（`${string:start:length}`）
-  - 字符串替换（`${string/old/new}`）
-- **数组【建议学】**
-  - 定义数组（`arr=(1 2 3)`）
-  - 访问元素（`${arr[0]}`）
-  - 数组长度（`${#arr[@]}`）
-  - 遍历数组
+- **变量定义【必学】** — 变量定义（等号两边无空格：`name="value"`）；使用变量（`$name` 或 `${name}`）；只读变量（`readonly`）；删除变量（`unset`）
+- **变量类型【必学】** — 局部变量；环境变量（`export`）；Shell 变量
+- **特殊变量【必学】** — `$0` 脚本名称；`$1`、`$2`... 位置参数；`$#` 参数个数；`$@` 所有参数（列表形式）；`$*` 所有参数（字符串形式）；`$?` 上一条命令的退出状态（0 成功，非 0 失败）；`$$` 当前进程 ID
+- **字符串操作【建议学】** — 字符串拼接；获取长度（`${#string}`）；提取子串（`${string:start:length}`）；字符串替换（`${string/old/new}`）
+- **数组【建议学】** — 定义数组（`arr=(1 2 3)`）；访问元素（`${arr[0]}`）；数组长度（`${#arr[@]}`）；遍历数组
 
 ### 学习建议
 
 1. 变量定义时等号两边不能有空格：`name="value"` 正确，`name = "value"` 报错
 2. 使用变量建议加花括号 `${name}`，避免歧义，特别是字符串拼接时
 3. 特殊变量很重要：`$?` 可判断命令是否执行成功（0 表示成功，非 0 表示失败）
-
-### 示例脚本
-
-```bash
-#!/bin/bash
-# 变量和参数示例
-name="Shell"
-echo "名称：${name}"
-
-# 命令行参数
-echo "脚本名称：$0"
-echo "第一个参数：$1"
-echo "参数个数：$#"
-echo "所有参数：$@"
-
-# 字符串操作
-url="https://www.example.com"
-echo "URL 长度：${#url}"
-echo "域名：${url:8}"
-
-# 数组
-sites=("site1" "site2" "site3")
-echo "第一个：${sites[0]}"
-echo "数量：${#sites[@]}"
-```
 
 ## 阶段 3：流程控制（2-7 天）
 
@@ -165,24 +106,10 @@ echo "数量：${#sites[@]}"
 
 ### 知识点
 
-- **条件判断【必学】**
-  - `test` 命令
-  - `[ ]` 表达式
-  - `[[ ]]` 表达式（推荐）
-  - 文件判断（`-e`、`-f`、`-d`、`-r`、`-w`、`-x`）
-  - 数值比较（`-eq`、`-ne`、`-gt`、`-lt`、`-ge`、`-le`）
-  - 字符串比较（`=`、`!=`、`-z`、`-n`）
-  - 逻辑运算（`-a`、`-o`、`!`）
-- **if 语句【必学】**
-  - `if...then...fi`
-  - `if...then...else...fi`
-  - `if...then...elif...else...fi`
+- **条件判断【必学】** — `test` 命令；`[ ]` 表达式；`[[ ]]` 表达式（推荐）；文件判断（`-e`、`-f`、`-d`、`-r`、`-w`、`-x`）；数值比较（`-eq`、`-ne`、`-gt`、`-lt`、`-ge`、`-le`）；字符串比较（`=`、`!=`、`-z`、`-n`）；逻辑运算（`-a`、`-o`、`!`）
+- **if 语句【必学】** — `if...then...fi`；`if...then...else...fi`；`if...then...elif...else...fi`
 - **case 语句【必学】** — `case...in...esac`
-- **循环语句【必学】**
-  - `for` 循环（`for i in list; do...done`）
-  - `while` 循环（`while condition; do...done`）
-  - `until` 循环（`until condition; do...done`）
-  - `break` 和 `continue`
+- **循环语句【必学】** — `for` 循环（`for i in list; do...done`）；`while` 循环（`while condition; do...done`）；`until` 循环（`until condition; do...done`）；`break` 和 `continue`
 
 ### 学习建议
 
@@ -196,34 +123,16 @@ echo "数量：${#sites[@]}"
 #!/bin/bash
 # 流程控制示例
 age=20
-if [[ $age -ge 18 ]]; then
-    echo "已成年"
-else
-    echo "未成年"
-fi
+if [[ $age -ge 18 ]]; then echo "已成年"; else echo "未成年"; fi
 
-# case 语句
-read -p "请输入你的选择（1-3）：" choice
+read -p "请输入选择（1-3）：" choice
 case $choice in
-    1) echo "选项1" ;;
-    2) echo "选项2" ;;
-    3) echo "选项3" ;;
-    *) echo "无效选择" ;;
+    1|2|3) echo "选项$choice" ;; *) echo "无效选择" ;;
 esac
 
-# for 循环
-for i in {1..5}; do
-    echo $i
-done
-
-# while 循环
+for i in {1..5}; do echo $i; done
 count=5
-while [[ $count -gt 0 ]]; do
-    echo $count
-    ((count--))
-    sleep 1
-done
-echo "时间到！"
+while [[ $count -gt 0 ]]; do echo $count; ((count--)); sleep 1; done
 ```
 
 ## 阶段 4：函数、文件操作与文本处理（2-7 天）
@@ -234,30 +143,13 @@ echo "时间到！"
 
 ### 知识点
 
-- **函数【必学】**
-  - 函数定义（`function name() { }`）
-  - 函数调用
-  - 函数参数（`$1`、`$2`...）
-  - 函数返回值（`return`）
-- **文件操作【必学】**
-  - 读取文件（`cat`、`head`、`tail`、`less`、`more`）
-  - 写入文件（`>` 覆盖、`>>` 追加）
-  - 重定向（标准输入、标准输出、标准错误）
-- **文本处理三剑客【必学，重点】**
-  - **grep**：搜索文本 — 基本用法（`grep pattern file`）、正则表达式匹配、常用选项（`-i` 忽略大小写、`-v` 反向匹配、`-n` 显示行号、`-r` 递归搜索）
-  - **sed**：文本替换和编辑 — 替换（`sed 's/old/new/' file`）、删除行（`sed '/pattern/d' file`）、插入行（`sed 'i\text' file`）
-  - **awk**：文本分析和处理 — 基本用法（`awk '{print $1}' file`）、内置变量（`$0` 整行、`$1` 第一列、`NR` 行号、`NF` 列数）、条件和循环
-- **正则表达式【建议学】**
-  - 元字符（`.`、`*`、`+`、`?`、`[]`、`^`、`$`）
-  - 字符类与分组（`[0-9]`、`[a-z]`、`\(\)` 分组）
-  - 扩展正则（`-E`，`|` 或、`+`、`?`）
-- **其他常用命令【建议学】**
-  - `find`：查找文件
-  - `xargs`：构建命令行
-  - `cut`：提取列
-  - `sort`：排序
-  - `uniq`：去重
-  - `wc`：统计行数/单词数/字符数
+- **函数【必学】** — 函数定义（`function name() { }`）；函数调用；函数参数（`$1`、`$2`...）；函数返回值（`return`）
+- **文件操作【必学】** — 读取文件（`cat`、`head`、`tail`、`less`、`more`）；写入文件（`>` 覆盖、`>>` 追加）；重定向（标准输入、标准输出、标准错误）
+- **grep【必学】** — 搜索文本；基本用法（`grep pattern file`）；正则表达式匹配；常用选项（`-i` 忽略大小写、`-v` 反向匹配、`-n` 显示行号、`-r` 递归搜索）
+- **sed【必学】** — 文本替换和编辑；替换（`sed 's/old/new/' file`）；删除行（`sed '/pattern/d' file`）；插入行（`sed 'i\text' file`）
+- **awk【必学】** — 文本分析和处理；基本用法（`awk '{print $1}' file`）；内置变量（`$0` 整行、`$1` 第一列、`NR` 行号、`NF` 列数）；条件和循环
+- **正则表达式【建议学】** — 元字符（`.`、`*`、`+`、`?`、`[]`、`^`、`$`）；字符类（`[0-9]`、`[a-z]`）；分组与扩展正则（`-E`：`|` 或、`+`、`?`）
+- **其他常用命令【建议学】** — `find` 查找文件；`xargs` 构建命令行；`cut` 提取列；`sort` 排序；`uniq` 去重；`wc` 统计行数/单词数/字符数
 
 ### 学习建议
 
@@ -272,56 +164,22 @@ echo "时间到！"
 - [运维三剑客实战（腾讯云开发者社区）](https://cloud.tencent.com/developer/article/2381804)
 - [GNU Bash 参考手册（官方）](https://www.gnu.org/software/bash/manual/)
 
-### 示例脚本
-
-```bash
-#!/bin/bash
-# 函数和文本处理示例
-function greet() {
-    echo "Hello, $1!"
-}
-greet "Shell"
-
-# grep：搜索包含 root 的行
-grep "root" /etc/passwd
-
-# awk：提取第一列
-awk -F: '{print $1}' /etc/passwd | head -5
-
-# sed：替换文本
-echo "hello world" | sed 's/world/Shell/'
-
-# 管道组合：统计当前目录的文件数
-ls -l | grep "^-" | wc -l
-```
-
 ## 阶段 5：实战应用（3-10 天）
 
 ### 学习目标
 
-通过实际案例掌握 Shell 脚本实战技巧，能够编写系统监控、日志分析、自动化部署等实用脚本。
+通过实际案例掌握 Shell 脚本实战技巧，能够编写系统监控、日志分析、自动化部署等实用脚本。现在有 AI 辅助了，只要能看懂并改造下面的脚本，就已具备实战能力。
 
 ### 实战案例
-
-现在有 AI 辅助了，只要能看懂并改造下面的脚本，就已具备实战能力。
 
 **案例 1：系统监控脚本**
 
 ```bash
 #!/bin/bash
 # 系统监控脚本
-echo "========== 系统信息 =========="
-echo "主机名：$(hostname)"
-echo "内核版本：$(uname -r)"
-echo "运行时间：$(uptime -p)"
-
-echo "========== CPU 使用率 =========="
+echo "主机名：$(hostname)  内核：$(uname -r)  运行时间：$(uptime -p)"
 top -bn1 | grep "Cpu(s)" | awk '{print "CPU使用率：" 100-$8 "%"}'
-
-echo "========== 内存使用情况 =========="
-free -h | grep "Mem" | awk '{print "总内存：" $2 "\n已用内存：" $3 "\n可用内存：" $4}'
-
-echo "========== 磁盘使用情况 =========="
+free -h | grep "Mem" | awk '{print "总内存：" $2 " 已用：" $3 " 可用：" $4}'
 df -h | grep "^/dev"
 ```
 
@@ -330,27 +188,19 @@ df -h | grep "^/dev"
 ```bash
 #!/bin/bash
 # 数据库备份脚本
-DB_NAME="mydb"
-DB_USER="root"
-DB_PASS="password"
+DB_NAME="mydb"; DB_USER="root"; DB_PASS="password"
 BACKUP_DIR="/backup/mysql"
 DATE=$(date +%Y%m%d_%H%M%S)
 BACKUP_FILE="$BACKUP_DIR/${DB_NAME}_${DATE}.sql"
 
 mkdir -p $BACKUP_DIR
-echo "开始备份数据库 $DB_NAME..."
 mysqldump -u$DB_USER -p$DB_PASS $DB_NAME > $BACKUP_FILE
-
 if [[ $? -eq 0 ]]; then
     echo "备份成功：$BACKUP_FILE"
     gzip $BACKUP_FILE
-    echo "压缩完成：${BACKUP_FILE}.gz"
-    # 删除 7 天前的备份
-    find $BACKUP_DIR -name "*.gz" -mtime +7 -delete
-    echo "清理完成"
+    find $BACKUP_DIR -name "*.gz" -mtime +7 -delete  # 清理 7 天前备份
 else
-    echo "备份失败！"
-    exit 1
+    echo "备份失败！"; exit 1
 fi
 ```
 
@@ -358,25 +208,13 @@ fi
 
 ```bash
 #!/bin/bash
-# 批量重命名图片文件
-if [[ $# -lt 1 ]]; then
-    echo "用法：$0 <目录>"
-    exit 1
-fi
-DIR=$1
-if [[ ! -d $DIR ]]; then
-    echo "错误：目录不存在"
-    exit 1
-fi
-
-count=1
+# 批量重命名图片文件（用法：$0 <目录>）
+[[ $# -lt 1 ]] && { echo "用法：$0 <目录>"; exit 1; }
+DIR=$1; count=1
 for file in $DIR/*.jpg; do
-    if [[ -f $file ]]; then
-        new_name="$DIR/image_$(printf "%03d" $count).jpg"
-        mv "$file" "$new_name"
-        echo "重命名：$file -> $new_name"
-        ((count++))
-    fi
+    [[ -f $file ]] || continue
+    mv "$file" "$DIR/image_$(printf "%03d" $count).jpg"
+    ((count++))
 done
 echo "处理完成，共重命名 $((count-1)) 个文件"
 ```
@@ -387,19 +225,12 @@ echo "处理完成，共重命名 $((count-1)) 个文件"
 #!/bin/bash
 # 分析 Nginx 访问日志
 LOG_FILE="/var/log/nginx/access.log"
-if [[ ! -f $LOG_FILE ]]; then
-    echo "错误：日志文件不存在"
-    exit 1
-fi
+[[ -f $LOG_FILE ]] || { echo "错误：日志文件不存在"; exit 1; }
 
-echo "========== Nginx 日志分析 =========="
 echo "总访问量：$(wc -l < $LOG_FILE)"
-echo "访问最多的 IP Top 10："
-awk '{print $1}' $LOG_FILE | sort | uniq -c | sort -rn | head -10
-echo "访问最多的 URL Top 10："
-awk '{print $7}' $LOG_FILE | sort | uniq -c | sort -rn | head -10
-echo "HTTP 状态码分布："
-awk '{print $9}' $LOG_FILE | sort | uniq -c | sort -rn
+echo "访问最多的 IP Top 10：";  awk '{print $1}' $LOG_FILE | sort | uniq -c | sort -rn | head -10
+echo "访问最多的 URL Top 10："; awk '{print $7}' $LOG_FILE | sort | uniq -c | sort -rn | head -10
+echo "HTTP 状态码分布：";        awk '{print $9}' $LOG_FILE | sort | uniq -c | sort -rn
 ```
 
 ### 学习建议
