@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[database/sql/SQL 01 - 学习路线|SQL 01 - 学习路线]] — *更新于 08-05*
+- [[middleware/rocketmq/RocketMQ 01 - 学习路线|RocketMQ 01 - 学习路线]] — *更新于 08-05*
+- [[rust/Rust 01 - 学习路线|Rust 01 - 学习路线]] — *更新于 08-05*
 - [[database/redis/Redis 10 - 学习路线|Redis 10 - 学习路线]] — *更新于 08-04*
 - [[tools/前端/工具 09 - React Native 学习路线|工具 09 - React Native 学习路线]] — *更新于 08-04*
-- [[tools/前端/工具 10 - React 学习路线|工具 10 - React 学习路线]] — *更新于 08-04*
-- [[concepts/概念 15 - RPC 学习路线|概念 15 - RPC 学习路线]] — *更新于 08-04*
-- [[ai/RAG 01 - 学习路线|RAG 01 - 学习路线]] — *更新于 08-04*
 
 ## 编程语言
 
@@ -137,6 +137,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
