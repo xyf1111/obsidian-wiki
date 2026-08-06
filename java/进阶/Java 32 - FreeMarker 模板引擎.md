@@ -350,3 +350,101 @@ ${myList?size}
 - **命名空间**：相当于 Java 中的包，用于隔离代码、宏和变量。
 
 掌握上述常用语法后，基本能够开发大多数模板文件。更多内容请查阅 FreeMarker 官方文档。
+
+## FreeMarker 在 Spring Boot Web 视图中的使用（补充）
+
+### Spring Boot Web 视图整合
+
+FreeMarker 适合作为 Web 项目中的视图层组件，是生成文本的工具。ftl 文件本质也是 html 格式；注意 **freemarker 区分大小写**。
+
+依赖 `spring-boot-starter-freemarker`（见上文「Demo 实战」的依赖引入），再在配置文件中指定视图位置和后缀：
+
+```properties
+# 新方式（推荐）
+spring.freemarker.template-loader-path=classpath:/templates
+spring.freemarker.suffix=.ftl
+
+# 旧方式（已废弃）
+#spring.mvc.view.prefix=/templates
+#spring.mvc.view.suffix=.ftl
+```
+
+编写 controller 及 ftl 文件，模板存放在 `classpath:/templates` 目录下。
+
+### 字符串的使用
+
+```html
+<#--定义变量-->
+<#assign info1 = 'how are you?'>
+<#--字符串的拼接-->
+<p>Hello ${info + info1}</p>
+<#--字符串的内嵌函数-->
+<p>${info1?substring(0,3)}</p><#--左闭右开-->
+<p>${info1?length}</p>
+```
+
+### 条件判断
+
+```html
+<#assign num = 666>
+<#if num == 666>
+    <p>666</p>
+<#elseif num == 888>
+    <p>888</p>
+<#else>
+    <p>000</p>
+</#if>
+
+<#switch num>
+    <#case 666>
+        <p>666</p>
+        <#break>
+    <#case 888>
+        <p>888</p>
+        <#break>
+    <#default>
+        <p>000</p>
+</#switch>
+```
+
+### 列表操作
+
+```html
+<#assign myList = [1,3,5,7,10,9]>
+<#-- 排序输出 -->
+<#list myList?sort as item>
+    ${item}
+</#list>
+<#-- 数字范围遍历 -->
+<#list 1..3 as item>
+    ${item}
+</#list>
+<#-- item_index 获取索引 -->
+<#list 1..3 as item>
+    ${item_index}, ${item}<br>
+</#list>
+<#-- item_has_next 判断是否有下一项 -->
+<#list 1..3 as item>
+    <#if item_has_next>
+        ${item}
+    </#if>
+</#list>
+```
+
+### 判断变量是否为空
+
+默认值写法 `${str!"default"}`，与上文「默认值」小节一致，不再展开。
+
+### 引入其它文件的值
+
+在一个 html 中引入另一个 html 中的变量的值，不仅能读取，还能修改：
+
+```html
+<#import 'other.ftl' as otherFtl>
+${otherFtl.name} <br>
+<#--不仅可以读取到它的值，还能修改它的值-->
+<#assign name = 'welcome ftl is here' in otherFtl>
+${otherFtl.name}
+```
+
+> 来源：鱼皮·编程导航 / codefather
