@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
-- [[weekly/Go GitHub Weekly 2026-08-06|Go GitHub 周报 - 2026-08-06]] — *更新于 08-06*
-- [[java/进阶/Java 44 - Spring Boot 学习路线|Java 44 - Spring Boot 学习路线]] — *更新于 08-05*
-- [[java/进阶/Java 43 - Spring AI 学习路线|Java 43 - Spring AI 学习路线]] — *更新于 08-05*
-- [[java/进阶/Java 45 - Spring Cloud 微服务学习路线|Java 45 - Spring Cloud 微服务学习路线]] — *更新于 08-05*
-- [[os/linux/Linux 09 - Shell脚本学习路线|Linux 09 - Shell脚本学习路线]] — *更新于 08-05*
+- [[ai/Prompt Engineering 02 - 进阶技巧|Prompt Engineering 02 - 进阶技巧]] — *更新于 08-06*
+- [[career/为开源项目做贡献|为开源项目做贡献]] — *更新于 08-06*
+- [[devops/DevOps 02 - 企业微信群机器人定时提醒|DevOps 02 - 企业微信群机器人定时提醒]] — *更新于 08-06*
+- [[java/进阶/Java 46 - CompletableFuture 异步编程|Java 46 - CompletableFuture 异步编程]] — *更新于 08-06*
+- [[java/基础/Java 07 - 并发三大根源：可见性、原子性、有序性|Java 07 - 并发三大根源：可见性、原子性、有序性]] — *更新于 08-06*
 
 ## 编程语言
 
@@ -145,6 +145,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
