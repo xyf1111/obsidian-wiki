@@ -2,7 +2,7 @@
 title: "Java 工具 11 - Spring JDBC 操作数据库"
 date: 2026-08-06
 tags: [java, springboot, jdbc, jdbctemplate, 多数据源]
-source: "鱼皮·编程导航"
+source: "鱼皮·编程导航 / codefather"
 ---
 
 # Java 工具 11 - Spring JDBC 操作数据库
@@ -31,19 +31,14 @@ JDBC（Java DataBase Connectivity）是一种用于**执行 SQL 语句的 Java A
 try {
     // 1、加载数据库驱动
     Class.forName(driver);
-
     // 2、获取数据库连接
     conn = DriverManager.getConnection(url, username, password);
-
     // 3、获取数据库操作对象
     stmt = conn.createStatement();
-
     // 4、定义操作的 SQL 语句
     String sql = "select * from user where id = 6";
-
     // 5、执行数据库操作
     rs = stmt.executeQuery(sql);
-
     // 6、获取并操作结果集
     while (rs.next()) {
         // 解析结果集
@@ -78,7 +73,7 @@ try {
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: REPLACE_ME_DB_URL
+    url: jdbc:mysql://localhost:3306/test_db?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     username: root
     password: 123456
 ```
@@ -119,24 +114,20 @@ public class ArticleJDBCDAO {
         jdbcTemplate.update("INSERT INTO article(author, title, content, create_time) values(?, ?, ?, ?)",
                 article.getAuthor(), article.getTitle(), article.getContent(), article.getCreateTime());
     }
-
     // 删除文章
     public void deleteById(Long id) {
         jdbcTemplate.update("DELETE FROM article WHERE id = ?", id);
     }
-
     // 更新文章
     public void updateById(Article article) {
         jdbcTemplate.update("UPDATE article SET author = ?, title = ?, content = ?, create_time = ? WHERE id = ?",
                 article.getAuthor(), article.getTitle(), article.getContent(), article.getCreateTime(), article.getId());
     }
-
     // 根据 id 查找文章（单条）
     public Article findById(Long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM article WHERE id = ?",
                 new Object[]{id}, new BeanPropertyRowMapper<>(Article.class));
     }
-
     // 查询所有（列表）
     public List<Article> findAll() {
         return jdbcTemplate.query("SELECT * FROM article", new BeanPropertyRowMapper<>(Article.class));
@@ -159,19 +150,15 @@ public class ArticleJDBCService implements ArticleService {
         articleJDBCDAO.save(article);
         // int a = 2 / 0;  // 人为制造异常，用于测试事务
     }
-
     public void deleteArticle(Long id) {
         articleJDBCDAO.deleteById(id);
     }
-
     public void updateArticle(Article article) {
         articleJDBCDAO.updateById(article);
     }
-
     public Article getArticle(Long id) {
         return articleJDBCDAO.findById(id);
     }
-
     public List<Article> getAll() {
         return articleJDBCDAO.findAll();
     }
@@ -183,12 +170,7 @@ public class ArticleJDBCService implements ArticleService {
 测试数据示例：
 
 ```json
-{
-  "author": "xhl",
-  "title": "Sample Article",
-  "content": "This is the content of the article.",
-  "createTime": "2023-11-05 15:30:00"
-}
+{"author": "xhl", "title": "Sample Article", "content": "This is the content of the article.", "createTime": "2023-11-05 15:30:00"}
 ```
 
 ## 事务测试
@@ -209,12 +191,12 @@ spring:
   datasource:
     primary:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: REPLACE_ME_PRIMARY_URL
+      jdbc-url: jdbc:mysql://localhost:3306/test_db?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
       username: root
       password: 123456
     secondary:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: REPLACE_ME_SECONDARY_URL
+      jdbc-url: jdbc:mysql://localhost:3306/xuexi?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
       username: root
       password: 123456
 ```
@@ -235,18 +217,15 @@ public class DataSourceConfig {
     public DataSource primaryDataSource() {
         return DataSourceBuilder.create().build();
     }
-
     @Bean(name = "secondaryDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.secondary") // xuexi
     public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
     }
-
     @Bean(name = "primaryJdbcTemplate")
     public JdbcTemplate primaryJdbcTemplate(@Qualifier("primaryDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
-
     @Bean(name = "secondaryJdbcTemplate")
     public JdbcTemplate secondaryJdbcTemplate(@Qualifier("secondaryDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
@@ -267,7 +246,6 @@ public class DataSourceConfig {
 ```java
 @Resource
 private JdbcTemplate primaryJdbcTemplate;  // 默认数据库操作对象
-
 // 保存文章：新增 jdbcTemplate 参数，其他方法照做
 public void save(Article article, JdbcTemplate jdbcTemplate) {
     if (jdbcTemplate == null) {  // 参数为空时回退 primaryJdbcTemplate
@@ -292,7 +270,6 @@ public class SpringJdbcTest {
     private JdbcTemplate primaryJdbcTemplate;
     @Resource
     private JdbcTemplate secondaryJdbcTemplate;
-
     @Test
     public void testJdbc() {
         articleJDBCDAO.save(Article.builder()
@@ -313,4 +290,4 @@ Spring Boot 2.0+ 配置多数据源时报 `jdbcUrl is required with driverClassN
 
 JdbcTemplate 封装了 JDBC 的样板代码，配合 `@Transactional` 事务与多数据源配置，可在单个服务中灵活操作多个数据库，为后续分库分表打下基础。
 
-> 来源：鱼皮·编程导航
+> 来源：鱼皮·编程导航 / codefather
