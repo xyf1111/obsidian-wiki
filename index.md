@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[typescript/TypeScript 01 - 学习路线|TypeScript 01 - 学习路线]] — *更新于 08-07*
+- [[mobile/ios/Swift 01 - 学习路线|移动端 - Swift 学习路线]] — *更新于 08-07*
+- [[mobile/unity/Unity 01 - 游戏开发学习路线|跨平台 - Unity 游戏开发学习路线]] — *更新于 08-07*
 - [[java/工具/Java 工具 11 - Spring JDBC 操作数据库|Java 工具 11 - Spring JDBC 操作数据库]] — *更新于 08-06*
 - [[java/进阶/Java 32 - FreeMarker 模板引擎|Java 进阶 - FreeMarker 模板引擎]] — *更新于 08-06*
-- [[java/进阶/Java 47 - Thymeleaf 模板引擎|Java 47 - Thymeleaf 模板引擎]] — *更新于 08-06*
-- [[concepts/概念 16 - 评论功能设计方案|概念 16 - 评论功能设计方案]] — *更新于 08-06*
-- [[ai/Prompt Engineering 02 - 进阶技巧|Prompt Engineering 02 - 进阶技巧]] — *更新于 08-06*
 
 ## 编程语言
 
@@ -148,6 +148,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
