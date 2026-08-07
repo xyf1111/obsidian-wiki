@@ -24,6 +24,7 @@ title: Wiki
 | 🅲 [[c/]] | **C 语言**：学习路线 |
 | ➕ [[cpp/]] | **C++**：学习路线 |
 | ＃ [[csharp/]] | **C#**：学习路线 |
+| 🔷 [[typescript/]] | **TypeScript**：学习路线 |
 
 ## 数据库
 
@@ -92,6 +93,8 @@ title: Wiki
 |------|------|
 | 🦋 [[mobile/flutter/]] | Flutter 01 · 学习路线 |
 | ⚛️ [[mobile/electron/]] | Electron 01 · 桌面应用开发学习路线 |
+| 🍎 [[mobile/ios/]] | Swift 01 · iOS 学习路线 |
+| 🎮 [[mobile/unity/]] | Unity 01 · 游戏开发学习路线 |
 
 ## 📚 方法论
 
