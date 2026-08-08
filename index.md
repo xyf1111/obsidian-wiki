@@ -91,7 +91,7 @@ title: Wiki
 | 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
-| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] |
+| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] |
 | 🐳 [[devops/java/]] | Java 项目 01 · 启动与依赖服务排错 |
 
 ## 📱 跨平台
@@ -115,7 +115,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🧪 [[concepts/]] | 概念 01 · 常见 Bug 原因分析 · 概念 02 · 解决 Bug 的流程套路 |
+| 🧪 [[concepts/]] | 概念 01 · 常见 Bug 原因分析 · 概念 02 · 解决 Bug 的流程套路 · 概念 17 · 企业项目开发流程 |
 
 ## 📡 周报
 
@@ -140,7 +140,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🛠️ [[tools/]] | Markdown 语法速查 · 代码小抄 · 剪切助手 · 老鱼简历 · 鱼聪明 AI |
-| 🌐 [[tools/前端/]] | 前端问题排错指南 · 框架初始化 · 组件库报错 · API 请求排错 |
+| 🌐 [[tools/前端/]] | 前端问题排错指南 · 框架初始化 · 组件库报错 · API 请求排错 · [[tools/前端/工具 12 - 前端学习路线.md|工具 12 · 前端学习路线]] |
 
 ## 📋 站点
 
