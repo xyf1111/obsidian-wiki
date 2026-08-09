@@ -19,7 +19,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🐹 [[golang/]] | **Go 语言**：基础·并发·底层·进阶·实战·面试·路线·核心原理·面试汇总 — 90 篇 |
-| ☕ [[java/]] | **Java**：基础·面向对象·集合·IO·多线程·JVM·进阶 — 22 篇 · [[java/路线/Java 00 - AI 应用开发学习路线.md|AI 应用开发学习路线]] · [[java/路线/Java 01 - 学习路线.md|学习路线]] · 🐛 错误排查：[[java/错误排查/Java 错误排查 01 - 数据查询为空或错误.md|数据查询为空]] · [[java/错误排查/Java 错误排查 02 - 无法正常登录或获取不到用户信息.md|登录鉴权]] · [[java/错误排查/Java 错误排查 03 - 无法访问线上服务.md|线上故障]] · [[devops/java/Java 项目 01 - 启动与依赖服务排错.md|项目启动]] |
+| ☕ [[java/]] | **Java**：基础·面向对象·集合·IO·多线程·JVM·进阶 — 22 篇 · [[java/路线/Java 00 - AI 应用开发学习路线.md|AI 应用开发学习路线]] · [[java/路线/Java 01 - 学习路线.md|学习路线]] · 🐛 错误排查：[[java/错误排查/Java 错误排查 01 - 数据查询为空或错误.md|数据查询为空]] · [[java/错误排查/Java 错误排查 02 - 无法正常登录或获取不到用户信息.md|登录鉴权]] · [[java/错误排查/Java 错误排查 03 - 无法访问线上服务.md|线上故障]] · [[java/错误排查/Java 错误排查 04 - 项目启动与依赖服务排错.md|项目启动]] |
 | 🅲 [[c/]] | **C 语言**：[[c/路线/C 01 - 语言学习路线.md|学习路线]] |
 | ➕ [[cpp/]] | **C++**：[[cpp/路线/C++ 01 - 学习路线.md|学习路线]] |
 | ＃ [[csharp/]] | **C#**：[[csharp/路线/C# 01 - 学习路线.md|学习路线]] |
@@ -93,7 +93,6 @@ title: Wiki
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
 | 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] |
-| 🐳 [[devops/java/]] | Java 项目 01 · 启动与依赖服务排错 |
 
 ## 📱 跨平台
 
