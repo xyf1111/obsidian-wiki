@@ -78,6 +78,7 @@ title: Wiki
 |------|------|
 | 🌐 [[network/]] | 网络 01-09 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解 |
 | 🔷 [[network/graphql/]] | GraphQL 01 · 学习路线 |
+| 🔗 [[network/rpc/]] | RPC 01 · 学习路线 |
 
 ## 🛡️ 安全
 
@@ -92,7 +93,7 @@ title: Wiki
 | 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
-| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] |
+| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] |
 
 ## 📱 跨平台
 
@@ -115,7 +116,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🧪 [[concepts/]] | 概念 01 · 常见 Bug 原因分析 · 概念 02 · 解决 Bug 的流程套路 · 概念 17 · 企业项目开发流程 · 概念 18 · 后端系统设计学习路线 |
+| 🧪 [[concepts/]] | 概念 01-03 · 常见 Bug 原因分析 · 解决 Bug 的流程套路 · 领域驱动设计（DDD） · 概念 06-10 · 设计原则·设计模式·接口幂等性·分层架构 · 概念 14/16/17 · 性能优化·评论设计·企业项目开发流程 |
 
 ## 📡 周报
 
@@ -133,14 +134,14 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🧠 [[hermes/]] | Hermes Agent 概述·技能系统·安装配置·文档资源 |
-| 🤖 [[ai/]] | AI Agent 应用开发 · AI 大模型应用开发 · 学习路线 |
+| 🤖 [[ai/]] | AI Agent 应用开发 · AI 大模型应用开发 · 学习路线 · TextCNN 文本分类 · 遗传算法 |
 
 ## 🛠️ 工具
 
 | 分类 | 内容 |
 |------|------|
 | 🛠️ [[tools/]] | Markdown 语法速查 · 代码小抄 · 剪切助手 · 老鱼简历 · 鱼聪明 AI |
-| 🌐 [[tools/前端/]] | 前端问题排错指南 · 框架初始化 · 组件库报错 · API 请求排错 · [[tools/前端/工具 12 - 前端学习路线.md|工具 12 · 前端学习路线]] |
+| 🌐 [[tools/前端/]] | 前端问题排错指南 · 框架初始化 · 组件库报错 · API 请求排错 · [[tools/前端/工具 12 - 前端学习路线.md|工具 12 · 前端学习路线]] · [[tools/前端/工具 13 - Hexo 博客搭建教程.md|工具 13 · Hexo博客]] · [[tools/前端/工具 14 - 接口测试工具与方法.md|工具 14 · 接口测试]] · [[tools/前端/工具 15 - 存储优化与COS对象存储实践.md|工具 15 · 存储优化COS]] |
 
 ## 📋 站点
 

@@ -1,5 +1,5 @@
 ---
-title: "概念 05 - TextCNN 文本分类与评论审核"
+title: "TextCNN 01 - 文本分类与评论审核"
 date: 2026-07-25
 tags: [深度学习, NLP, 文本分类, TextCNN, 评论审核]
 source: "鱼皮·编程导航 / codefather"

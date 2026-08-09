@@ -1,5 +1,5 @@
 ---
-title: 存储优化与COS对象存储实践
+title: "工具 15 - 存储优化与COS对象存储实践"
 date: 2026-07-30
 tags: [存储优化, COS, 对象存储, 腾讯云, 安全]
 source: "鱼皮·编程导航 / codefather"

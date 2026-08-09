@@ -1,11 +1,11 @@
 ---
-title: "概念 04 - Hexo 博客搭建教程"
+title: "工具 13 - Hexo 博客搭建教程"
 date: 2026-07-21
 tags: [Hexo, 博客, GitHub Pages, Netlify, 前端]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# 概念 04 - Hexo 博客搭建教程
+# 工具 13 - Hexo 博客搭建教程
 
 > 使用 Hexo 静态网站框架 + GitHub Pages + Netlify 搭建个人博客的完整流程。
 
