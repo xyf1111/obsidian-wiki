@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
-- [[java/工具/Java 工具 14 - ELK 日志采集与监控|Java 工具 14 - ELK 日志采集与监控]] — *更新于 08-09*
-- [[java/工具/Java 工具 13 - IDEA Docker远程部署SpringBoot|Java 工具 13 - IDEA Docker远程部署SpringBoot]] — *更新于 08-09*
-- [[java/工具/Java 工具 12 - 一键部署到Linux环境|Java 工具 12 - 一键部署到Linux环境]] — *更新于 08-09*
-- [[java/错误排查/Java 错误排查 04 - 项目启动与依赖服务排错|Java 错误排查 04 - 项目启动与依赖服务排错]] — *更新于 08-09*
-- [[learning/持续学习的方法论与实践|持续学习的方法论与实践]] — *更新于 08-09*
+- [[devops/性能优化 01 - 通用方法论|性能优化 01 - 通用方法论]] — *更新于 08-09*
+- [[java/设计/Java 设计 06 - 后端项目分层架构|Java 设计 06 - 后端项目分层架构]] — *更新于 08-09*
+- [[java/设计/Java 设计 05 - 接口幂等性设计与实现|Java 设计 05 - 接口幂等性设计与实现]] — *更新于 08-09*
+- [[java/设计/Java 设计 04 - 装饰者模式及JDK源码应用|Java 设计 04 - 装饰者模式及JDK源码应用]] — *更新于 08-09*
+- [[java/设计/Java 设计 03 - 命令模式入门实战|Java 设计 03 - 命令模式入门实战]] — *更新于 08-09*
 
 ## 编程语言
 
@@ -157,6 +157,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
