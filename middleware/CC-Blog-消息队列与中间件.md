@@ -71,5 +71,5 @@ tags:
 ## 相关笔记
 
 - [[index|📚 返回知识库首页]]
-- [[golang/CC-Blog-Go语言核心原理|Go语言核心原理]] — gRPC 详解
+- [[golang/核心原理/CC-Blog-Go语言核心原理|Go语言核心原理]] — gRPC 详解
 - [[database/CC-Blog-MySQL与Redis|MySQL与Redis]] — 数据库笔记

@@ -129,6 +129,6 @@ Go 使用 **CSP（Communicating Sequential Processes）** 模型，核心是 "**
 ## 相关笔记
 
 - [[index|📚 返回知识库首页]]
-- [[golang/CC-Blog-Go语言核心原理|Go语言核心原理]] — Go 底层原理
+- [[golang/核心原理/CC-Blog-Go语言核心原理|Go语言核心原理]] — Go 底层原理
 - [[database/CC-Blog-MySQL与Redis|MySQL与Redis]] — 数据库与缓存笔记
 - [[middleware/CC-Blog-消息队列与中间件|消息队列与中间件]] — RabbitMQ 与 gRPC
