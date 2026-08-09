@@ -46,8 +46,8 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 📊 [[bigdata/]] | 大数据 01 · 开发学习路线 |
-| 📊 [[bigdata/bi/]] | BI 01 · 商业智能学习路线 |
+| 🗺️ [[bigdata/路线/]] | 大数据 01 · 开发学习路线 |
+| 📈 [[bigdata/bi/]] | BI 01 · 商业智能学习路线 |
 | ⚡ [[bigdata/flink/]] | Flink 01 · 实时计算学习路线 |
 | 🔥 [[bigdata/spark/]] | Spark 01 · 大数据学习路线 |
 
