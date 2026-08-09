@@ -1,11 +1,11 @@
 ---
-title: "Java 项目 02 - 一键部署到Linux环境"
+title: "Java 工具 12 - 一键部署到Linux环境"
 date: 2026-07-20
 tags: [java, springboot, devops, deployment, linux]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# Java 项目 02 - 一键部署到Linux环境
+# Java 工具 12 - 一键部署到Linux环境
 
 > 在 IDEA 中一键将 SpringBoot 项目 jar 包部署到 Linux 环境，实现秒级部署。
 

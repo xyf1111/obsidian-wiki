@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/工具/Java 工具 14 - ELK 日志采集与监控|Java 工具 14 - ELK 日志采集与监控]] — *更新于 08-09*
+- [[java/工具/Java 工具 13 - IDEA Docker远程部署SpringBoot|Java 工具 13 - IDEA Docker远程部署SpringBoot]] — *更新于 08-09*
+- [[java/工具/Java 工具 12 - 一键部署到Linux环境|Java 工具 12 - 一键部署到Linux环境]] — *更新于 08-09*
+- [[java/错误排查/Java 错误排查 04 - 项目启动与依赖服务排错|Java 错误排查 04 - 项目启动与依赖服务排错]] — *更新于 08-09*
 - [[learning/持续学习的方法论与实践|持续学习的方法论与实践]] — *更新于 08-09*
-- [[golang/实战/Go 实战 24 - 开源项目与资源|Go 实战 24 - 开源项目与资源]] — *更新于 08-09*
-- [[golang/面试/CC-Blog-面试题汇总|CC's Blog - 面试题汇总]] — *更新于 08-09*
-- [[golang/路线/Go 路线 01 - 工程师学习路线图|Go 工程师学习路线图]] — *更新于 08-09*
-- [[database/CC-Blog-MySQL与Redis|CC's Blog - MySQL 与 Redis]] — *更新于 08-09*
 
 ## 编程语言
 
@@ -157,6 +157,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 

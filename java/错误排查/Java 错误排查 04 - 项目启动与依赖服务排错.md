@@ -1,11 +1,11 @@
 ---
-title: "Java 项目 01 - 启动与依赖服务排错"
+title: "Java 错误排查 04 - 项目启动与依赖服务排错"
 date: 2026-07-15
 tags: [java, maven, backend, troubleshooting, devops]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# Java 项目 01 - 启动与依赖服务排错
+# Java 错误排查 04 - 项目启动与依赖服务排错
 
 > Java 后端项目启动失败或依赖服务连接异常的常见原因与解决方案。
 

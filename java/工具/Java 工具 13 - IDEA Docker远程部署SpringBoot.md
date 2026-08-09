@@ -1,11 +1,11 @@
 ---
-title: "Java 项目 03 - IDEA Docker远程部署SpringBoot"
+title: "Java 工具 13 - IDEA Docker远程部署SpringBoot"
 date: 2026-07-22
 tags: [java, springboot, devops, docker, deployment, idea]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# Java 项目 03 - IDEA Docker远程部署SpringBoot
+# Java 工具 13 - IDEA Docker远程部署SpringBoot
 
 > 在 IDEA 中通过 Docker 远程一键部署 SpringBoot 项目，替代手动上传 jar + `java -jar` 的传统流程。
 

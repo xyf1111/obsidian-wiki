@@ -1,5 +1,5 @@
 ---
-title: "Java 项目 04 - ELK 日志采集与监控"
+title: "Java 工具 14 - ELK 日志采集与监控"
 date: 2026-07-24
 tags:
   - java
@@ -13,7 +13,7 @@ tags:
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# Java 项目 04 — ELK 日志采集与监控
+# Java 工具 14 - ELK 日志采集与监控
 
 > SpringBoot 项目通过 Logback + Logstash 将日志采集到 Elasticsearch，并用 Kibana 可视化。
 
