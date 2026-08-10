@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-10*
+- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-10*
 - [[security/Web 安全 02 - 网站攻击监测与防护|Web 安全 02 - 网站攻击监测与防护]] — *更新于 08-10*
 - [[concepts/概念 04 - 快速建站全栈技术栈|概念 04 - 快速建站全栈技术栈]] — *更新于 08-10*
 - [[database/sql/SQL 03 - 任意输入生成 SQL 与代码|数据库 - 任意输入生成 SQL 与代码]] — *更新于 08-10*
-- [[tools/前端/工具 18 - 交互式教学网站与游戏机制设计|前端 - 交互式教学网站与游戏机制设计]] — *更新于 08-10*
-- [[database/sql/SQL 02 - JSON 结构化生成 SQL|数据库 - JSON 结构化生成 SQL]] — *更新于 08-09*
 
 ## 编程语言
 
@@ -158,6 +158,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
