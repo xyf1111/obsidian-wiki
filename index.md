@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[database/sql/SQL 03 - 任意输入生成 SQL 与代码|数据库 - 任意输入生成 SQL 与代码]] — *更新于 08-10*
+- [[tools/前端/工具 18 - 交互式教学网站与游戏机制设计|前端 - 交互式教学网站与游戏机制设计]] — *更新于 08-10*
 - [[database/sql/SQL 02 - JSON 结构化生成 SQL|数据库 - JSON 结构化生成 SQL]] — *更新于 08-09*
 - [[tools/前端/工具 17 - 消消乐小游戏实现|前端 - 消消乐小游戏实现]] — *更新于 08-09*
 - [[devops/DevOps 04 - Wechaty 微信机器人自动回复|DevOps - Wechaty 微信机器人自动回复]] — *更新于 08-09*
-- [[java/进阶/Java 24 - OJ竞赛排行榜设计|Java 进阶 - OJ 竞赛排行榜设计]] — *更新于 08-09*
-- [[tools/前端/工具 16 - DIY 浏览器主页实现|DIY 浏览器主页实现（React + Ant Design）]] — *更新于 08-09*
 
 ## 编程语言
 
@@ -157,6 +157,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
