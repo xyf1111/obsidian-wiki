@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[database/mysql/MySQL 18 - 任意输入生成 SQL 与代码|MySQL 18 - 任意输入生成 SQL 与代码]] — *更新于 08-12*
+- [[database/mysql/MySQL 17 - JSON 结构化生成 SQL|MySQL 17 - JSON 结构化生成 SQL]] — *更新于 08-12*
+- [[database/mysql/MySQL 16 - SQL 学习路线|MySQL 16 - SQL 学习路线]] — *更新于 08-12*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 08-11*
 - [[os/linux/路线/Linux 07 - 学习路线|Linux 07 - 学习路线]] — *更新于 08-11*
-- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-11*
-- [[learning/操作系统选择 - 学编程用 Mac 还是 Windows|操作系统选择 - 学编程用 Mac 还是 Windows]] — *更新于 08-11*
-- [[devops/域名管理 01 - 过期恢复与风险防范|域名管理 01 - 过期恢复与风险防范]] — *更新于 08-11*
 
 ## 编程语言
 
@@ -158,6 +158,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
