@@ -1,11 +1,11 @@
 ---
-title: "SQL 01 - 学习路线"
+title: "MySQL 16 - SQL 学习路线"
 date: 2026-08-05
 tags: [sql, learning, roadmap, database]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# SQL 学习路线
+# MySQL 16 - SQL 学习路线
 
 > 本路线基于 codefather（鱼皮·编程导航）《2026年最新SQL免费实战自学网站零基础到精通一条龙》整理的精简版：去除商业推广，保留核心知识点、学习资源与学习建议，涵盖 SQL 基础语法、进阶查询、性能优化、实战应用、求职备战 5 个阶段，以免费实战练习（闯关式网站 + 在线题库）为主线，零基础可直达精通。
 

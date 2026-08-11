@@ -1,11 +1,11 @@
 ---
-title: "数据库 - 任意输入生成 SQL 与代码"
+title: "MySQL 18 - 任意输入生成 SQL 与代码"
 date: 2026-08-10
 tags: [数据库, SQL, 生成器, 设计模式]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# 任意输入生成 SQL 与代码
+# MySQL 18 - 任意输入生成 SQL 与代码
 
 > 本文整理自 codefather（鱼皮·编程导航）《这次我开源，别再打我啦！》：作者开源了「SQL 之父 sql-father」——一个输入任意描述即可生成 **SQL 语句 + 模拟数据 + 代码** 的工具网站。核心架构理念是「**任意输入 => 统一 Schema => 任意输出**」：Schema 构造器将各种输入收敛为统一 Schema，再由生成器产出 SQL / Java / 前端代码与模拟数据。后端大量运用设计模式（策略、单例、工厂、门面），前端包含复杂嵌套 & 动态 & 可折叠表单与代码编辑器。开源代码：前端 https://github.com/liyupi/sql-father-frontend-public ，后端 https://github.com/liyupi/sql-father-backend-public
 

@@ -1,11 +1,11 @@
 ---
-title: "数据库 - JSON 结构化生成 SQL"
+title: "MySQL 17 - JSON 结构化生成 SQL"
 date: 2026-08-09
 tags: [数据库, SQL, 工具, 生成器]
 source: "鱼皮·编程导航 / codefather"
 ---
 
-# JSON 结构化生成 SQL
+# MySQL 17 - JSON 结构化生成 SQL
 
 > 本文整理自 codefather（鱼皮·编程导航）《我造了个轮子，完整开源！》：作者为完成写超长 SQL（几千行大数据离线分析）的工作，开发了开源工具 **结构化 SQL 生成器 sql-generator**——用扁平的 JSON 结构生成层层嵌套的复杂 SQL，重复语句只写一次。纯前端 + 递归解析生成算法，适合学习前端与算法。
 
