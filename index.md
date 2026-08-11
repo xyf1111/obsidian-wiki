@@ -94,7 +94,7 @@ title: Wiki
 | 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
-| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] · [[devops/性能优化 01 - 通用方法论.md|性能优化方法论]] |
+| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] · [[devops/性能优化 01 - 通用方法论.md|性能优化方法论]] · [[devops/域名管理 01 - 过期恢复与风险防范.md|域名管理]] |
 
 ## 📱 跨平台
 
@@ -110,7 +110,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 📖 [[learning/]] | 提问的智慧 · 持续学习的方法论与实践 · 自学编程的入门方法 · 编程学习与求职架构 |
+| 📖 [[learning/]] | 提问的智慧 · 持续学习的方法论与实践 · 自学编程的入门方法 · 编程学习与求职架构 · 操作系统选择 |
 | 🎯 [[career/]] | 简历·面试感悟·学习路线（6篇） |
 
 ## 🧪 概念与排错
