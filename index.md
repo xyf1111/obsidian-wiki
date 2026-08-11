@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[os/linux/路线/Linux 10 - 操作系统学习路线|Linux 10 - 操作系统学习路线]] — *更新于 08-12*
 - [[database/mysql/MySQL 18 - 任意输入生成 SQL 与代码|MySQL 18 - 任意输入生成 SQL 与代码]] — *更新于 08-12*
 - [[database/mysql/MySQL 17 - JSON 结构化生成 SQL|MySQL 17 - JSON 结构化生成 SQL]] — *更新于 08-12*
 - [[database/mysql/MySQL 16 - SQL 学习路线|MySQL 16 - SQL 学习路线]] — *更新于 08-12*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 08-11*
-- [[os/linux/路线/Linux 07 - 学习路线|Linux 07 - 学习路线]] — *更新于 08-11*
 
 ## 编程语言
 
@@ -70,7 +70,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🐧 [[os/linux/]] | Linux 01-06 · 命令·文件系统·进程管理·包管理·Shell·systemd |
-| 🗺️ [[os/linux/路线/]] | Linux 07-09 · 学习路线·运维路线·Shell脚本路线 |
+| 🗺️ [[os/linux/路线/]] | Linux 07-10 · 学习路线·运维路线·Shell脚本路线·操作系统路线 |
 | 🪟 [[os/dos/]] | DOS 01 · 常用命令速查 — 目录·文件·网络·系统·批处理 |
 
 ## 网络
@@ -158,6 +158,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
