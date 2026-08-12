@@ -8,10 +8,10 @@ title: Wiki
 
 ## 🔥 最新
 
-- [[tools/前端/工具 19 - 视频小程序开发要点与学习路线|前端 - 视频小程序开发要点与学习路线]] — *更新于 08-12*
-- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-12*
-- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-12*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 08-12*
+- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-12*
+- [[tools/前端/工具 19 - 视频小程序开发要点与学习路线|前端 - 视频小程序开发要点与学习路线]] — *更新于 08-12*
+- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-12*
 - [[os/linux/路线/Linux 10 - 操作系统学习路线|Linux 10 - 操作系统学习路线]] — *更新于 08-12*
 
 ## 编程语言
@@ -158,6 +158,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
