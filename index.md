@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[concepts/概念 05 - 悲观编程：主动优化代码的编程习惯|概念 05 - 悲观编程：主动优化代码的编程习惯]] — *更新于 08-13*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 08-13*
 - [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-13*
 - [[weekly/Go GitHub Weekly 2026-08-13|Go GitHub 周报 - 2026-08-13]] — *更新于 08-13*
 - [[tools/前端/工具 19 - 视频小程序开发要点与学习路线|前端 - 视频小程序开发要点与学习路线]] — *更新于 08-12*
-- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-12*
 
 ## 编程语言
 
@@ -159,6 +159,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
