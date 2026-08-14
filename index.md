@@ -85,7 +85,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🛡️ [[security/]] | Web 安全 01 · 学习路线 · Web 安全 02 · 网站攻击监测与防护 |
+| 🛡️ [[security/]] | Web 安全 01 · 学习路线 · Web 安全 02 · 网站攻击监测与防护 · 安全开发 01 · 学习路线 · 密码学 01 · 学习路线 |
 
 ## DevOps
 
@@ -100,6 +100,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
+| 🤖 [[mobile/android/]] | Kotlin 01 · 学习路线 · 安卓 01 · 学习路线 |
 | 🦋 [[mobile/flutter/]] | Flutter 01 · 学习路线 |
 | ⚛️ [[mobile/electron/]] | Electron 01 · 桌面应用开发学习路线 |
 | 🍎 [[mobile/ios/]] | Swift 01 · iOS 学习路线 · iOS 01 · 开发学习路线 |
