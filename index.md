@@ -26,6 +26,12 @@ title: Wiki
 | 🔷 [[typescript/]] | **TypeScript**：[[typescript/路线/TypeScript 01 - 学习路线.md|学习路线]] |
 | 🧩 [[webassembly/]] | **WebAssembly**：[[webassembly/路线/WebAssembly 01 - 学习路线.md|学习路线]] |
 
+## 🧮 算法与数据结构
+
+| 分类 | 内容 |
+|------|------|
+| 🧮 [[algorithm/]] | 算法与数据结构 01 · 学习路线 |
+
 ## 数据库
 
 | 分类 | 内容 |
@@ -59,7 +65,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| ⛓️ [[blockchain/]] | Solidity 01 · 智能合约学习路线 · Web3 01 · 开发学习路线 · 区块链 01 · 开发学习路线 |
+| ⛓️ [[blockchain/]] | Solidity 01 · 智能合约学习路线 · Web3 01 · 开发学习路线 · 区块链 01 · 开发学习路线 · 智能合约 01 · 开发学习路线 |
 
 ## 搜索引擎
 
