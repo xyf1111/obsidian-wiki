@@ -45,9 +45,11 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
+| 📨 [[middleware/]] | 消息队列 01 · 学习路线 · Canal 增量同步 · Nacos 配置中心 · CC-Blog-消息队列与中间件 |
 | 🐰 [[middleware/rabbitmq/]] | RabbitMQ 01-09 · 工作队列·发布订阅·死信队列·可靠性·集群 |
 | 📨 [[middleware/kafka/]] | Kafka 01-08 · 生产者·消费者·分区·Streams·Connect·集群运维 |
 | 🌐 [[middleware/nginx/]] | Nginx 01-06 · 反向代理·SSL·缓存·限流·调优 |
+| 🚀 [[middleware/rocketmq/]] | RocketMQ 01 · 学习路线 |
 
 ## 大数据
 
@@ -94,7 +96,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🛡️ [[security/]] | Web 安全 01 · 学习路线 · Web 安全 02 · 网站攻击监测与防护 · 安全开发 01 · 学习路线 · 密码学 01 · 学习路线 |
+| 🛡️ [[security/]] | Web 安全 01 · 学习路线 · Web 安全 02 · 网站攻击监测与防护 · 安全开发 01 · 学习路线 · 密码学 01 · 学习路线 · 渗透测试 01 · 学习路线 |
 
 ## DevOps
 
@@ -152,7 +154,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🧠 [[hermes/]] | Hermes Agent 概述·技能系统·安装配置·文档资源 |
-| 🤖 [[ai/]] | AI Agent 应用开发 · AI 大模型应用开发 · 学习路线 · TextCNN 文本分类 · 遗传算法 · 机器学习学习路线 |
+| 🤖 [[ai/]] | AI Agent 应用开发 · AI 大模型应用开发 · 学习路线 · TextCNN 文本分类 · 遗传算法 · 机器学习学习路线 · 深度学习学习路线 |
 
 ## 🛠️ 工具
 
