@@ -37,7 +37,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🐬 [[database/mysql/]] | MySQL 01-18 · 事务·索引·锁·分库分表·主从复制·慢查询·SQL语法·学习路线 |
-| 📗 [[database/redis/]] | Redis 01-08 · 数据类型·持久化·过期策略·分布式锁·Cluster |
+| 📗 [[database/redis/]] | Redis 01-11 · 数据类型·持久化·过期策略·分布式锁·布隆过滤器·Cluster·学习路线 |
 | 🍃 [[database/mongodb/]] | MongoDB 01-03 · CRUD·索引·聚合·副本集·分片集群 |
 | 🐘 [[database/postgresql/]] | PostgreSQL 01 · 学习路线 |
 
