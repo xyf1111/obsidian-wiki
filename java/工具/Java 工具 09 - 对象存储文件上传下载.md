@@ -281,6 +281,73 @@ responseInterceptors: [
 ]
 ```
 
+## 阿里云 OSS 接入（补充）
+
+> 腾讯云 COS 之外的另一主流选择：阿里云 OSS。流程一致——开通服务 → 创建 Bucket → 获取 AccessKey → 后端集成 SDK。以下为差异点与最小可运行配置。
+
+### 1. 开通与创建 Bucket
+
+- 阿里云控制台搜索「对象存储 OSS」，首次使用先开通服务（用量小免费）
+- 创建存储空间 Bucket：名称全局唯一，地域就近选择（如华北 2 北京），存储类型选「本地冗余存储」（省流量费）
+- 获取密钥：控制台右上角头像 → AccessKey 管理 → 创建 AccessKey，得到 AccessKeyId / AccessKeySecret
+
+### 2. 依赖与配置
+
+```xml
+<dependency>
+    <groupId>com.aliyun.oss</groupId>
+    <artifactId>aliyun-sdk-oss</artifactId>
+    <version>3.10.2</version>
+</dependency>
+```
+
+```yaml
+oss:
+  aliyun:
+    endpoint: oss-cn-beijing.aliyuncs.com   # Bucket 所在地域对应 Endpoint
+    accessKeyId: your-key-id
+    accessKeySecret: your-key-secret
+    bucket: your-bucket-name
+    domain: https://your-bucket.oss-cn-beijing.aliyuncs.com/  # 返回前端拼接文件 URL
+```
+
+### 3. 初始化 OssClient
+
+```java
+@Configuration
+public class OssConfig {
+    @Value("${oss.aliyun.endpoint}") private String endpoint;
+    @Value("${oss.aliyun.accessKeyId}") private String accessKeyId;
+    @Value("${oss.aliyun.accessKeySecret}") private String accessKeySecret;
+
+    @Bean
+    public OSS ossClient() {
+        return new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+    }
+}
+```
+
+### 4. 上传接口
+
+```java
+@PostMapping("/upload")
+public String upload(@RequestParam("file") MultipartFile file) throws IOException {
+    // 时间戳 + 原扩展名，避免重名
+    String original = file.getOriginalFilename();
+    String fileName = System.currentTimeMillis()
+            + original.substring(original.lastIndexOf("."));
+    // 对象存储无「文件夹」概念，用文件名中的 / 模拟目录，如 2024/08/19/xxx.png
+    PutObjectRequest request = new PutObjectRequest(BUCKET, fileName, file.getInputStream());
+    oss.putObject(request);
+    return DOMAIN + fileName;
+}
+```
+
+### 5. 常见坑
+
+- 上传后访问报 Access Denied：Bucket 读写权限设为「公共读」（私有读写需额外签名 URL）
+- endpoint 不带 `https://` 前缀（如 `oss-cn-beijing.aliyuncs.com`）
+
 ## 架构总结
 
 ```
