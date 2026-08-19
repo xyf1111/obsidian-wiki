@@ -105,7 +105,7 @@ title: Wiki
 | 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
-| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] · [[devops/性能优化 01 - 通用方法论.md|性能优化方法论]] · [[devops/域名管理 01 - 过期恢复与风险防范.md|域名管理]] |
+| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 01 - 虚拟机局域网访问配置.md|DevOps 01 · 虚拟机局域网]] · [[devops/DevOps 02 - 企业微信群机器人定时提醒.md|DevOps 02 · 企微机器人]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/DevOps 04 - Wechaty 微信机器人自动回复.md|DevOps 04 · Wechaty]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] · [[devops/性能优化 01 - 通用方法论.md|性能优化方法论]] · [[devops/域名管理 01 - 过期恢复与风险防范.md|域名管理]] · [[devops/Maven 一键打包脚本.md|Maven 一键打包脚本]] |
 
 ## 🧪 软件测试
 
@@ -142,7 +142,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🧪 [[concepts/]] | 概念 01-11 · 常见 Bug 原因分析 · 解决 Bug 的流程套路 · 简易转译器 · 快速建站全栈技术栈 · 悲观编程与代码优化习惯 · 正则表达式学习路线 · 计算机基础学习路线 · 设计模式学习路线 · 软件工程学习路线 · 状态机概念与实践 · 原码反码补码详解 |
+| 🧪 [[concepts/]] | 概念 01-12 · 常见 Bug 原因分析 · 解决 Bug 的流程套路 · 简易转译器 · 快速建站全栈技术栈 · 悲观编程与代码优化习惯 · 正则表达式学习路线 · 计算机基础学习路线 · 设计模式学习路线 · 软件工程学习路线 · 状态机概念与实践 · 原码反码补码详解 · 设计模式实战案例 |
 
 ## 📡 周报
 
