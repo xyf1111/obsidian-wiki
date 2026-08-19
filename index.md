@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/进阶/Java 51 - 自定义 SpringBoot Starter|Java 进阶 - 自定义 SpringBoot Starter]] — *更新于 08-19*
+- [[concepts/概念 12 - 设计模式实战案例（OJ判题与聚合搜索）|概念 - 设计模式实战案例（OJ判题与聚合搜索）]] — *更新于 08-19*
 - [[devops/Maven 一键打包脚本|DevOps - Maven 一键打包脚本]] — *更新于 08-19*
 - [[database/redis/Redis 11 - 布隆过滤器|Redis 11 - 布隆过滤器]] — *更新于 08-18*
 - [[java/多线程/Java 50 - 四种锁实战（加入队伍功能）|Java 50 - 四种锁实战（加入队伍功能）]] — *更新于 08-18*
-- [[database/redis/Redis 06 - 过期策略与缓存异常|Redis 06 - 过期策略与缓存异常]] — *更新于 08-18*
-- [[java/多线程/Java 15 - 线程基础|Java 15 - 线程基础]] — *更新于 08-18*
 
 ## 编程语言
 
@@ -184,6 +184,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
