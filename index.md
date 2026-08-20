@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 08-20*
 - [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-20*
 - [[weekly/Go GitHub Weekly 2026-08-20|Go GitHub 周报 - 2026-08-20]] — *更新于 08-20*
 - [[java/路线/Java 46 - Java 学习方法（6 年经验）|Java - 学习方法（6 年经验）]] — *更新于 08-19*
 - [[java/集合/Java 14 - HashMap 源码解析|Java 14 - HashMap 源码解析]] — *更新于 08-19*
-- [[java/进阶/Java 52 - 基于阿里云短信的验证码发送实现|Java 进阶 - 基于阿里云短信的验证码发送实现]] — *更新于 08-19*
 
 ## 编程语言
 
@@ -185,6 +185,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
