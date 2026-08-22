@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[devops/DevOps 06 - 免费上线网站的几种方法|DevOps 06 - 免费上线网站的几种方法]] — *更新于 08-22*
+- [[tools/前端/工具 24 - Typora 与 PicGo 写作效率提升|工具 24 - Typora 与 PicGo 写作效率提升]] — *更新于 08-22*
+- [[ai/AI 绘画 01 - Stable Diffusion 平台搭建|AI 绘画 01 - Stable Diffusion 平台搭建]] — *更新于 08-22*
 - [[tools/前端/工具 23 - 免登录资源导航小程序实战（Taro + 云开发）|工具 23 - 免登录资源导航小程序实战（Taro + 云开发）]] — *更新于 08-22*
 - [[devops/DevOps 05 - VS Code 远程开发实战|DevOps 05 - VS Code 远程开发实战]] — *更新于 08-22*
-- [[java/工具/Java 工具 03 - EasyExcel 导出文件|Java 工具 - EasyExcel 导入导出]] — *更新于 08-22*
-- [[tools/前端/工具 22 - Docsify 文档网站搭建|工具 22 - Docsify 文档网站搭建]] — *更新于 08-21*
-- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 08-21*
 
 ## 编程语言
 
@@ -185,6 +185,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
