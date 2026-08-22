@@ -234,3 +234,43 @@ session.getBasicRemote().sendText("同步消息");
 // 群发管理（使用 CopyOnWriteArraySet 维护连接池）
 private static CopyOnWriteArraySet<WebSocketServer> connections = new CopyOnWriteArraySet<>();
 ```
+
+### 聊天室模型：点对点 vs 服务器中转
+
+- **点对点直连**：每人与其他所有人各建一条连接，2000 人聊天室每人要建 1999 条连接，资源浪费严重，且无法统一控制用户、保证连接安全
+- **服务器中转（聊天室基本模型）**：所有客户端连接同一服务器，消息统一发给服务器，由服务器决定转发/广播给哪些用户——每人只需一条连接
+
+实现协议可选 HTTP 或 WebSocket；HTTP 单向、不够实时，实时聊天通常用 WebSocket。
+
+> **WebSocket ≠ Socket**：Socket 不是协议，只是对 TCP/UDP 等协议的抽象封装接口，方便编程；WebSocket 是应用层协议，收发消息时只是**模拟**了 Socket 的实现。
+
+### Socket.IO 聊天室实战（Node.js）
+
+Socket.IO 是 Node.js 优秀的 WebSocket 封装库，一个 JS 语言同时实现前后端，官方提供聊天室 Demo（入门体验优于 Vertx/Netty 等 Java 方案）。
+
+**服务端**（Express + Socket.IO）：监听事件（事件名可自定义），收到消息后广播给其他客户端：
+
+```js
+// 监听 chat message 事件
+socket.on('chat message', (msg) => {
+  // 收到消息后广播到其他客户端
+  socket.broadcast.emit('chat message', msg);
+});
+```
+
+**客户端**：点击发送按钮时触发事件，服务端广播后其余客户端监听插入 DOM：
+
+```js
+// 发送消息
+socket.emit('chat message', '用户输入的消息');
+
+// 接收并展示消息
+socket.on('chat message', function(msg) {
+  var item = document.createElement('li');
+  item.textContent = msg;
+  messages.appendChild(item);
+  window.scrollTo(0, document.body.scrollHeight);
+});
+```
+
+完整流程：Express 建 Node.js 服务 → 前端页面发送消息界面 → 前后端整合 Socket.IO → 发送/广播 → 接收方插入 DOM。可扩展到实时视频评论监控等场景；企业级聊天室仍需考虑鉴权、消息持久化、水平扩展等。
