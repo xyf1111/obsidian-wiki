@@ -114,6 +114,77 @@ public class IpAutoConfiguration {
 - `@EnableConfigurationProperties(IpProperties.class)`：在自动配置类上声明（默认 bean 名由 Spring 生成）
 - `@Import(IpProperties.class)` 或属性类上加 `@Component("ipProperties")`：可自定义 bean 名称，便于在 `@Scheduled` 等注解中用 `#{}` 引用
 
+## 最小可用的 Starter：工程配置与打包
+
+把已有类库（如公司项目的加密模块）封装成 starter 的最小流程：pom 引入自动配置依赖 → 编写配置类 → META-INF 注册 → `mvn install` 本地安装。
+
+### pom.xml 核心依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-autoconfigure</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+
+- `spring-boot-autoconfigure`：自动加载配置的核心依赖
+- `spring-boot-configuration-processor`：自动生成配置文件提示（`optional` 防止传递给使用方）
+- 依赖尽量精简，便于其他项目引用时的兼容性；注意 Spring Boot 3.x 已移除 `spring.factories` 注册机制（改用 AutoConfiguration.imports，见上文）
+
+### 删除 spring-boot-maven-plugin
+
+若 pom 中显式声明了 `spring-boot-maven-plugin` 需删掉：该插件用于把项目打成可执行 jar，而类库应按普通 jar 打包被其他项目引用，保留会导致打包产物不适合作为依赖。
+
+### 配置类 + META-INF 注册
+
+```java
+@Configuration
+@ConfigurationProperties(prefix = "yuapi.client")
+@Data
+@ComponentScan
+public class YuApiClientConfig {
+    private String appId;
+    private String appSecret;
+
+    @Bean
+    public YuApiClient yuApiClient() {
+        return new YuApiClient(appId, appSecret);
+    }
+}
+```
+
+- `@Configuration`：声明配置类，可创建 Bean
+- `@ConfigurationProperties`：绑定 yml 中 `yuapi.client.appId` 等配置到属性，避免硬编码
+- `@ComponentScan`：扫描组件
+
+在 `resources/META-INF/spring.factories` 中注册（相当于给项目一个启动入口）：
+
+```properties
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.yupi.mystarter.YuApiClientConfig
+```
+
+### 打包与引用
+
+执行 `mvn install` 打包为本地依赖，其他项目 pom 中引用：
+
+```xml
+<dependency>
+    <groupId>com.yupi</groupId>
+    <artifactId>my-starter</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```
+
 ## 实战案例：IP 访问监控 Starter
 
 ### 需求与功能设计
