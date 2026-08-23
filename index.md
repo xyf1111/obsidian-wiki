@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[tools/前端/工具 26 - Svelte 框架入门与读书笔记实战|工具 26 - Svelte 框架入门与读书笔记实战]] — *更新于 08-23*
+- [[tools/前端/工具 25 - 原生 JS 计算器实现|工具 25 - 原生 JS 计算器实现]] — *更新于 08-23*
+- [[java/进阶/Java 51 - 自定义 SpringBoot Starter|Java 进阶 - 自定义 SpringBoot Starter]] — *更新于 08-23*
 - [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-22*
 - [[devops/DevOps 06 - 免费上线网站的几种方法|DevOps 06 - 免费上线网站的几种方法]] — *更新于 08-22*
-- [[network/网络 08 - HTTP2与HTTP3及WebSocket|网络 08 - HTTP2与HTTP3及WebSocket]] — *更新于 08-22*
-- [[tools/前端/工具 24 - Typora 与 PicGo 写作效率提升|工具 24 - Typora 与 PicGo 写作效率提升]] — *更新于 08-22*
-- [[ai/AI 绘画 01 - Stable Diffusion 平台搭建|AI 绘画 01 - Stable Diffusion 平台搭建]] — *更新于 08-22*
 
 ## 编程语言
 
@@ -185,6 +185,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
