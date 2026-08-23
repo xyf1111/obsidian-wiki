@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[network/rpc/RPC 02 - 从 0 实现简易 RPC 框架|RPC 02 - 从 0 实现简易 RPC 框架]] — *更新于 08-23*
+- [[devops/Linux 虚拟机搭建与远程开发|Linux 虚拟机搭建与远程开发]] — *更新于 08-23*
+- [[java/进阶/Java 53 - 工作流引擎入门（CompileFlow）|Java 53 - 工作流引擎入门（CompileFlow）]] — *更新于 08-23*
 - [[ai/AI 大模型 02 - 批量生成内容建站实战（VuePress + OpenAI）|AI 大模型 - 批量生成内容建站实战（VuePress + OpenAI）]] — *更新于 08-23*
 - [[concepts/概念 13 - 离线桌面软件的实现思路|概念 - 离线桌面软件的实现思路]] — *更新于 08-23*
-- [[tools/前端/工具 26 - Svelte 框架入门与读书笔记实战|工具 26 - Svelte 框架入门与读书笔记实战]] — *更新于 08-23*
-- [[tools/前端/工具 25 - 原生 JS 计算器实现|工具 25 - 原生 JS 计算器实现]] — *更新于 08-23*
-- [[java/进阶/Java 51 - 自定义 SpringBoot Starter|Java 进阶 - 自定义 SpringBoot Starter]] — *更新于 08-23*
 
 ## 编程语言
 
@@ -185,6 +185,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
