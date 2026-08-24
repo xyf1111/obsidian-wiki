@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[ai/AI 大模型 03 - AI 生成 PPT 与思维导图实战（ChatGPT + MindShow）|AI 大模型 - AI 生成 PPT 与思维导图实战（ChatGPT + MindShow）]] — *更新于 08-24*
+- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-24*
+- [[tools/前端/工具 28 - 云开发低码平台实战（低代码小程序）|工具 - 云开发低码平台实战（低代码小程序）]] — *更新于 08-24*
 - [[ai/AI Agent 02 - AutoGPT 部署与实战体验|AI Agent - AutoGPT 部署与实战体验]] — *更新于 08-24*
 - [[tools/前端/工具 27 - VuePress 文档网站搭建|工具 - VuePress 文档网站搭建]] — *更新于 08-24*
-- [[network/rpc/RPC 02 - 从 0 实现简易 RPC 框架|RPC 02 - 从 0 实现简易 RPC 框架]] — *更新于 08-23*
-- [[devops/Linux 虚拟机搭建与远程开发|Linux 虚拟机搭建与远程开发]] — *更新于 08-23*
-- [[java/进阶/Java 53 - 工作流引擎入门（CompileFlow）|Java 53 - 工作流引擎入门（CompileFlow）]] — *更新于 08-23*
 
 ## 编程语言
 
@@ -185,6 +185,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
