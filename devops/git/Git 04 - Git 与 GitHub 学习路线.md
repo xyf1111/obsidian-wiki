@@ -100,6 +100,12 @@ GitHub 集成了丰富的 DevOps 功能。
 
 **DevOps：** GitHub Pages、GitHub Actions、Webhook、Packages
 
+### 个人主页定制（同名仓库 README）
+
+- 创建**与自己用户名一致**的公开仓库并添加 `README` 文件，README 内容会自动展示在个人主页，形成可定制区域
+- 可在 README 中展示个人介绍、开源指数、综合评级等（配合徽章、统计图链接效果更佳），编辑提交即生效
+- 可参考现成大牛主页模板（如 [github.com/liyupi](https://github.com/liyupi)）
+
 ### 学习资源
 - [GitHub 官方文档](https://docs.github.com/cn)
 - [GitHub 秘籍](https://snowdream86.gitbooks.io/github-cheat-sheet/content/zh/)
