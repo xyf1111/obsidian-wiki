@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[devops/性能优化 01 - 通用方法论|性能优化 01 - 通用方法论]] — *更新于 08-25*
+- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-25*
 - [[tools/前端/工具 29 - 合成大西瓜小游戏魔改与上线|工具 29 - 合成大西瓜小游戏魔改与上线]] — *更新于 08-24*
 - [[devops/DevOps 06 - 免费上线网站的几种方法|DevOps 06 - 免费上线网站的几种方法]] — *更新于 08-24*
 - [[learning/职场工作技巧|职场工作技巧]] — *更新于 08-24*
-- [[ai/AI 大模型 03 - AI 生成 PPT 与思维导图实战（ChatGPT + MindShow）|AI 大模型 - AI 生成 PPT 与思维导图实战（ChatGPT + MindShow）]] — *更新于 08-24*
-- [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 08-24*
 
 ## 编程语言
 
@@ -185,6 +185,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
