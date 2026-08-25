@@ -106,6 +106,27 @@ GitHub 集成了丰富的 DevOps 功能。
 - 可在 README 中展示个人介绍、开源指数、综合评级等（配合徽章、统计图链接效果更佳），编辑提交即生效
 - 可参考现成大牛主页模板（如 [github.com/liyupi](https://github.com/liyupi)）
 
+**主页 / README 装修工具：**
+- **github-readme-stats** — [github.com/anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)，动态生成统计卡片（统计卡片、更多置顶、语言卡片等），复制超链接到 README 即用，可改链接参数定制
+- **Shields.io** — [shields.io](https://shields.io/)，高质量小徽章生成器（下载数等统计徽章，自定义内容和颜色、多种风格），复制链接使用
+- **Visitor Badge** — [visitor-badge.glitch.me](https://visitor-badge.glitch.me/)，访客数徽章，粘贴一行代码到 README 即用
+- **Star History** — [star-history.t9t.io](https://star-history.t9t.io/)，输入仓库名自动生成 star 增长曲线，支持多仓库对比
+- **GitHub Star History** — [codetabs.com/github-stars](https://codetabs.com/github-stars/github-star-history.html)，同上，风格更圆润
+- **GitHub Corners** — [tholman.com/github-corners](https://tholman.com/github-corners/)，给项目官网生成 GitHub 角标（引导用户跳转仓库点 star），选风格复制代码替换仓库地址
+- **GitHub Skyline** — [skyline.github.com](https://skyline.github.com/)，输入用户名 + 年份，把提交记录生成炫酷 3D 模型
+- **All Contributors** — [allcontributors.org](https://allcontributors.org/)，命令行 / 机器人自动把项目贡献者补充到文档并生成精美表格
+
+### GitHub 使用技巧（快捷键与隐藏功能）
+
+- **`s` 键** — 任意页面聚焦搜索框
+- **`t` 键** — 仓库内快速实时搜索文件（Java 层层嵌套目录无需逐级点击）
+- **`L` 键** — 文件内跳转到指定行；点击行号可复制该行代码并生成永久链接
+- **`b` 键** — 快速查看文件改动记录
+- **`ctrl + k`** — 打开命令面板，快速查看内容、执行操作
+- **`.` 键** — 仓库详情页按句号键，代码直接在网页版 VS Code 中打开（切换文件、高亮、跳转、搜索、debug、装插件一应俱全）
+- **`gitpod.io/#` 前缀** — 仓库地址前加 `gitpod.io/#` 即可在线运行项目：自动识别项目类型并安装依赖，远程环境预装 python/java/go 等，可执行命令查看运行效果、一键构建 Docker 镜像；GitPod 每月约 50 小时免费
+- 完整快捷键列表见 [GitHub 官方文档](https://docs.github.com/cn/get-started/using-github/keyboard-shortcuts)
+
 ### 学习资源
 - [GitHub 官方文档](https://docs.github.com/cn)
 - [GitHub 秘籍](https://snowdream86.gitbooks.io/github-cheat-sheet/content/zh/)
@@ -186,11 +207,11 @@ GitHub 集成了丰富的 DevOps 功能。
 **1）GitHub 搜索**
 
 - 简单搜索：输入关键词 + 排序规则，即可较方便地找到优秀项目
-- 条件搜索：用搜索表达式高精度过滤，如「自述文件含 jquery、star 超过 1000、且近期更新」的仓库
+- 条件搜索：用搜索表达式高精度过滤，如「自述文件含 jquery、star 超过 1000、且近期更新」的仓库；也可按 `s` 键聚焦搜索框直接输入搜索限定符，如 `springboot vue stars:>1000 pushed:>2022-05-02 language:Java`（按 star 数、最近 push 时间、语言过滤，得到最新且高质量的结果）
 - 高级搜索：可自动生成搜索表达式，过滤条件完全无需记忆
 - 全部搜索条件见 [GitHub 官方文档](https://docs.github.com)（docs.github.com）
 
-**2）Explore** — GitHub 官方探索，基于兴趣推荐开源项目，精准度高
+**2）Explore** — GitHub 官方探索，基于兴趣推荐开源项目，精准度高；可在探索页开启「获取邮件更新」，定期推送感兴趣的优质项目
 
 **3）Topics** — GitHub 官方主题分类，按主题找到合适的项目
 
