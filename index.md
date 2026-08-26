@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-08-27|Go GitHub 周报 - 2026-08-27]] — *更新于 08-27*
 - [[java/工具/Java 工具 15 - IDEA 高效开发技巧|Java 工具 15 - IDEA 高效开发技巧]] — *更新于 08-26*
 - [[concepts/概念 21 - 项目文档写作指南|概念 21 - 项目文档写作指南]] — *更新于 08-26*
 - [[concepts/概念 20 - SDK 设计与编写经验|概念 20 - SDK 设计与编写经验]] — *更新于 08-26*
 - [[concepts/概念 19 - 大厂项目研发流程|概念 19 - 大厂项目研发流程]] — *更新于 08-26*
-- [[database/mysql/MySQL 19 - 误更新全表事故处理与数据安全|MySQL 19 - 误更新全表事故处理与数据安全]] — *更新于 08-26*
 
 ## 编程语言
 
@@ -147,6 +147,7 @@ title: Wiki
 ## 📡 周报
 
 
+- [[weekly/Go GitHub Weekly 2026-08-27|Go GitHub Weekly 2026-08-27]] — Go 生态周报（2026-08-27）
 - [[weekly/Go GitHub Weekly 2026-08-20|Go GitHub Weekly 2026-08-20]] — Go 生态周报（2026-08-20）
 - [[weekly/Go GitHub Weekly 2026-08-13|Go GitHub Weekly 2026-08-13]] — Go 生态周报（2026-08-13）
 - [[weekly/Go GitHub Weekly 2026-08-06|Go GitHub Weekly 2026-08-06]] — Go 生态周报（2026-08-06）
@@ -185,6 +186,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
