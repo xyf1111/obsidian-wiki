@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[tools/前端/工具 30 - 程序员绘图工具与技巧|工具 30 - 程序员绘图工具与技巧]] — *更新于 08-27*
+- [[os/linux/Linux 03 - 进程管理与网络排查|Linux 03 - 进程管理与网络排查]] — *更新于 08-27*
+- [[learning/职场工作技巧|职场工作技巧]] — *更新于 08-27*
 - [[concepts/概念 22 - 快速开发项目套路（代码生成工作流）|概念 22 - 快速开发项目套路（代码生成工作流）]] — *更新于 08-27*
 - [[java/进阶/Java 55 - 配置文件中的密码安全|Java 55 - 配置文件中的密码安全]] — *更新于 08-27*
-- [[java/进阶/Java 54 - 基于 Druid 的 SQL 语法校验|Java 54 - 基于 Druid 的 SQL 语法校验]] — *更新于 08-27*
-- [[weekly/Go GitHub Weekly 2026-08-27|Go GitHub 周报 - 2026-08-27]] — *更新于 08-27*
-- [[java/工具/Java 工具 15 - IDEA 高效开发技巧|Java 工具 15 - IDEA 高效开发技巧]] — *更新于 08-26*
 
 ## 编程语言
 
@@ -186,6 +186,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
