@@ -131,4 +131,8 @@ Client → Invoker → Command (接口)
               ConcreteCommand → Receiver
 ```
 
+## 实战应用
+
+- **yuindex 网页终端项目**（[GitHub: liyupi/yuindex](https://github.com/liyupi/yuindex)）：以命令模式为核心实现，将用户输入的命令封装为独立命令对象执行，前后端同学都可参考学习。
+
 > 来源：鱼皮·编程导航 / codefather
