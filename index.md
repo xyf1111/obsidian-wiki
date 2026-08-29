@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/设计/Java 设计 09 - 单例模式详解|Java 设计 09 - 单例模式详解]] — *更新于 08-29*
 - [[tools/前端/工具 31 - 无障碍开发指南（Accessibility）|工具 31 - 无障碍开发指南（Accessibility）]] — *更新于 08-29*
 - [[concepts/概念 25 - 魔法值（魔数）的危害与避免|概念 25 - 魔法值（魔数）的危害与避免]] — *更新于 08-29*
 - [[network/网络 13 - 负载均衡|网络 13 - 负载均衡]] — *更新于 08-29*
 - [[os/linux/Linux 01 - 基础命令|Linux 01 - 基础命令]] — *更新于 08-29*
-- [[java/进阶/Java 36 - 单元测试编写指南|Java 36 - 单元测试编写指南]] — *更新于 08-29*
 
 ## 编程语言
 
@@ -186,6 +186,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
