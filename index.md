@@ -88,7 +88,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🌐 [[network/]] | 网络 01-12 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解·Cookie与Session·IO多路复用·学习路线 |
+| 🌐 [[network/]] | 网络 01-13 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解·Cookie与Session·IO多路复用·学习路线·负载均衡 |
 | 🔷 [[network/graphql/]] | GraphQL 01 · 学习路线 |
 | 🔗 [[network/rpc/]] | RPC 01 · 学习路线 · RPC 02 · 简易RPC框架实现 |
 
