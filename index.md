@@ -37,6 +37,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🐬 [[database/mysql/]] | MySQL 01-19 · 事务·索引·锁·分库分表·主从复制·慢查询·SQL语法·学习路线·误操作事故处理 |
+| 🗄️ [[database/]] | 数据库 01 · 基础概念与分类 |
 | 📗 [[database/redis/]] | Redis 01-11 · 数据类型·持久化·过期策略·分布式锁·布隆过滤器·Cluster·学习路线 |
 | 🍃 [[database/mongodb/]] | MongoDB 01-03 · CRUD·索引·聚合·副本集·分片集群 |
 | 🐘 [[database/postgresql/]] | PostgreSQL 01 · 学习路线 |
@@ -88,7 +89,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🌐 [[network/]] | 网络 01-13 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解·Cookie与Session·IO多路复用·学习路线·负载均衡 |
+| 🌐 [[network/]] | 网络 01-14 · 协议基础·Socket·TCP握手·OSI模型·HTTP·DNS·HTTPS·HTTP2/3·WebSocket·HTTP状态码详解·Cookie与Session·IO多路复用·学习路线·负载均衡·重定向 |
 | 🔷 [[network/graphql/]] | GraphQL 01 · 学习路线 |
 | 🔗 [[network/rpc/]] | RPC 01 · 学习路线 · RPC 02 · 简易RPC框架实现 |
 
