@@ -274,6 +274,47 @@ public CompletableFuture<Void> processAfterSalesRequest(String orderId, String c
 
 三个查询并行执行，allOf() 等待全部完成后，通过 join() 获取各查询结果，传给 createAfterSalesTicket() 创建售后工单。
 
+### 8.4 实战案例：循环内批量查询并发化（N+1 查询优化）
+
+背景：某项目单元测试整体执行时间长达近 20 分钟，逐一观察各用例耗时后，定位到单个查询接口竟执行了近 10 分钟——测试数据库量级不过千，却慢得离谱。
+
+**根因分析（两层问题叠加）：**
+
+1. **测试数据设计缺陷**：每次测试插入资产数据时都固定指定所属用户 id = 1，日积月累导致该用户名下资产多达近千条，恰好查询接口又查的就是这个用户；
+2. **N+1 循环查询**：接口逻辑是 for 循环内逐条查询资产详情，每个资产详情又要查多个表（getDetail/getXX/getYY/getZZ）才能拼出完整数据，耗时随资产数线性增加。业务上数据要全部返回给前端展示、用户资产数一般不多，所以不适合分页。
+
+**解决方案**：把顺序查询改为并发查询——开一个线程池，每个资产详情查询封装成一个 CompletableFuture 任务并发执行，最后 allOf() 等待所有任务完成再整体返回：
+
+```java
+// 开个线程池
+ExecutorService executor = new ThreadPoolExecutor(
+    8, 100, 5,
+    TimeUnit.MINUTES,
+    new ArrayBlockingQueue<>(10000)
+);
+// 任务列表
+List<CompletableFuture<Asset>> fList = new ArrayList<>();
+for (int id : assetIds) {
+    // 每个资产详情查询创建独立任务，并发执行
+    CompletableFuture<Asset> f = CompletableFuture.supplyAsync(() -> {
+        Asset asset = getDetail();
+        asset.xx = getXX();
+        asset.yy = getYY();
+        asset.zz = getZZ();
+        return asset;
+    }, executor);
+    fList.add(f);
+}
+// 阻塞，等待所有任务执行完成
+CompletableFuture.allOf(fList.toArray(new CompletableFuture[0])).get();
+```
+
+**经验教训**：
+
+- 单元测试不仅能验证功能正确性，还能**侧面暴露系统性能风险**——测试执行时间异常变长往往指向真实性能隐患（本例是 N+1 查询）；
+- 测试数据要避免**固定主键堆积**：每次测试都往同一个 userId 下插数据，长期累积会让特定数据量远超正常水平，掩盖/放大真实性能问题；
+- 循环内逐条查库（N+1）是常见性能杀手，数据量大时优先考虑并发查询（CompletableFuture）或批量查询（IN 查询）改写。
+
 ## 九、方法速查总结
 | 分类 | 方法 | 说明 |
 | --- | --- | --- |
