@@ -61,6 +61,10 @@ MyBatis-Plus 框架自身提供灵活的代码生成器（AutoGenerator），可
 
 > FreeMarker 官网：https://freemarker.apache.org/
 
+### 在线代码生成器（SQL 之母）
+
+浏览器即可使用的代码生成器，根据文本描述自动生成 SQL：[sqlfather.yupi.icu](http://sqlfather.yupi.icu)，开源仓库 [sql-father-backend-public](https://github.com/liyupi/sql-father-backend-public)，适合不想搭建本地环境的快速建表/查询场景。
+
 ## 关键约定
 
 | 环节 | 建议 |
