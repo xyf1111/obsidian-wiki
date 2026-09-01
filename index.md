@@ -75,7 +75,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-04 · 索引·映射·查询·集群优化 |
+| 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-06 · 索引·映射·查询·集群优化·搜索优化实战 |
 | ⚡ [[search-engine/meilisearch/]] | Meilisearch 01 · 快速入门·前端集成·对比ES |
 
 ## 操作系统
