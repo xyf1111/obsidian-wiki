@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/工具/Java 工具 16 - 日志体系搭建与演进|Java 工具 16 - 日志体系搭建与演进]] — *更新于 09-01*
+- [[search-engine/elasticsearch/Elasticsearch 06 - 搜索优化实战（云开发+ES）|Elasticsearch 06 - 搜索优化实战（云开发 + ES）]] — *更新于 09-01*
+- [[devops/DevOps 06 - 免费上线网站的几种方法|DevOps 06 - 免费上线网站的几种方法]] — *更新于 09-01*
 - [[concepts/概念 27 - 高并发系统设计实战|概念 27 - 高并发系统设计实战]] — *更新于 08-30*
 - [[java/进阶/Java 46 - CompletableFuture 异步编程|Java 46 - CompletableFuture 异步编程]] — *更新于 08-30*
-- [[tools/前端/工具 32 - 博客建站方式对比与选型|工具 32 - 博客建站方式对比与选型]] — *更新于 08-30*
-- [[concepts/概念 26 - 缓存入门|概念 26 - 缓存入门]] — *更新于 08-30*
-- [[bigdata/大数据 01 - 基础概念与特征|大数据 01 - 基础概念与特征]] — *更新于 08-30*
 
 ## 编程语言
 
@@ -188,6 +188,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
