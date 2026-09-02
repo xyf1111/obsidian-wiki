@@ -82,7 +82,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🐧 [[os/linux/]] | Linux 01-06 · 命令·文件系统·进程管理·包管理·Shell·systemd |
+| 🐧 [[os/linux/]] | Linux 01-07 · 命令·文件系统·进程管理·包管理·Shell·systemd·删除防护 |
 | 🗺️ [[os/linux/路线/]] | Linux 07-10 · 学习路线·运维路线·Shell脚本路线·操作系统路线 |
 | 🪟 [[os/dos/]] | DOS 01 · 常用命令速查 — 目录·文件·网络·系统·批处理 |
 
