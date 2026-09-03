@@ -96,6 +96,20 @@ IDEA 内置 Git 辅助工具，能够**可视化分支管理/切换、代码提�
 
 详细用法请阅读官方使用文档：https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html
 
+## 常见坑：别被「包折叠」视图骗了
+
+JetBrains 系列 IDE（IDEA / PyCharm 等）为了界面简洁，默认会在视图中**折叠空的中间包**，真实的目录层级可能被隐藏、甚至产生「障眼法」。
+
+**踩坑案例**（MyBatis 配置文件找不到）：resources 目录下已有同事的配置结构 `aaa/config`（磁盘上两个真实嵌套目录，对应 Java 包 `aaa.config`）。照葫芦画瓢新建时，直接输入目录名 `bbb.config`——结果磁盘上创建的是**一个名字里带点号的单目录**，但在 IDE 折叠视图中它显示成 `bbb > config` 两层，和 `aaa/config` 看起来一模一样，肉眼无法分辨。
+
+- 按 `bbb/config/sql-map-config.xml` 路径加载 → 运行时**找不到文件**（正确路径应为 `bbb.config/sql-map-config.xml`，目录名中的点不是路径分隔符）
+- 逐目录对比两份配置看不出差异，进**构建产物目录**（如 `target/classes`）检查才发现真实结构
+
+**排查与预防**：
+1. 资源文件找不到时，先看报错信息，再到构建产物目录确认文件是否打包、打包后的真实目录结构——IDE 视图会骗人，构建产物不会
+2. 需要嵌套包结构时**逐级创建目录**：先建 `bbb`，再在 `bbb` 下建 `config`，不要一次性输入 `bbb.config` 这类带点的目录名
+3. 可在 Project 视图右上角关闭「折叠空中间包」（Compact Middle Packages），显示真实目录层级
+
 ## 阅读源码技巧
 
 阅读源码遵循「先看整体、再看局部」的思路：
