@@ -107,7 +107,7 @@ title: Wiki
 | 🔧 [[devops/git/]] | Git 01-03 · 基础操作·SSH·远程仓库·分支策略·工作流 |
 | 🐳 [[devops/docker/]] | Docker 01-04 · 基础·Dockerfile·数据卷网络·Compose |
 | ☸️ [[devops/kubernetes/]] | K8s 01-04 · 架构·Pod/Deployment·Service/Ingress·存储配置 |
-| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 01 - 虚拟机局域网访问配置.md|DevOps 01 · 虚拟机局域网]] · [[devops/DevOps 02 - 企业微信群机器人定时提醒.md|DevOps 02 · 企微机器人]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/DevOps 04 - Wechaty 微信机器人自动回复.md|DevOps 04 · Wechaty]] · [[devops/DevOps 05 - VS Code 远程开发实战.md|DevOps 05 · VS Code远程开发]] · [[devops/DevOps 06 - 免费上线网站的几种方法.md|DevOps 06 · 免费上线网站]] · [[devops/DevOps 07 - 项目上线商用注意事项.md|DevOps 07 · 上线商用注意事项]] · [[devops/DevOps 08 - 主流前后端项目部署方式.md|DevOps 08 · 主流部署方式]] · [[devops/DevOps 09 - 本地运行正常上线出 Bug 的原因与预防.md|DevOps 09 · 上线事故预防]] · [[devops/DevOps 10 - 微服务项目部署实战（Docker Compose）.md|DevOps 10 · 微服务部署实战]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] · [[devops/性能优化 01 - 通用方法论.md|性能优化方法论]] · [[devops/域名管理 01 - 过期恢复与风险防范.md|域名管理]] · [[devops/Maven 一键打包脚本.md|Maven 一键打包脚本]] · [[devops/Linux 虚拟机搭建与远程开发.md|Linux 虚拟机搭建]] |
+| 🔄 [[devops/cicd/]] | CI/CD 01-04 · 概念·GitHub Actions·GitOps/ArgoCD·学习路线与系统指南 · [[devops/DevOps 00 - 学习路线.md|DevOps 学习路线]] · [[devops/DevOps 01 - 虚拟机局域网访问配置.md|DevOps 01 · 虚拟机局域网]] · [[devops/DevOps 02 - 企业微信群机器人定时提醒.md|DevOps 02 · 企微机器人]] · [[devops/DevOps 03 - 云原生学习路线.md|DevOps 03 · 云原生学习路线]] · [[devops/DevOps 04 - Wechaty 微信机器人自动回复.md|DevOps 04 · Wechaty]] · [[devops/DevOps 05 - VS Code 远程开发实战.md|DevOps 05 · VS Code远程开发]] · [[devops/DevOps 06 - 免费上线网站的几种方法.md|DevOps 06 · 免费上线网站]] · [[devops/DevOps 07 - 项目上线商用注意事项.md|DevOps 07 · 上线商用注意事项]] · [[devops/DevOps 08 - 主流前后端项目部署方式.md|DevOps 08 · 主流部署方式]] · [[devops/DevOps 09 - 本地运行正常上线出 Bug 的原因与预防.md|DevOps 09 · 上线事故预防]] · [[devops/DevOps 10 - 微服务项目部署实战（Docker Compose）.md|DevOps 10 · 微服务部署实战]] · [[devops/DevOps 11 - 多环境管理（环境隔离与配置）.md|DevOps 11 · 多环境管理]] · [[devops/后端系统设计 01 - 学习路线.md|后端系统设计学习路线]] · [[devops/性能优化 01 - 通用方法论.md|性能优化方法论]] · [[devops/域名管理 01 - 过期恢复与风险防范.md|域名管理]] · [[devops/Maven 一键打包脚本.md|Maven 一键打包脚本]] · [[devops/Linux 虚拟机搭建与远程开发.md|Linux 虚拟机搭建]] |
 
 ## 🧪 软件测试
 
@@ -144,7 +144,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
-| 🧪 [[concepts/]] | 概念 01-32 · 常见 Bug 原因分析 · 解决 Bug 的流程套路 · 简易转译器 · 快速建站全栈技术栈 · 悲观编程与代码优化习惯 · 正则表达式学习路线 · 计算机基础学习路线 · 设计模式学习路线 · 软件工程学习路线 · 状态机概念与实践 · 原码反码补码详解 · 设计模式实战案例 · 离线桌面软件实现思路 · 硬编码的危害与避免 · 团队开发七大雷区 · 技术选型方法论 · 先设计再编码（详细设计） · 后端接口开发避坑（校验·软删除·防误触） · 大厂项目研发流程 · SDK 设计与编写经验 · 文档写作与沉淀指南 · 快速开发项目套路（代码生成工作流） · 权限管理设计（授权·权限组·RBAC） · 快速做项目技巧（七阶段全流程） · 魔法值（魔数）的危害与避免 · 缓存入门（定义·类别·淘汰策略·实现） · 高并发系统设计实战（腾讯实习百万并发复盘） · 团队研发效能 30 锦囊（研发流程全覆盖） · 系统稳定性设计（风险点与防御性方法） · 大文件上传设计（分块·断点续传·秒传） · 架构设计入门（方法与经典架构） · 前后端分离（本质与常见误区） |
+| 🧪 [[concepts/]] | 概念 01-34 · 常见 Bug 原因分析 · 解决 Bug 的流程套路 · 简易转译器 · 快速建站全栈技术栈 · 悲观编程与代码优化习惯 · 正则表达式学习路线 · 计算机基础学习路线 · 设计模式学习路线 · 软件工程学习路线 · 状态机概念与实践 · 原码反码补码详解 · 设计模式实战案例 · 离线桌面软件实现思路 · 硬编码的危害与避免 · 团队开发七大雷区 · 技术选型方法论 · 先设计再编码（详细设计） · 后端接口开发避坑（校验·软删除·防误触） · 大厂项目研发流程 · SDK 设计与编写经验 · 文档写作与沉淀指南 · 快速开发项目套路（代码生成工作流） · 权限管理设计（授权·权限组·RBAC） · 快速做项目技巧（七阶段全流程） · 魔法值（魔数）的危害与避免 · 缓存入门（定义·类别·淘汰策略·实现） · 高并发系统设计实战（腾讯实习百万并发复盘） · 团队研发效能 30 锦囊（研发流程全覆盖） · 系统稳定性设计（风险点与防御性方法） · 大文件上传设计（分块·断点续传·秒传） · 架构设计入门（方法与经典架构） · 前后端分离（本质与常见误区） · 背压（反向压力） · 热数据探测（热 key） |
 
 ## 📡 周报
 
