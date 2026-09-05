@@ -37,7 +37,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🐬 [[database/mysql/]] | MySQL 01-19 · 事务·索引·锁·分库分表·主从复制·慢查询·SQL语法·学习路线·误操作事故处理 |
-| 🗄️ [[database/]] | 数据库 01 · 基础概念与分类 |
+| 🗄️ [[database/]] | 数据库 01 · 基础概念与分类 · 数据库 02 · 数据库类型详解 |
 | 📗 [[database/redis/]] | Redis 01-11 · 数据类型·持久化·过期策略·分布式锁·布隆过滤器·Cluster·学习路线 |
 | 🍃 [[database/mongodb/]] | MongoDB 01-03 · CRUD·索引·聚合·副本集·分片集群 |
 | 🐘 [[database/postgresql/]] | PostgreSQL 01 · 学习路线 |
@@ -167,7 +167,7 @@ title: Wiki
 | 分类 | 内容 |
 |------|------|
 | 🧠 [[hermes/]] | Hermes Agent 概述·技能系统·安装配置·文档资源 |
-| 🤖 [[ai/]] | AI Agent 应用开发 · AutoGPT 实战 · AI 大模型应用开发 · AI 批量生成内容建站 · AI 生成PPT与思维导图 · AI 绘画平台搭建 · 学习路线 · TextCNN 文本分类 · 遗传算法 · 机器学习学习路线 · 深度学习学习路线 · 计算机视觉学习路线 |
+| 🤖 [[ai/]] | AI Agent 应用开发 · AutoGPT 实战 · AI 大模型应用开发 · AI 批量生成内容建站 · AI 生成PPT与思维导图 · AI 文档助手实战 · AI 绘画平台搭建 · 学习路线 · TextCNN 文本分类 · 遗传算法 · 机器学习学习路线 · 深度学习学习路线 · 计算机视觉学习路线 |
 
 ## 🛠️ 工具
 
