@@ -75,6 +75,7 @@ title: Wiki
 
 | 分类 | 内容 |
 |------|------|
+| 🔎 [[search-engine/]] | 搜索引擎 01 · 工作原理（数据抓取·倒排索引·评分排序） |
 | 🔍 [[search-engine/elasticsearch/]] | Elasticsearch 01-06 · 索引·映射·查询·集群优化·搜索优化实战 |
 | ⚡ [[search-engine/meilisearch/]] | Meilisearch 01 · 快速入门·前端集成·对比ES |
 
