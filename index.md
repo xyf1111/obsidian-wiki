@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/路线/Java 01 - 学习路线|Java 01 - 学习路线]] — *更新于 09-14*
+- [[ai/AI 大模型 05 - AI 编程助手实战（CodeGeeX）|AI - AI 编程助手实战（CodeGeeX）]] — *更新于 09-14*
 - [[concepts/概念 29 - 系统稳定性设计（风险点与防御性方法）|概念 29 - 系统稳定性设计（风险点与防御性方法）]] — *更新于 09-14*
 - [[algorithm/算法与数据结构 02 - 海量数据TopK问题|算法与数据结构 02 - 海量数据TopK问题]] — *更新于 09-14*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 09-14*
-- [[devops/性能优化 01 - 通用方法论|性能优化 01 - 通用方法论]] — *更新于 09-14*
-- [[weekly/Go GitHub Weekly 2026-09-10|Go GitHub 周报 - 2026-09-10]] — *更新于 09-10*
 
 ## 编程语言
 
@@ -191,6 +191,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
