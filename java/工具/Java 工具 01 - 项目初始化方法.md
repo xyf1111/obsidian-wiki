@@ -71,6 +71,8 @@ IDEA 已内置此功能，通常无需单独使用网站。
 
 推荐用于 Spring Cloud Alibaba 项目，可保证组件版本一致性。
 
+> **补充**：Spring Boot 官方已停止维护 2.x、全力维护 3.x（最低要求 JDK 17），所以 IDEA 内置的 Spring Initializr 不再提供 Java 8 选项（只剩 17+），网页版同样如此。存量项目或习惯用 Java 8 时，把 IDEA 中 Initializr 的 **Server URL** 改为阿里云脚手架镜像 `https://start.aliyun.com/` 即可。
+
 ### JHipster
 
 **地址**：https://www.jhipster.tech/cn/
