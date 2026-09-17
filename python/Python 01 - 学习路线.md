@@ -286,6 +286,22 @@ Python 能被广泛应用，很大程度上得益于丰富的类库——基本�
 - [PEP 8 代码规范](https://peps.python.org/pep-0008/)
 - [Python 常见问题 FAQ](https://docs.python.org/zh-cn/3/faq/general.html)
 
+### 视频教程（按方向补充）
+
+零基础与综合（各阶段已推荐的千锋 700 集、黑马 600 集等见上文「学习资源」）：
+
+- [小甲鱼《零基础入门学习 Python》最新版](https://www.bilibili.com/video/av52080698)：经典入门系列（可惜未更完）
+- [麻省理工学院 · Python 和计算机科学导论（中文字幕）](https://www.bilibili.com/video/BV1ty4y1x7xP)：适合外语不错的同学课外看，感受国外教学氛围
+- [Python 全栈开发教程](https://www.bilibili.com/video/BV1wD4y1o7AS)：纯粹的 Python 基础教程，案例多，适合快速入门
+- [阿里云 Python 工程师学习路径](https://developer.aliyun.com/graph/python)：含在线编程体验
+
+按方向：
+
+- Web 开发：[Python Django 项目实战教程](https://www.bilibili.com/video/BV1pq4y1W7a1)、[Python + 微信小程序实战开发](https://www.bilibili.com/video/BV1Xy4y1s792)（后台用 Django 框架，比较完整）
+- 数据结构与算法：[Python 数据结构与算法全套 100 节](https://www.bilibili.com/video/BV1uA411N7c5)、[北京大学 · 数据结构与算法 Python 版（完整版）](https://www.bilibili.com/video/BV1VC4y1x7uv)
+- 数据分析：[完整数据分析课程（数据分析 + 机器学习）](https://www.bilibili.com/video/BV1vV411p7D6)、[Python 数据分析入门视频合集](https://shimowendang.com/docs/36pykCPH6XCjKJcv/read)（图形化笔记）
+- 实战练手：[一天搞定人脸识别项目（Python + OpenCV）](https://www.bilibili.com/video/BV1Lq4y1Z7dm)、[Python 自动化办公](https://www.bilibili.com/video/BV1uv411W7Fi)（主要处理 Excel）
+
 ### 在线教程与实战平台
 
 - ⭐ [Python - 100 天从新手到大师](https://github.com/jackfrued/Python-100-Days)：112k star 系统教程
@@ -295,6 +311,15 @@ Python 能被广泛应用，很大程度上得益于丰富的类库——基本�
 - ⭐ [蓝桥云课 Python 实战合集](https://www.lanqiao.cn/courses/?fee=free&tag=Python)：免费在线实战
 - [CheckiO 游戏学 Python](https://py.checkio.org/)
 - [Python 在线编程](https://www.online-python.com/)：在线运行 Python 代码
+- [菜鸟教程 Python 3 教程](https://www.runoob.com/python3/python3-tutorial.html)：可在线写代码练习；[W3Cschool Python 教程](https://www.w3cschool.cn/python3/) 支持手机阅读（通用学习网站清单见 [[工具 34 - 编程学习网站与资源推荐]]）
+- [Python 中文学习大本营](http://www.pythondoc.com/)：一系列文档教程的集合
+- [A Byte of Python](https://python.swaroopch.com/)：英文入门教程
+- [Python Guide（英文）](https://docs.python-guide.org/)：Python 项目工程化与最佳实践
+- [Python Module of the Week](https://pymotw.com/3/)：常用模块逐个讲解，写脚本时很实用
+- [Manim 动画引擎教程](https://docs.manim.org.cn/shaders/)：用代码做数学动画
+- 云端实验环境（免本地配环境）：[腾讯云在线 Python 实验](https://cloud.tencent.com/developer/labs/gallery?tagId=23)、[阿里云 Python 入门实验](https://developer.aliyun.com/adc/scenario/e04fe73ad95d4782aef7aecca206196e)、[华为云沙箱实验室](https://lab.huaweicloud.com/testList.html)
+- [Python123](https://python123.io/index)：在线编程练习平台（部分课程收费）
+- 交互式 / 项目式学习（英文）：[python_koans](https://github.com/gregmalcolm/python_koans)、[interactive-coding-challenges](https://github.com/donnemartin/interactive-coding-challenges)、[project-based-learning#python](https://github.com/practical-tutorials/project-based-learning#python)、[learn-python3](https://github.com/jerry-git/learn-python3)
 
 ### 书籍
 
@@ -305,18 +330,48 @@ Python 能被广泛应用，很大程度上得益于丰富的类库——基本�
 - [《Python 数据科学手册》](https://book.douban.com/subject/27667378/)：数据科学必读
 - [《Python 深度学习》](https://book.douban.com/subject/36078304/)：深度学习入门
 - [《Python 3 网络爬虫开发实战》](https://book.douban.com/subject/30175598/)：爬虫实战
+- [《Python 编程快速上手（第 2 版）》](https://book.douban.com/subject/35387685/)：偏实用的自动化小工具入门
+
+另有《笨办法学 Python 3》《父与子的编程之旅》《轻量级 Django》等入门书可选。
 
 ### 开源代码与资源合集
 
 - [数据结构和算法 Python 实现](https://github.com/keon/algorithms)
 - [Python Machine Learning 代码](https://github.com/rasbt/python-machine-learning-book-3rd-edition)
+- [《剑指 Offer》算法面试题 Python 实现](https://github.com/JushuangQiao/Python-Offer)
+- [设计模式 Python 实现](http://www.pythontip.com/python-patterns/detail/abstract_factory)
+- [Python 小脚本集](https://github.com/RealHacker/python-gems)：一些有意思的练手小项目
 - [Python 练习册](https://github.com/Yixiaohan/show-me-the-code)
 - ⭐ [GitHub Python 专区](https://github.com/topics/python)：最新开源项目
 - ⭐ [awesome-python](https://github.com/vinta/awesome-python)：类库大全
 - [awesome-python-cn](https://github.com/jobbole/awesome-python-cn)：类库大全中文版
+- [awesome-python-books](https://github.com/Junnplus/awesome-python-books)（[中文版](https://github.com/jobbole/awesome-python-books)）：Python 书单
+- [awesome-jupyter](https://github.com/markusschanta/awesome-jupyter)：Jupyter 相关资源
 - [awesome-machine-learning](https://github.com/josephmisiti/awesome-machine-learning#python)
 - [awesome-asyncio](https://github.com/timofurrer/awesome-asyncio)：异步编程资源
 - ⭐ [StackOverflow Python 专区](https://stackoverflow.com/questions/tagged/python)：解决问题必备
+- [掘金 Python 专区](https://juejin.cn/tag/Python)：看技术文章
+
+### 在线社区
+
+- ⭐ [PythonTab](https://www.pythontab.com/)：中文 Python 开发者社区
+- [LearnKu Python 技术论坛](https://learnku.com/python)
+- [开源中国](https://www.oschina.net/)：综合开源社区（更多社区见 [[工具 34 - 编程学习网站与资源推荐]]）
+
+### 在线工具与手册
+
+- ⭐ [菜鸟教程 Python 在线编程](https://c.runoob.com/compile/6/)：浏览器里直接跑代码
+- [腾讯云 Python 在线手册](https://cloud.tencent.com/developer/devdocs)
+- [Python 在线手册汇总](https://docs.pythontab.com/)
+- 更多在线 IDE 见 [[工具 33 - 在线编程网站与在线 IDE]]
+
+### 面试题与专项练习
+
+- ⭐ [牛客 Python 专项练习](https://www.nowcoder.com/intelligentTest)
+- [牛客 Python 题库](https://www.nowcoder.com/search?query=python&type=question)、[机器学习面试题](https://www.nowcoder.com/search?type=question&query=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)、[机器学习笔试](https://www.nowcoder.com/search?type=paper&query=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)
+- [Python 面试题整理（高星）](https://github.com/taizilongxu/interview_python)
+- [Python 面试题整理](https://github.com/kenwoodjw/python_interview_question)
+- [机器学习面试题](https://geektutu.com/post/qa-ml.html)
 
 ### 技术博客
 
