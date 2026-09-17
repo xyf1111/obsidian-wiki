@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[python/Python 01 - 学习路线|Python 01 - 学习路线]] — *更新于 09-17*
 - [[tools/前端/工具 34 - 编程学习网站与资源推荐|工具 34 - 编程学习网站与资源推荐]] — *更新于 09-17*
 - [[algorithm/算法与数据结构 01 - 学习路线|算法与数据结构 01 - 学习路线]] — *更新于 09-17*
 - [[devops/git/Git 04 - Git 与 GitHub 学习路线|Git 04 - Git 与 GitHub 学习路线]] — *更新于 09-17*
 - [[java/路线/Java 47 - Java 学习资源与项目汇总|Java 47 - Java 学习资源与项目汇总]] — *更新于 09-17*
-- [[weekly/Go GitHub Weekly 2026-09-17|Go GitHub 周报 - 2026-09-17]] — *更新于 09-17*
 
 ## 编程语言
 
@@ -192,6 +192,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
