@@ -215,7 +215,7 @@ GitHub 集成了丰富的 DevOps 功能。
 
 **3）Topics** — GitHub 官方主题分类，按主题找到合适的项目
 
-**4）Awesome 合集** — 社区共同贡献的项目，包含某技术的完整生态（优秀开源项目、类库、工具、知识点），如 [awesome-java](https://github.com/akullpp/awesome-java)、[awesome-vue](https://github.com/vuejs/awesome-vue)，多看 awesome 项目，学习与查漏补缺都是极好的
+**4）Awesome 合集** — 社区共同贡献的项目，包含某技术的完整生态（优秀开源项目、类库、工具、知识点），如 [awesome-java](https://github.com/akullpp/awesome-java)、[awesome-vue](https://github.com/vuejs/awesome-vue)，多看 awesome 项目，学习与查漏补缺都是极好的；awesome 项目越来越多，GitHub 另设 [Awesome Topic 专区](https://github.com/topics/awesome)，可在专区中按主题快速发现不同语言、不同技术的 awesome 项目
 
 **5）Trending 趋势榜** — GitHub 官方趋势统计，按语言、时间范围查看项目和开发者新增 star 排行，发现优秀有潜力的开源项目
 
