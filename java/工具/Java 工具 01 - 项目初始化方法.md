@@ -89,7 +89,30 @@ jhipster
 
 **地址**：https://yeoman.io/generators/
 
-主要用于前端项目，但也可编写自定义 Generator 生成 Java 代码。
+主要用于前端项目，但也可编写自定义 Generator 生成 Java 代码。它的生成器市场已收录 **9000 多套项目模板**，前端、后端、全栈都有；不过 Yeoman 仓库（GitHub 近万 star）里并没有工具本身的代码，模板都分散在各 `generator-xxx` 包中，相当于把 GitHub 当流量入口。
+
+前端脚手架方向的定位见 [[工具 12 - 前端学习路线]]「脚手架」条目（Yeoman【可不学】——快速生成项目目录模板）。
+
+```shell
+# 全局安装 yeoman（需要 Node.js 环境）
+npm install -g yo
+
+# 交互式菜单：可直接在菜单里安装生成器，或输入要安装的生成器包名
+yo
+
+# 也可在官网搜索生成器后自行安装，包名记得加 generator 前缀
+# 例：搜索 Chrome 插件项目生成器得插件名 chrome-extension
+npm install -g generator-chrome-extension
+
+# 新建一个空目录，用 yo 执行生成器（生成后自动安装依赖，直接运行即可）
+mkdir test-chrome
+cd test-chrome
+yo chrome-extension
+
+# 部分生成器自带生成单个文件的能力
+# 例：angular 生成器一行命令生成新控制器
+yo angular:controller NewController
+```
 
 ## 4. 开源项目模板
 
