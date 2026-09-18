@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[java/工具/Java 工具 01 - 项目初始化方法|Java 工具 - 项目初始化方法]] — *更新于 09-18*
+- [[tools/前端/工具 34 - 编程学习网站与资源推荐|工具 34 - 编程学习网站与资源推荐]] — *更新于 09-18*
+- [[tools/工具 06 - autojump 命令行目录快速跳转工具|工具 06 - autojump 命令行目录快速跳转工具]] — *更新于 09-18*
 - [[java/工具/Java 工具 17 - HTML解析与网页抓取（jsoup）|Java 工具 17 - HTML 解析与网页抓取（jsoup）]] — *更新于 09-18*
 - [[devops/DevOps 12 - 自建服务部署实战（Leanote 云笔记）|DevOps - 自建服务部署实战（Leanote 云笔记）]] — *更新于 09-18*
-- [[tools/前端/工具 35 - 第三方评论插件接入（Gitalk）|前端 - 第三方评论插件接入（Gitalk）]] — *更新于 09-18*
-- [[python/Python 01 - 学习路线|Python 01 - 学习路线]] — *更新于 09-17*
-- [[tools/前端/工具 34 - 编程学习网站与资源推荐|工具 34 - 编程学习网站与资源推荐]] — *更新于 09-17*
 
 ## 编程语言
 
@@ -192,6 +192,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
