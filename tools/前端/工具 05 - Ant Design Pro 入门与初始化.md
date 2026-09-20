@@ -33,6 +33,7 @@ Ant Design Pro 不是孤立的工具，它属于蚂蚁金服前端技术"全家�
 
 - 官网：https://ant.design/
 - 同时提供 Vue 版本（Ant Design Vue），跨框架保持编码和效果一致性
+- 各框架文档入口：React 版 https://ant.design/docs/react/introduce-cn ｜ Angular 版 https://ng.ant.design/docs/introduce/zh
 
 ### 2.2 Ant Design ProComponents（高级业务组件）
 
@@ -45,6 +46,45 @@ Ant Design Pro 不是孤立的工具，它属于蚂蚁金服前端技术"全家�
 一套完整的数据可视化组件和工具库，包含 G2（统计图表）、G6（图可视化）、F2（移动端图表）等子库，满足不同类型的数据可视化需求。
 
 - 官网：https://antv.antgroup.com/
+
+### 2.4 Ant Design Mobile（移动端组件库）
+
+Ant Design 组件库的移动端版本，支持 React 和 Angular 两个主流框架，提供丰富的移动端组件；直接打开文档、复制代码略加修改即可使用。
+
+- React 版文档：https://mobile.ant.design/docs/react/introduce-cn
+- Angular 版文档：https://ng.mobile.ant.design/#/docs/introduce/zh
+
+### 2.5 Ant Design Pro（中后台系统模板）
+
+开箱即用的中后台前端系统，封装了监控页、表单页等企业后台常用页面与组件（甚至内置图形编辑器），适合有 React 经验的同学直接使用，不建议小白直接用（可能不会改）。**本文即围绕它展开**，初始化与使用见第 3 节起。
+
+- 地址：https://pro.ant.design/index-cn
+
+### 2.6 Ant Design Landing（首页搭建）
+
+前端开发者「偷懒」的神器：**不用写代码就能做出精美的网站首页**。平台提供丰富的各类首页模板，下载模板代码包即可快速使用，也可在现有模板基础上做定制化编辑。
+
+- 地址：https://landing.ant.design/index-cn
+
+### 2.7 Scaffolds（脚手架市场）
+
+Ant Design 脚手架市场，允许开发者把自研的模板页面、项目启动框架、组件、工具发布到这里分享；也可以在其中找到大量能节省开发工作量的现成优秀代码。
+
+- 地址：https://scaffold.ant.design
+
+### 2.8 Ant Motion（动效库）
+
+Ant Design 风格的动效库，提供各种常用动画与灵活的高级动效组件。
+
+- 地址：https://motion.ant.design/index-cn
+
+### 2.9 Ant Design Charts（图表库）
+
+对 AntV 数据可视化能力的封装，可以**以 Ant Design React 组件的方式直接使用图表**，与组件库的开发体验保持一致。
+
+- 地址：https://charts.ant.design/
+
+> 生态小结：Ant Design 不只是组件库 —— 它是「设计体系 + 组件库（React/Vue/Angular）+ 移动端 + 中后台模板 + 首页模板 + 脚手架市场 + 动效 + 图表」的一整套方案，所有产品遵循同一套设计规范，因此视觉体验一致。蚂蚁金服的各个项目中都有使用 Ant Design。
 
 > 这套生态组合被称为"Ant Design 全家桶"，学一套即可覆盖大部分前端开发场景。
 
