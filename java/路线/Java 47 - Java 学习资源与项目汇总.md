@@ -7,7 +7,7 @@ source: "鱼皮·编程导航 / codefather"
 
 # Java 47 - Java 学习资源与项目汇总
 
-> GitHub 上值得跟着学的 Java 文档教程、知识总结与实战项目，按「基础 → 类库框架 → 知识总结与面试复习 → 系统设计 → 源码与示例代码」整理——用文档学习的好处是可以自己把控节奏、方便记录笔记。
+> GitHub 上值得跟着学的 Java 文档教程、知识总结与实战项目，按「基础 → 类库框架 → 知识总结与面试复习 → 系统设计 → 源码与示例代码 → 开源实战项目」整理——用文档学习的好处是可以自己把控节奏、方便记录笔记。
 
 ## 核心要点
 
@@ -80,9 +80,20 @@ source: "鱼皮·编程导航 / codefather"
 | **spring-boot-examples** | Spring Boot 快速简单上手教程：示例以最小依赖、最简单为标准，帮助初学者快速掌握各组件用法 |
 | **spring-boot-projects** | Spring Boot 入门教程 + 实战项目教程：既含各种示例代码，也含实战项目源码与效果（Web 开发、线上博客、企业商城、前后端分离实践） |
 
+### 开源实战项目（可下载源码练手）
+
+[练手项目推荐](https://github.com/liyupi) 里的全栈项目开放出来的**后端源码仓库**，全部免费开源、可直接 clone 到本地运行：Java 同学可下源码研读完整实现，前端同学可照接口文档自行实现页面。
+
+| 项目 | 说明 |
+| --- | --- |
+| **user-center-backend-public** | 用户中心系统后端（Spring Boot + MyBatis Plus + MySQL），实现用户注册、登录、查询与用户管理，含通用返回对象、自定义异常与全局异常处理器等工程化改造；前端为 React + Ant Design Pro（[[工具 05 - Ant Design Pro 入门与初始化]]）。仓库：https://github.com/liyupi/user-center-backend-public |
+| **yupao-backend-public** | 伙伴匹配系统后端（移动端 APP 风格网站）：登录注册、按标签搜索用户、推荐相似用户、组队等，覆盖批量数据导入、信息检索、定时任务、资源抢占等企业常见需求，并涉及分布式、并发编程、锁、事务、缓存、幂等性与数据一致性（[[Java 50 - 四种锁实战（加入队伍功能）]] 即出自本项目） |
+| **yuapi-backend-public** | API 开放平台后端：管理员接入并发布接口、统计分析接口调用情况，用户开通权限后浏览与在线调试接口，并提供客户端 SDK；重点是**多系统交互**架构，涉及 API 签名认证、网关、RPC、分布式（[[Java 45 - Spring Cloud 微服务学习路线]]） |
+| **yuso-backend-public** | 聚合搜索平台后端（Vue 3 + Spring Boot + Elastic Stack）：一站式聚合搜索 / 简化版搜索中台，覆盖多种数据爬虫方式（jsoup / HttpClient）、4 种数据同步方法（定时 · 双写 · Logstash · Canal）、接口优化（门面 / 适配器 / 注册器模式）、Elasticsearch + Kibana 与 JMeter 压力测试（设计模式细节见 [[概念 12 - 设计模式实战案例（OJ判题与聚合搜索）]]） |
+
 ### 使用建议
 
-- **按目标选型**：入门补基础 → On Java 8 / java-learning；面试突击与知识体系梳理 → JavaGuide；框架上手 → SpringBoot Guide 与 spring-security-jwt-guide；进阶分布式 → springcloud-learning；练手项目 → mall-learning、miaosha
+- **按目标选型**：入门补基础 → On Java 8 / java-learning；面试突击与知识体系梳理 → JavaGuide；框架上手 → SpringBoot Guide 与 spring-security-jwt-guide；进阶分布式 → springcloud-learning；练手项目 → mall-learning、miaosha，或用「开源实战项目」的 4 个后端源码仓库直接下代码改
 - **系统梳理与面试复习**：先用 CS-Notes / JavaGuide 铺开知识全貌，再用 architect-awesome、JGrowing 的图谱查漏补缺，面试冲刺可看 advanced-java、牛客面试宝典、JavaFamily、3y、toBeTopJavaer、technology-talk
 - **想动手跑代码**：生态示例合集 tutorials、66 个集成 Demo 的 Spring Boot Demo、实战项目 spring-boot-projects（以及 SpringAll、spring-boot-examples）、设计模式实现 java-design-patterns、算法实现 TheAlgorithms/Java、多线程进阶 threadandjuc
 - **文档式学习适合自己控节奏**，建议边读边记笔记（可参考 LearningNotes 的笔记组织方式），而不是只看不写
