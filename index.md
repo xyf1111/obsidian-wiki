@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-09-24|Go GitHub 周报 - 2026-09-24]] — *更新于 09-24*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 09-23*
 - [[java/路线/Java 47 - Java 学习资源与项目汇总|Java 47 - Java 学习资源与项目汇总]] — *更新于 09-22*
 - [[learning/职场工作技巧|职场工作技巧]] — *更新于 09-21*
 - [[tools/前端/工具 34 - 编程学习网站与资源推荐|工具 34 - 编程学习网站与资源推荐]] — *更新于 09-20*
-- [[tools/前端/工具 32 - 博客建站方式对比与选型|工具 32 - 博客建站方式对比与选型]] — *更新于 09-20*
 
 ## 编程语言
 
@@ -150,6 +150,7 @@ title: Wiki
 ## 📡 周报
 
 
+- [[weekly/Go GitHub Weekly 2026-09-24|Go GitHub Weekly 2026-09-24]] — Go 生态周报（2026-09-24）
 - [[weekly/Go GitHub Weekly 2026-09-17|Go GitHub Weekly 2026-09-17]] — Go 生态周报（2026-09-17）
 - [[weekly/Go GitHub Weekly 2026-09-10|Go GitHub Weekly 2026-09-10]] — Go 生态周报（2026-09-10）
 - [[weekly/Go GitHub Weekly 2026-09-03|Go GitHub Weekly 2026-09-03]] — Go 生态周报（2026-09-03）
@@ -192,6 +193,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
