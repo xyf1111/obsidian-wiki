@@ -8,9 +8,9 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 09-25*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 09-25*
 - [[tools/前端/工具 37 - 团队协作与效率软件推荐|工具 37 - 团队协作与效率软件推荐]] — *更新于 09-24*
-- [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 09-24*
 - [[weekly/Go GitHub Weekly 2026-09-24|Go GitHub 周报 - 2026-09-24]] — *更新于 09-24*
 - [[java/路线/Java 47 - Java 学习资源与项目汇总|Java 47 - Java 学习资源与项目汇总]] — *更新于 09-22*
 
@@ -193,6 +193,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
