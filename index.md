@@ -8,10 +8,10 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 10-03*
 - [[mobile/electron/Electron 01 - 桌面应用开发学习路线|Electron 桌面应用开发学习路线]] — *更新于 10-03*
 - [[ai/AI 绘画 01 - Stable Diffusion 平台搭建|AI 绘画 01 - Stable Diffusion 平台搭建]] — *更新于 10-03*
 - [[devops/DevOps 07 - 项目上线商用注意事项|DevOps 07 - 项目上线商用注意事项]] — *更新于 10-03*
-- [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 10-03*
 - [[learning/职场工作技巧|职场工作技巧]] — *更新于 10-03*
 
 ## 编程语言
@@ -194,6 +194,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
