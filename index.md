@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[concepts/概念 21 - 项目文档写作指南|概念 21 - 文档写作与沉淀指南]] — *更新于 10-05*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 10-05*
 - [[security/Web 安全 02 - 网站攻击监测与防护|Web 安全 02 - 网站攻击监测与防护]] — *更新于 10-05*
 - [[concepts/概念 29 - 系统稳定性设计（风险点与防御性方法）|概念 29 - 系统稳定性设计（风险点与防御性方法）]] — *更新于 10-04*
 - [[mobile/electron/Electron 01 - 桌面应用开发学习路线|Electron 桌面应用开发学习路线]] — *更新于 10-03*
-- [[ai/AI 绘画 01 - Stable Diffusion 平台搭建|AI 绘画 01 - Stable Diffusion 平台搭建]] — *更新于 10-03*
 
 ## 编程语言
 
@@ -194,6 +194,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
