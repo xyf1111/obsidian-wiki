@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-10-08|Go GitHub 周报 - 2026-10-08]] — *更新于 10-08*
 - [[learning/自学编程的入门方法|自学编程的入门方法]] — *更新于 10-07*
 - [[java/路线/Java 47 - Java 学习资源与项目汇总|Java 47 - Java 学习资源与项目汇总]] — *更新于 10-07*
 - [[learning/职场工作技巧|职场工作技巧]] — *更新于 10-07*
 - [[learning/编程学习与求职架构|编程学习与求职架构]] — *更新于 10-06*
-- [[tools/前端/工具 42 - Vue 入门实战（落户积分计算器）|工具 42 - Vue 入门实战（落户积分计算器）]] — *更新于 10-06*
 
 ## 编程语言
 
@@ -150,6 +150,7 @@ title: Wiki
 ## 📡 周报
 
 
+- [[weekly/Go GitHub Weekly 2026-10-08|Go GitHub Weekly 2026-10-08]] — Go 生态周报（2026-10-08）
 - [[weekly/Go GitHub Weekly 2026-10-01|Go GitHub Weekly 2026-10-01]] — Go 生态周报（2026-10-01）
 - [[weekly/Go GitHub Weekly 2026-09-24|Go GitHub Weekly 2026-09-24]] — Go 生态周报（2026-09-24）
 - [[weekly/Go GitHub Weekly 2026-09-17|Go GitHub Weekly 2026-09-17]] — Go 生态周报（2026-09-17）
@@ -194,6 +195,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
