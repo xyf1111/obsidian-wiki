@@ -420,4 +420,225 @@ if (retries++ == RETRIES_BEFORE_LOCK) {
 
 > 相关：[[Java 11 - Set与Map]]、[[Java 14 - HashMap 源码解析]]
 
+---
+
+## 七、Java 中 ReentrantLock 的实现原理是什么？
+
+**回答重点**：
+
+- `ReentrantLock` 本质是**基于 AQS 实现的可重入锁**，支持**公平**和**非公平**两种获取方式。
+- 内部依赖一个 `state` 变量 + 两个等待队列：**同步队列**（双向链表）与**等待队列**（条件队列，单向链表）。
+- 线程通过 **CAS 修改 `state`** 来争抢锁；争抢失败则进入同步队列排队等待。
+- 当 `condition` 条件不满足时，线程进入等待队列等待。
+- **公平锁与非公平锁的区别**：获取锁时，公平锁是「加入同步队列尾部排队」，非公平锁是「直接尝试 CAS 争抢」。
+
+### CAS
+
+CAS（Compare-And-Swap，比较并交换）是一种乐观锁原子操作：比较内存当前值是否等于预期值，相等才写入新值，整个过程由 CPU 指令保证原子性。它是 `ReentrantLock`、`AtomicInteger` 等并发组件的基础。
+
+### 自旋锁
+
+自旋锁（Spinlock）是一种**轻量级**锁机制：线程获取锁失败时不立即阻塞，而是在循环中反复尝试获取，直到成功。它避免了线程上下文切换开销，**适用于锁等待时间较短的场景**。
+
+```java
+public class SpinLock {
+    private final AtomicBoolean lock = new AtomicBoolean(false);
+
+    public void lock() {
+        while (!lock.compareAndSet(false, true)) {
+            // 自旋等待
+        }
+    }
+
+    public void unlock() {
+        lock.set(false);
+    }
+}
+```
+
+缺点主要有两点：
+
+- **锁饥饿问题**：高并发场景下，可能存在某个线程一直 CAS 失败，始终抢不到锁。
+- **性能问题**：多核处理器对同一变量高并发 CAS，会导致**总线风暴**问题。
+
+### CLH 自旋锁
+
+针对自旋锁的问题，演进出基于队列的自旋锁 **CLH**（Craig, Landin, and Hagersten），适用于多处理器环境下的高并发场景。
+
+- 原理：维护一个**隐式队列**，使线程在等待锁时**自旋在本地变量**上，从而减少对共享变量的争用和缓存一致性流量。
+- 线程按序排队争抢锁，每个线程不再 CAS 争抢同一个变量，而是**自旋判断其前驱线程的状态**；前驱释放锁后，后续线程即可抢锁。
+- 优点：排队按序争抢解决了**锁饥饿**；CAS 自旋监听前驱状态避免了**总线风暴**。
+- 缺点：自旋期间线程一直占用 CPU，仅适用于锁等待时间较短的场景。
+- 「隐式」的含义：线程之间并没有真正用指针连接，而是用 `AtomicReference + ThreadLocal` 实现隐式关联。
+
+```java
+public class CLHLock {
+    private static class CLHNode {
+        volatile boolean isLocked = true; // 默认加锁状态
+    }
+
+    private final ThreadLocal<CLHNode> currentNode;
+    private final ThreadLocal<CLHNode> predecessorNode;
+    private final AtomicReference<CLHNode> tail;
+
+    public CLHLock() {
+        this.currentNode = ThreadLocal.withInitial(CLHNode::new);
+        this.predecessorNode = new ThreadLocal<>();
+        this.tail = new AtomicReference<>(new CLHNode());
+    }
+
+    public void lock() {
+        CLHNode node = currentNode.get();
+        CLHNode pred = tail.getAndSet(node);
+        predecessorNode.set(pred);
+
+        // 自旋等待前驱节点释放锁
+        while (pred.isLocked) {
+        }
+    }
+
+    public void unlock() {
+        CLHNode node = currentNode.get();
+        node.isLocked = false; // 释放锁
+        currentNode.set(predecessorNode.get()); // 回收当前节点
+    }
+}
+```
+
+### AQS 对 CLH 的改造
+
+- 因为 CLH 的自旋会占用 CPU，**AQS 把「自旋等待前驱节点」改成了「阻塞线程」**。
+- 后续线程阻塞后无法主动发现前驱已释放锁，因此**前驱线程需显式通知后续线程**——这正是 AQS 需要维护**显式双向队列**的原因（前驱要能找到后继）。
+- 若前驱线程等待超时或主动取消，需从队列中移除，后面的线程需要「顶」上来。
+
+AQS 中线程的等待状态：
+
+| 状态 | 值 | 含义 |
+|------|----|------|
+| 默认 | 0 | 初始化时的默认值 |
+| CANCELLED | 1 | 由于超时、中断或其他原因，该节点被取消 |
+| SIGNAL | -1 | 该节点准备就绪，正常等待资源 |
+| CONDITION | -2 | 该节点位于条件等待队列中 |
+| PROPAGATE | -3 | SHARED 情况下有效，将 releaseShared 动作传播到其他节点 |
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 07 - 并发三大根源：可见性、原子性、有序性]]
+
+---
+
+## 八、Java 中 volatile 关键字的作用是什么？
+
+**回答重点**：`volatile` 主要保证变量的**可见性**和**禁止指令重排优化**。
+
+1）**可见性（Visibility）**：当一个线程修改了 `volatile` 变量的值，新值会立即刷新到主内存，其他线程读取该变量时可立即获得最新值，从而避免线程间因缓存一致性问题导致的「看见旧值」现象。
+
+2）**禁止指令重排序（Ordering）**：`volatile` 通过内存屏障禁止特定情况下的指令重排序，保证程序执行顺序符合预期。对 `volatile` 变量的**写**操作会在其**前面**插入一个 `StoreStore` 屏障，对 `volatile` 变量的**读**操作会在其**后面**插入一个 `LoadLoad` 屏障，确保多线程环境下某些代码块执行顺序可预测。
+
+### 可见性问题与 volatile 的解决
+
+Java 多线程环境中，每个线程都有自己的工作内存（CPU 缓存），会从主内存读取变量副本再操作，因此线程 A 修改某个变量后，线程 B 不一定能立即看到。`volatile` 通过强制线程直接从主内存读取或写入变量，解决了可见性问题。
+
+示例：没有 `volatile` 时，一个线程可能永远不会看到另一个线程对共享变量的修改。
+
+```java
+private static boolean flag = false;
+
+public static void main(String[] args) {
+    new Thread(() -> {
+        while (!flag) {
+            // do something
+        }
+        System.out.println("Thread terminated.");
+    }).start();
+
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+    flag = true; // 没有 volatile, 这个改变对其他线程不可见
+}
+```
+
+如果把 `flag` 声明为 `volatile`，线程 A 修改后线程 B 能立即看到修改并终止循环。
+
+### 禁止指令重排序与双重检查锁定
+
+Java 编译器和 CPU 为了优化性能可能对指令重排序。单线程程序一般不受影响，但多线程环境下重排序可能导致意外结果。经典场景是单例模式中的**双重检查锁定（Double-Checked Locking）**：
+
+```java
+public class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+上例中若不使用 `volatile`，指令重排序可能导致 `instance` 在其构造函数完成之前就被返回，使其他线程访问到一个未初始化完全的对象。
+
+### volatile 不能保证操作的原子性
+
+`volatile` 保证了可见性和有序性，但**不能保证操作的原子性**。原子性意味着一个操作不可分割、不能被中断。典型例子是 `i++`，它实际分为「读取 `i` 的值 → 递增 → 写回」三个步骤；若多个线程同时执行 `i++`，每个线程都可能读到相同的初始值，最终结果可能不正确。
+
+```java
+private static volatile int count = 0;
+
+public static void main(String[] args) {
+    for (int i = 0; i < 1000; i++) {
+        new Thread(() -> count++).start();
+    }
+    System.out.println(count); // 结果可能不为 1000
+}
+```
+
+解决方式是使用 `AtomicInteger` 或者 `synchronized` 块。
+
+### volatile 与 synchronized 的对比
+
+- **性能**：`volatile` 是轻量级的同步机制，开销较小，但只能用于变量的可见性和禁止重排序，无法实现复杂的同步逻辑；`synchronized` 是重量级同步机制，可保证代码块的原子性和可见性，但开销较大。
+- **使用场景**：`volatile` 适用于简单的状态标志、标记等场景；`synchronized` 更适合复杂的临界区保护、需要确保多个操作原子性的场景。
+
+### Java 内存模型（JMM）与 volatile
+
+Java 内存模型（Java Memory Model, JMM）定义了多线程环境下共享变量的可见性和指令重排序规则。`volatile` 是 JMM 的关键组成部分，提供了一种简化方式来实现线程间的内存可见性。JMM 中规定：
+
+- 对一个 `volatile` 变量的**写**操作，happens-before 于每一个后续对该 `volatile` 变量的**读**操作。
+- `volatile` 变量的操作不会与其他内存操作进行重排序。
+
+> 相关：[[Java 07 - 并发三大根源：可见性、原子性、有序性]]、[[Java 16 - 锁与并发工具]]
+
+---
+
+## 九、Java 中什么情况会导致死锁？如何避免？
+
+**回答重点**：这是操作系统中的经典理论——死锁的发生必须**同时满足**以下四个条件，称为「死锁的必要条件」：
+
+1. **互斥条件**：每个资源只能被一个线程占用。
+2. **占有和等待**：线程在持有至少一个资源的同时，等待获取其他资源。
+3. **不可抢占**：线程所获得的资源在未使用完毕之前不能被其他线程抢占。
+4. **循环等待**：多个线程形成一种头尾相接的循环等待资源关系。
+
+只要**打破上述任意一个条件**，就能避免死锁的发生。
+
+### 避免死锁的方法
+
+1. **按序申请资源**：确保所有线程在获取多个锁时，按照相同的顺序获取锁。
+2. **尽量减少锁的范围**：将锁的粒度尽可能缩小，减少持有锁的时间（可通过拆分锁或使用更细粒度的锁实现）。
+3. **使用尝试锁机制**：使用 `ReentrantLock` 的 `tryLock` 方法，在一段时间内尝试获取锁，若无法获取则放弃或采取其他措施，避免死锁。
+4. **设置超时等待时间**：为锁操作设置超时，防止线程无限期地等待锁。
+5. **避免嵌套锁**：尽量避免在一个锁的代码块中再次尝试获取另一个锁。
+
+> 相关：[[Java 16 - 锁与并发工具]]
+
 > 来源：鱼皮·编程导航 / codefather
