@@ -767,4 +767,255 @@ Java 内存模型（Java Memory Model, JMM）定义了多线程环境下共享�
 
 > 相关：[[Java 14 - HashMap 源码解析]]、[[Java 11 - Set与Map]]、[[Java 13 - fail-fast机制]]
 
+---
+
+## 十三、Java 中的 LinkedHashMap 是什么？
+
+**回答重点**：`LinkedHashMap` 继承 `HashMap`，在哈希表之上额外用一条**双向链表**串起所有节点，因此既能 O(1) 定位，又能保证遍历顺序：默认是**插入顺序**，构造时传 `accessOrder = true` 则变成**访问顺序**（即 LRU 语义）。典型用途是「需要保持插入顺序的 Map」和「本地 LRU 缓存」。
+
+### 扩展知识
+
+**1）实现方式：HashMap 的槽位 + 一条链表**
+
+`LinkedHashMap.Entry` 继承 `HashMap.Node`，只多了两个指针 `before` / `after`，把所有 Entry 按顺序串成双向链表。哈希桶仍然是原来的数组 + 链表/红黑树结构，所以查找逻辑完全复用父类，链表只是「额外的顺序视图」。
+
+内部成员 `accessOrder` 默认 `false`：
+
+| accessOrder | 链表顺序 | 命中节点后的动作 |
+|---|---|---|
+| `false`（默认） | 插入顺序 | 位置不变 |
+| `true` | 访问顺序 | 把该节点移到链表尾部（标记为最近访问） |
+
+**2）靠三个回调钩子接入父类流程**
+
+`HashMap` 在关键位置预埋了三个空实现的模板方法，`LinkedHashMap` 重写它们来维护链表：
+
+```java
+void afterNodeAccess(Node<K,V> p);      // get / put 命中已有节点后
+void afterNodeInsertion(boolean evict); // 插入新节点之后
+void afterNodeRemoval(Node<K,V> p);     // 删除节点之后
+```
+
+好处是 `putVal` / `getNode` / `removeNode` 一行不用改——父类只管哈希表，子类只管顺序，典型的模板方法模式。
+
+**3）用 `removeEldestEntry` 做 LRU**
+
+`afterNodeInsertion` 里会调用 `removeEldestEntry(eldest)`，默认实现返回 `false`（永不淘汰）。子类重写它即可在插入时淘汰链表头部最久未使用的节点：
+
+```java
+private static final class LRUCache<K, V> extends LinkedHashMap<K, V> {
+    private final int maxCacheSize;
+
+    LRUCache(int initialCapacity, int maxCacheSize) {
+        super(initialCapacity, 0.75F, true); // accessOrder = true
+        this.maxCacheSize = maxCacheSize;
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        return this.size() > this.maxCacheSize;
+    }
+}
+```
+
+要点：`accessOrder` 必须为 `true`，否则链表头是「最早插入」而不是「最久未访问」，LRU 会退化成 FIFO。注意 `LinkedHashMap` 本身**不是线程安全**的，并发场景需外部加锁或换 `Collections.synchronizedMap` / Caffeine。
+
+**4）手写 LRU（经典笔试题）**
+
+面试常要求不用 `LinkedHashMap` 实现 O(1) 的 LRU：`HashMap` 负责 key → 节点定位，自定义双向链表负责顺序，`head` / `tail` 用哨兵节点省掉边界判断。
+
+```java
+class LRUCache<K, V> {
+    class Node {
+        K key; V value; Node prev, next;
+        Node() {}
+        Node(K key, V value) { this.key = key; this.value = value; }
+    }
+
+    private final int capacity;
+    private final Map<K, Node> map = new HashMap<>();
+    private final Node head = new Node(), tail = new Node();
+
+    LRUCache(int capacity) {
+        this.capacity = capacity;
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    public V get(K key) {
+        Node node = map.get(key);
+        if (node == null) return null;
+        moveToHead(node);
+        return node.value;
+    }
+
+    public void put(K key, V value) {
+        Node node = map.get(key);
+        if (node != null) {
+            node.value = value;
+            moveToHead(node);
+            return;
+        }
+        if (map.size() >= capacity) {
+            map.remove(tail.prev.key);   // 淘汰最久未用
+            unlink(tail.prev);
+        }
+        Node newNode = new Node(key, value);
+        map.put(key, newNode);
+        addToHead(newNode);
+    }
+
+    private void moveToHead(Node node) { unlink(node); addToHead(node); }
+
+    private void addToHead(Node node) {
+        node.prev = head;
+        node.next = head.next;
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    private void unlink(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+}
+```
+
+`get` 与 `put` 都是 O(1)；`head` 侧是最近使用、`tail.prev` 是最久未用。
+
+> 相关：[[Java 14 - HashMap 源码解析]]、[[Java 11 - Set与Map]]、[[Java 13 - fail-fast机制]]
+
+---
+
+## 十四、Java 中的序列化和反序列化是什么？
+
+**回答重点**：**序列化**是把对象转换成字节序列，使其能落盘、跨网络传输或进缓存；**反序列化**是把字节序列还原成对象。Java 原生方案要求类实现 `Serializable` 标记接口，并用 `ObjectOutputStream` / `ObjectInputStream` 读写。
+
+### 扩展知识
+
+**1）为什么必须"压扁"对象**
+
+JVM 里的对象是"立体"的：字段里存的是指向堆内存地址的引用（比如 `0x1234`），对象之间还可能有循环引用。这些地址只在当前进程有效，直接传给另一台机器毫无意义。序列化的本质就是把**对象图**转成自包含的字节序列（记录类型信息 + 字段值 + 引用关系），接收端据此重建一份等价的图结构。
+
+**2）关键 API 与约束**
+
+| 角色 | 说明 |
+|---|---|
+| `java.io.Serializable` | 空标记接口，无任何方法，仅用于让序列化机制放行 |
+| `ObjectOutputStream.writeObject(obj)` | 序列化入口 |
+| `ObjectInputStream.readObject()` | 反序列化入口 |
+| `transient` | 修饰的字段不参与序列化，反序列化后为默认值（`0` / `null` / `false`） |
+| `serialVersionUID` | 版本一致性校验用的"类指纹" |
+
+`Serializable` 只是标记：`ObjectOutputStream` 检查到类未实现该接口时直接抛 `NotSerializableException`；`String`、数组、枚举等有各自的内置处理分支，不需要走普通对象路径。
+
+**3）`serialVersionUID` 的真实作用**
+
+```java
+private static final long serialVersionUID = 1L;
+```
+
+- 数字本身没有业务含义，`1L` 和 IDE 生成的随机长整型等价，只要**序列化端与反序列化端一致**即可；
+- 不显式声明时，编译器根据类名、字段、方法签名等信息自动生成一个指纹；
+- 因此「先序列化存盘 → 改了类结构（加字段、改签名）→ 再反序列化」会因指纹变化抛 `InvalidClassException`。显式固定 `serialVersionUID` 就能让新增/删除字段保持兼容（新增字段读出来是默认值）。
+
+**4）静态变量不参与序列化**
+
+序列化保存的是**对象实例状态**，`static` 字段属于类而非对象，不会写入字节流；反序列化后读到的静态变量值是当前 JVM 中该类的实时值，而非当初序列化时的值。
+
+**5）性能与替代方案**
+
+JDK 原生序列化体积大（带完整类描述）、速度慢、只适用于 Java 生态，不适合大规模分布式调用。常见替代：
+
+- **Protobuf**：IDL 定义 schema + 二进制编码，跨语言、体积小、性能高，gRPC 默认；
+- **Kryo / Hessian**：面向 Java 的高性能二进制序列化，RPC 框架常用；
+- **JSON（Jackson / Fastjson2）**：可读性好，跨语言，适合对外接口与调试场景。
+
+**6）安全风险**
+
+反序列化会依据字节流里的类描述**自动加载并构造对象**，攻击者可构造 gadget chain 在 `readObject` 阶段触发任意代码执行——这就是 Java 反序列化漏洞（Fastjson、Shiro、WebLogic 等历史上的 RCE 多源于此）。防护要点：
+
+- 绝不对不可信输入做原生反序列化，优先用 JSON/Protobuf 这类数据契约明确的格式；
+- 必须用时设置白名单：JDK 9+ 的 `ObjectInputFilter`（`jdk.serialFilter`）限制可反序列化的类；
+- 敏感字段用 `transient` 排除，避免密码等随字节流外泄。
+
+> 相关：[[Java 14 - NIO与序列化]]、[[Java 13 - File与IO流]]
+
+---
+
+## 十五、Java 并发库中提供了哪些线程池实现？它们有什么区别？
+
+**回答重点**：`Executors` 工具类提供 5 种开箱即用的线程池：`FixedThreadPool`、`CachedThreadPool`、`SingleThreadExecutor`、`ScheduledThreadPool`、`WorkStealingPool`。它们的差别本质上是**核心线程数、最大线程数、任务队列类型、空闲回收策略**这四项参数的组合不同。
+
+| 实现 | 线程数 | 任务队列 | 核心特点 | 适用场景 |
+|---|---|---|---|---|
+| `FixedThreadPool` | 固定 n（core = max = n） | 无界 `LinkedBlockingQueue` | 线程复用，超出并发数的任务排队等待 | 负载稳定、需要限制并发线程数 |
+| `CachedThreadPool` | 0 ~ `Integer.MAX_VALUE` | `SynchronousQueue` | 空闲线程 60s 回收，无可用线程就新建 | 大量短耗时任务、任务量波动大 |
+| `SingleThreadExecutor` | 1 | 无界 `LinkedBlockingQueue` | 单线程串行执行，天然保证提交顺序 | 需要严格顺序执行的任务 |
+| `ScheduledThreadPool` | 指定 core，max 无上限 | `DelayedWorkQueue` | 支持延时 / 固定频率 / 固定间隔调度 | 定时任务、周期任务 |
+| `WorkStealingPool`（JDK 8+） | 默认 CPU 核数个并行度 | 每线程一个双端队列 | 空闲线程从其他队列尾部"窃取"任务，自动负载均衡 | 大量小任务、递归分治（底层是 `ForkJoinPool`） |
+
+### 扩展知识
+
+**1）五个池子其实是同一套骨架**
+
+除 `WorkStealingPool`（`ForkJoinPool`）外，其余四种最终都是 `ThreadPoolExecutor`，只是构造参数不同：
+
+```java
+// FixedThreadPool
+new ThreadPoolExecutor(n, n, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+// CachedThreadPool
+new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue<>());
+// SingleThreadExecutor（core = max = 1）
+new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+// ScheduledThreadPool
+new ScheduledThreadPoolExecutor(corePoolSize);  // 内部用 DelayedWorkQueue
+```
+
+理解这一点，答题时就能从"背五个名字"升级为"讲一套调度模型"。
+
+**2）任务提交后的流转顺序**
+
+```
+核心线程未满 → 创建核心线程执行
+核心线程已满 → 任务入队等待
+队列已满     → 创建非核心线程（直到 maximumPoolSize）
+已达最大线程 → 交给拒绝策略
+```
+
+注意 `CachedThreadPool` 的 `SynchronousQueue` 不存储元素，所以"入队"必然失败，直接走"创建非核心线程"分支——这就是它"来一个任务开一个线程"的原因。
+
+**3）生产环境不要直接用 `Executors`**
+
+《阿里巴巴 Java 开发手册》明确禁止用 `Executors` 创建线程池，根因是**无界**：
+
+- `FixedThreadPool` / `SingleThreadExecutor` 用无界 `LinkedBlockingQueue`，任务积压无上限 → `OutOfMemoryError: Java heap space`；
+- `CachedThreadPool` / `ScheduledThreadPool` 的 `maximumPoolSize` 为 `Integer.MAX_VALUE`，线程无上限创建 → `OutOfMemoryError: unable to create new native thread`。
+
+推荐显式 `new ThreadPoolExecutor(...)`，把七个参数都写清楚：
+
+```java
+ThreadPoolExecutor pool = new ThreadPoolExecutor(
+    8,                              // corePoolSize
+    16,                             // maximumPoolSize
+    60L, TimeUnit.SECONDS,          // keepAliveTime
+    new ArrayBlockingQueue<>(200),  // 有界队列，兜住背压
+    new ThreadFactory() {           // 自定义线程名，便于排查
+        private final AtomicInteger seq = new AtomicInteger(1);
+        public Thread newThread(Runnable r) {
+            return new Thread(r, "order-pool-" + seq.getAndIncrement());
+        }
+    },
+    new ThreadPoolExecutor.CallerRunsPolicy()  // 拒绝策略：回退给调用线程
+);
+```
+
+**4）线程数怎么估**
+
+- **CPU 密集型**：`N + 1`（N 为核数），再多只会增加上下文切换；
+- **IO 密集型**：`N × (1 + 平均等待时间 / 平均计算时间)`，或按并发连接数 × 单任务耗时 / 目标 QPS 反推；
+- 最终以压测结果为准，不要迷信公式。
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 15 - 线程基础]]、[[Java 51 - 并发编程学什么（学习框架）]]
+
 > 来源：鱼皮·编程导航 / codefather
