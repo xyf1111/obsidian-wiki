@@ -7,7 +7,7 @@ source: "鱼皮·编程导航 / codefather"
 
 # Java 面试 01 - 26 届春招 Java 热题
 
-> 26 届春招 Java 高频面试题汇总（集合 / 反射与代理 / JDK 新特性 / JVM 垃圾回收），每题为「回答重点 + 扩展知识」结构，逐批追加。
+> 26 届春招 Java 高频面试题汇总（集合 / 并发 / 反射与代理 / JDK 新特性 / JVM / Spring 机制），每题为「回答重点 + 扩展知识」结构，逐批追加。
 
 ## 一、JDK 1.8 对 HashMap 除了红黑树还进行了哪些改动？
 
@@ -1153,5 +1153,143 @@ ThreadPoolExecutor pool = new ThreadPoolExecutor(
 - **优先队列下 `DiscardOldestPolicy` 丢的是「优先级最高」的任务**：它 poll 的是队列头部，而 `PriorityBlockingQueue` 头部正是优先级最高的元素，语义与名字相反。
 
 > 相关：[[Java 15 - 线程基础]]、[[Java 16 - 锁与并发工具]]、[[Java 51 - 并发编程学什么（学习框架）]]
+
+---
+
+## 十九、Spring 如何解决循环依赖？
+
+**回答重点**：核心是**提前暴露尚未初始化完成的 Bean**——Bean 实例化完成后，立刻把「能生产该 Bean 的对象工厂」放进三级缓存；当别的 Bean 反过来依赖它时，就能拿到这个半成品，从而打破「A 等 B、B 等 A」的死循环。三个 Map 分工：`singletonObjects`（一级，完整单例）、`earlySingletonObjects`（二级，已实例化未初始化）、`singletonFactories`（三级，对象工厂，用于延迟生成早期 Bean，尤其要生成 AOP 代理时）。
+
+### 三个缓存的分工
+
+| 缓存 | 字段 | 存放内容 |
+|---|---|---|
+| 一级 | `singletonObjects` | 完全初始化完成的单例 Bean |
+| 二级 | `earlySingletonObjects` | 已实例化、但未完成属性注入与初始化的「半成品」 |
+| 三级 | `singletonFactories` | `ObjectFactory`，调用 `getObject()` 才真正产出早期 Bean（可在此织入 AOP 代理） |
+
+### 一次 A ↔ B 循环依赖的完整流程
+
+1. `getBean(A)` → 一级缓存没有 → 标记 A「创建中」→ 进入 `doCreateBean(A)`
+2. **实例化** A（`createBeanInstance`）后，立刻把工厂塞进三级缓存——此时 Spring 并不知道会不会发生循环依赖，但它一律先暴露
+3. **属性注入** A 时发现依赖 B → `getBean(B)`，B 走一遍同样流程，实例化后也暴露自己的工厂
+4. B 注入属性时 `getBean(A)`：一级没有，且 A 正在创建中 → 查二级（空）→ 查三级拿到工厂 → `getObject()` 得到 A（需要 AOP 时在这一步生成代理）→ 工厂从三级删除，A 放入二级缓存
+5. B 完成初始化进入一级缓存，返回 A 的属性注入；A 注入 B 后完成初始化，进入一级缓存并清除二级缓存中的自己
+
+关键一行源码（`AbstractAutowireCapableBeanFactory#doCreateBean`）：
+
+```java
+addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+```
+
+`getSingleton(beanName, allowEarlyReference)` 的查找顺序就是一级 → 二级 → 三级；注意若第一步发现 Bean **不在创建中**，直接返回 `null`，不再继续查二级、三级。
+
+### 能解决循环依赖的两个前提
+
+1. 相互依赖的 Bean 必须都是**单例**
+2. 注入方式**不能全是构造器注入**，且 beanName 字母序在前的那个不能是构造器注入
+
+### 为什么必须单例、为什么不能全构造器注入
+
+- **原型（prototype）不行**：创建 A1 要新 B1，创建 B1 又要新 A2，A2 又要 B2……无限递归，源码里 `isPrototypeCurrentlyInCreation` 判断会直接抛 `BeanCurrentlyInCreationException`。单例则「B 要的是同一个 A」，Spring 才有操作空间。
+- **Bean 创建三步**：实例化 `createBeanInstance` → 属性注入 `populateBean` → 初始化 `initializeBean`（Aware 回调、init-method、AOP 代理）。构造器注入要求在**实例化阶段**就拿到依赖，而此时 A 还没进三级缓存，B 找不到「半成品 A」，双方卡死。
+- **一个 set 一个构造器**：A 用 set 注入 B、B 用构造器注入 A → **成功**（A 先实例化并暴露，B 构造时能从 Map 取到 A）；反过来 A 用构造器注入 B、B 用 set 注入 A → **失败**。原因是 Spring 按 **beanName 字母序**创建 Bean，A 永远排在 B 前，字母序在前的那个必须允许「先实例化、后注入」。
+
+### 实践建议
+
+- 循环依赖多说明职责划分有问题，优先重构（抽公共依赖、引入事件/回调）而不是依赖三级缓存兜底。
+- Spring Boot 2.6+ 默认 `spring.main.allow-circular-references=false`，循环依赖会直接启动失败；老项目升级时若报此错，先查依赖环再考虑临时打开开关。
+- 构造器注入 + `@Lazy` 也能打破环（注入代理，真正使用时才初始化）。
+
+> 相关：[[Java 31 - AOP与自定义注解实践]]、[[Java 25 - Spring Boot RESTful 接口实现与测试]]
+
+---
+
+## 二十、Synchronized 和 ReentrantLock 有什么区别？
+
+**回答重点**：`synchronized` 是 Java 内置关键字，自动加锁/释放，非公平、不可中断、不支持超时与多条件；`ReentrantLock` 是 JUC 提供的 API 级锁（JDK 1.5 引入），支持超时、可中断、公平锁、多条件队列，但必须手动 `unlock()`。两者**都是可重入锁**；JDK 1.6 优化后性能基本持平——日常用 `synchronized` 更简单，需要高级能力时再用 `ReentrantLock`。
+
+| 维度 | `synchronized` | `ReentrantLock` |
+|---|---|---|
+| 层次 | JVM 关键字，字节码 `monitorenter/monitorexit` | JDK 类库，基于 AQS |
+| 释放 | 代码块结束/异常自动释放 | 必须 `finally` 中手动 `unlock()` |
+| 公平性 | 只有非公平 | 可选公平 / 非公平 |
+| 可中断 | 不支持 | `lockInterruptibly()` 支持 |
+| 超时 | 不支持 | `tryLock(timeout, unit)` 支持，可规避死锁 |
+| 条件队列 | 单条件（`wait/notify`） | 多 `Condition`，可分组精确唤醒 |
+| 可重入 | 支持 | 支持 |
+
+### 可重入锁
+
+同一线程持有某把锁时可以再次获取同一把锁而不死锁。递归调用、外层方法调用内层同步方法时必需：
+
+```java
+public class ReentrantLockExample {
+    private final ReentrantLock lock = new ReentrantLock();
+
+    public void outer() {
+        lock.lock();
+        try {
+            inner();               // 同一线程再次拿同一把锁
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void inner() {
+        lock.lock();
+        try {
+            // critical section
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+**实现方式**：核心是计数器——线程抢到锁计数 +1，重入再 +1；每次释放 -1，减到 0 才真正释放锁。`ReentrantLock` 用 AQS 的 `state` 字段承担这个计数，并记录 `exclusiveOwnerThread`。
+
+### synchronized 在 JDK 1.6 后的优化
+
+- **偏向锁**：同一线程反复获取同一把锁时，把锁标记为偏向该线程，后续进入几乎零开销（JDK 15 起默认禁用并废弃，因维护成本高于收益）。
+- **轻量级锁**：无竞争时用 CAS 把 Mark Word 指向栈上的 Lock Record，避免走操作系统互斥量。
+- **锁粗化**：把短时间内连续的加解锁合并成一次更大范围的锁，减少开销。
+- **锁消除**：JIT 通过逃逸分析判定锁对象不会被其他线程访问，直接去掉同步。
+
+锁状态升级路径：无锁 → 偏向锁 → 轻量级锁（CAS 自旋）→ 重量级锁（OS mutex，线程挂起）。
+
+### 选型建议
+
+- 默认 `synchronized`：代码短、不会忘记解锁、异常安全，JVM 还会持续优化。
+- 需要 `tryLock` 超时避免死锁、需要响应中断取消任务、需要公平锁、需要多个 `Condition` 分组唤醒（如生产者/消费者分别唤醒）时用 `ReentrantLock`。
+- 用 `ReentrantLock` 时 `lock()` 要写在 `try` **之前**，`unlock()` 放在 `finally`；写在 try 内部一旦加锁失败，finally 里的 `unlock` 会抛 `IllegalMonitorStateException`。
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 15 - 线程基础]]、[[Java 51 - 并发编程学什么（学习框架）]]
+
+---
+
+## 二十一、为什么 HashMap 的容量必须是 2 的 n 次方？
+
+**回答重点**：为了让 `(n - 1) & hash` 能替代 `hash % n` 定位桶——**位运算比取模快得多**；同时 `n - 1` 的低位全为 1，能让哈希码的低位充分参与运算，分布更均匀；扩容时还能只靠「原容量那一位」判断元素留在原位还是迁移，省去重新计算哈希。
+
+### 为什么 (n - 1) & hash 分布均匀
+
+`n = 64` 时二进制是 `0100 0000`，`n - 1 = 0011 1111`，低位全 1，与哈希码做 `&` 能完整保留哈希低位的随机性；若直接用 `0100 0000` 去与，结果低位恒为 0，所有元素只能落在极少数桶里，冲突爆炸。
+
+### 位运算 vs 取模
+
+按哈希码算下标，直觉写法是 `hash % n`（如长度 5 就 `% 5`），但除法指令开销明显高于位与。当且仅当 `n` 是 2 的幂时成立：
+
+```
+a % (2^n) == a & (2^n - 1)
+```
+
+这也是 `HashMap` 默认容量 16、`tableSizeFor()` 把任意初始容量向上取整到 2 的幂的原因。
+
+### 扩容时的便利
+
+容量 16 → 32 时，元素新下标只可能是「原下标」或「原下标 + 16」，判断依据就是哈希值在**原容量那一位**上是 0 还是 1（`e.hash & oldCap`）：0 留在低位链（lo），1 迁到高位链（hi）。因此扩容不需要重算哈希、不需要重新取模，JDK 1.8 直接把一条链表拆成 lo/hi 两条（红黑树同理拆分），这也是「2 的幂」带来的实际性能收益。
+
+> 相关：[[Java 14 - HashMap 源码解析]]
 
 > 来源：鱼皮·编程导航 / codefather
