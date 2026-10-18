@@ -1018,4 +1018,140 @@ ThreadPoolExecutor pool = new ThreadPoolExecutor(
 
 > 相关：[[Java 16 - 锁与并发工具]]、[[Java 15 - 线程基础]]、[[Java 51 - 并发编程学什么（学习框架）]]
 
+---
+
+## 十六、Java 的 synchronized 是怎么实现的？
+
+**回答重点**：`synchronized` 依赖 JVM 的 **Monitor（监视器锁）** 与**对象头 Mark Word** 实现。修饰方法时在方法访问标志上加 `ACC_SYNCHRONIZED`（0x0020），修饰代码块时由编译器在同步块前后插入 `monitorenter` / `monitorexit` 字节码。二者本质相同：都要先拿到锁对象关联的 monitor 所有权才能进入临界区。
+
+### 扩展知识
+
+**1）对象内存布局与 Mark Word**
+
+对象 = 对象头 + 实例数据 + 对齐填充；对象头 = Mark Word + Klass Pointer（+ 数组长度，仅数组有）。Mark Word 在 64 位下复用同一块内存表达不同状态，这是锁实现的核心：
+
+| 锁状态 | Mark Word 内容 | 锁标志位 |
+|---|---|---|
+| 无锁 | hashCode(31) + 分代年龄(4) + 偏向位(1) | `01` |
+| 偏向锁 | 线程 ID(54) + epoch(2) + 分代年龄 + 偏向位 `1` | `101` |
+| 轻量级锁 | 指向栈帧 Lock Record 的指针(62) | `00` |
+| 重量级锁 | 指向 `ObjectMonitor` 的指针(62) | `10` |
+| GC 标记 | 空 | `11` |
+
+**2）锁升级路径**
+
+无锁 → 偏向锁 → 轻量级锁 → 重量级锁。HotSpot 中锁**只能升级不能降级**（偏向锁被撤销后即回到无锁/轻量级，不会退回偏向态），所谓「动态升降级」只是状态迁移的通俗说法。
+
+**偏向锁**：第一个线程 CAS 把自己的线程 ID 写进 Mark Word、标志位置 `101`，后续同一线程进入只做「标志位 + 线程 ID + epoch 比对」，无 CAS 开销。另一个线程来竞争时需在**安全点**撤销偏向（遍历该类的实例改 epoch）。批量重偏向阈值 `-XX:BiasedLockingBulkRebiasThreshold`（默认 20），超过 `-XX:BiasedLockingBulkRevokeThreshold`（默认 40）则该类彻底失去偏向能力。**JDK 15 起偏向锁默认禁用（JEP 374）**，因为多核高并发下撤销/重偏向的开销常常盖过收益。
+
+**轻量级锁**：在当前栈帧划出 Lock Record，把对象头 Mark Word 拷进 `displaced header`（dhw），再 CAS 让对象头指向该 Lock Record。重入时新栈帧的 dhw 写 `null`，解锁时据此判断是否重入；解锁用 CAS 把 dhw 换回对象头，失败说明有竞争 → 膨胀为重量级锁。适用场景是「多线程交替而非同时」访问同一把锁，避免系统调用。
+
+**重量级锁**：竞争激烈时膨胀，线程真正阻塞，靠操作系统互斥量（`pthread_mutex_lock`）实现，涉及用户态/内核态切换，开销大。
+
+**3）ObjectMonitor 内部结构（HotSpot C++ 实现）**
+
+| 字段 | 含义 |
+|---|---|
+| `_owner` | 当前持有锁的线程 |
+| `_recursions` | 重入次数 |
+| `_cxq` | 单向链表，CAS 竞争的入口队列 |
+| `_EntryList` | 双向链表，被唤醒后等待再次争锁的线程 |
+| `_WaitSet` | 调用 `wait()` 的线程（条件等待队列） |
+| `_count` | 关联的锁计数 |
+
+- **加锁 `ObjectMonitor::enter`**：CAS 把 `_owner` 设为当前线程 → 成功即持锁，`_recursions++` 表示重入；失败则先**自适应自旋**，仍失败就包装成 `ObjectWaiter` 入 `_cxq`，最后 `park()` 阻塞。
+- **解锁 `ObjectMonitor::exit`**：`_recursions--`，减到 0 才真正释放 `_owner`，并按 `QMode` 策略从 `_cxq` / `_EntryList` 迁移节点、唤醒等待线程。
+- **`wait()`**：线程进 `_WaitSet`，随后调用 `exit` 释放锁；**`notify()`**：从 `_WaitSet` 取节点，按策略放入 `_cxq` 或 `_EntryList` 并唤醒；`notifyAll()` 即循环处理全部。
+- **为什么两个等待队列**：`_cxq` 用单向链表 + CAS 扛住高并发入队，`_EntryList` 用双向链表在唤醒时批量搬迁节点，降低 `_cxq` 尾部竞争。
+
+**4）自旋与锁优化**
+
+自旋 = 空转 CPU 等锁，避免「刚阻塞就被唤醒」的无谓开销；自旋次数用**自适应自旋**（依据上一次在该锁上的自旋成功率动态调整）。另外还有：**锁消除**（逃逸分析判定对象不逃逸则去掉加锁）、**锁粗化**（把相邻的多次加解锁合并成一次）。**可重入性**由 `_recursions` 计数保证，取锁 +1、释放 -1，归零才真正释放。
+
+> 相关：[[Java 29 - Synchronized 关键字详解]]、[[Java 16 - 锁与并发工具]]、[[Java 07 - 并发三大根源：可见性、原子性、有序性]]
+
+---
+
+## 十七、Java 的类加载过程是怎样的？
+
+**回答重点**：类加载是把符合格式的二进制流读进内存、解析成可用 Class 对象的过程，分为**加载 → 连接（验证 / 准备 / 解析）→ 初始化**共 5 个阶段。二进制流不限于 `.class` 文件——字节码工具生成、网络传输的流，只要格式合法 JVM 都接受。
+
+### 扩展知识
+
+**1）五个阶段各做什么**
+
+| 阶段 | 动作 |
+|---|---|
+| 加载 | 通过类的全限定名获取二进制流，转为方法区（JDK 8+ 为元空间）运行时数据结构，并在堆中生成 `Class` 对象作为访问入口 |
+| 验证 | 校验字节码格式、元数据语义、字节码指令、符号引用合法性，确保不会危害 JVM |
+| 准备 | 为**静态变量**分配内存并赋**零值**（`int` → 0、引用 → null）；`static final` 常量若为编译期常量则已在常量池，此阶段直接赋真值 |
+| 解析 | 把常量池中的**符号引用**替换为**直接引用**（可理解为「计划里的代号 A」换成「真实的人」），可延迟到首次使用时进行 |
+| 初始化 | 执行类构造器 `<clinit>()`，即静态变量赋代码中的真实值与静态代码块，父类先于子类 |
+
+**2）触发初始化的典型时机**（主动引用）
+
+`new` / 读写静态字段 / 调用静态方法、反射（`Class.forName`）、初始化子类时先初始化父类、含 `main` 方法的主类、`MethodHandle` 解析结果对应的类。
+
+**3）双亲委派模型**
+
+类加载请求先委派给父加载器，父加载器无法完成时才由当前加载器自己加载。好处有二：**避免类重复加载**（同一个类只被加载一次）、**保护核心类库**（自定义的 `java.lang.String` 永远轮不到被加载，防止核心 API 被篡改）。
+
+**4）类加载器层次**
+
+| 加载器 | 职责 |
+|---|---|
+| Bootstrap ClassLoader | C++ 实现，加载 `JAVA_HOME/lib` 下的核心类（`rt.jar` / `java.base` 等） |
+| Extension / Platform ClassLoader | JDK 9 前为 `ExtClassLoader`（`lib/ext`），JDK 9+ 改为 `PlatformClassLoader` |
+| Application ClassLoader | 加载 classpath（含自定义类、第三方 jar），默认的 `ClassLoader.getSystemClassLoader()` |
+| 自定义 ClassLoader | 继承 `ClassLoader` 重写 `findClass`，用于热部署、加密类、隔离加载 |
+
+**5）打破双亲委派的场景**
+
+- **SPI**：JDBC `DriverManager` 由 Bootstrap 加载，却要加载厂商实现类 → 用线程上下文类加载器 `Thread.currentThread().getContextClassLoader()` 反向委派。
+- **Tomcat**：每个 Web 应用一个 `WebAppClassLoader`，优先自己加载应用内的类，实现应用间隔离与热部署。
+- **OSGi**：网状委派，按包级别精确控制可见性。
+
+> 相关：[[Java 18 - 类加载机制]]、[[Java 17 - JVM内存模型与GC]]、[[Java 02 - JDK JRE JVM]]
+
+---
+
+## 十八、Java 线程池有哪些拒绝策略？
+
+**回答重点**：`ThreadPoolExecutor` 内置 4 种拒绝策略，在**核心线程已满 + 队列已满 + 线程数达最大值**时触发。默认是 `AbortPolicy`（抛异常）。
+
+| 策略 | 行为 | 适用场景 |
+|---|---|---|
+| `AbortPolicy`（默认） | 抛 `RejectedExecutionException`，任务丢失 | 必须让调用方感知失败的场景（订单、支付） |
+| `CallerRunsPolicy` | 由提交任务的线程自己执行该任务 | 希望反压、减缓提交速度以稳定系统 |
+| `DiscardOldestPolicy` | 丢弃队列中最旧的任务，再重新提交当前任务 | 只关心最新数据（实时行情、监控采样） |
+| `DiscardPolicy` | 静默丢弃当前任务，不抛异常 | 任务可丢、允许丢失的场景（埋点日志） |
+
+### 扩展知识
+
+**1）自定义拒绝策略**：实现 `RejectedExecutionHandler`，可做日志、落库、降级重排、阻塞提交等。
+
+```java
+public class CustomRejectedExecutionHandler implements RejectedExecutionHandler {
+    @Override
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+        System.out.println("Task " + r + " rejected");   // 生产环境应改为日志 + 告警
+        // 也可以：降级执行 / 写入 MQ 稍后重试 / 阻塞等待队列有空位
+    }
+}
+
+ThreadPoolExecutor pool = new ThreadPoolExecutor(
+        4, 8, 60L, TimeUnit.SECONDS,
+        new ArrayBlockingQueue<>(100),
+        Executors.defaultThreadFactory(),
+        new CustomRejectedExecutionHandler());
+```
+
+**2）三个常见坑**
+
+- **拒绝策略根本不触发**：`Executors.newFixedThreadPool` / `newSingleThreadExecutor` 用的是**无界** `LinkedBlockingQueue`，队列永不满 → 任务无限堆积直到 OOM。生产上应手动 `new ThreadPoolExecutor` 并指定有界队列。
+- **`CallerRunsPolicy` 会阻塞提交线程**（如 Tomcat 的 IO 线程），吞吐下降但起到天然限流作用；反之若提交线程也持有锁，可能引发死锁。
+- **优先队列下 `DiscardOldestPolicy` 丢的是「优先级最高」的任务**：它 poll 的是队列头部，而 `PriorityBlockingQueue` 头部正是优先级最高的元素，语义与名字相反。
+
+> 相关：[[Java 15 - 线程基础]]、[[Java 16 - 锁与并发工具]]、[[Java 51 - 并发编程学什么（学习框架）]]
+
 > 来源：鱼皮·编程导航 / codefather
