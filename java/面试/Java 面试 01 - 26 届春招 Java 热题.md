@@ -1547,4 +1547,219 @@ s += "b";      // 等价于 s = new StringBuilder(s).append("b").toString();
 
 > 相关：[[Java 08 - 字符串与正则表达式转义]]
 
+---
+
+## 二十八、什么是 Java 中的原子性、可见性和有序性？
+
+**回答重点**：这三者是并发安全的三大基石，分别回答「操作能不能被拆开」「一个线程的修改别的线程能不能立刻看到」「代码顺序会不会被打乱」三个问题。Java 内存模型（JMM）就是为了定义这三件事在多线程下如何成立。
+
+| 特性 | 含义 | 典型破坏场景 | 保证手段 |
+|------|------|--------------|----------|
+| 原子性 | 一个（或一组）操作要么全部执行，要么全不执行，中途不被其他线程插入 | `i++` 实际是「读-改-写」三步，两线程并发会丢失更新 | `synchronized` / `Lock` / `java.util.concurrent.atomic` 原子类（底层 CAS） |
+| 可见性 | 一个线程修改共享变量后，其他线程能立即看到新值 | 线程把变量缓存在工作内存/寄存器里，一直读旧值（死循环不退出） | `volatile`、`synchronized`、`final`（正确构造）、原子类 |
+| 有序性 | 程序执行顺序与代码书写顺序一致 | 编译器/处理器指令重排序，导致其他线程看到「半初始化」对象 | `volatile`（内存屏障）、`synchronized`、happens-before 规则 |
+
+### 原子性
+
+- **锁**：`synchronized` 与 `Lock` 通过互斥把复合操作包成临界区，是保证原子性最通用的手段。
+- **原子类**：`java.util.concurrent.atomic` 下的 `AtomicInteger`、`AtomicLong`、`AtomicReference` 等，把「读-改-写」封装成一条硬件原子指令，无锁实现。
+- **CAS**：原子类底层依赖 CAS（Compare-And-Swap）。它是硬件级指令，比较内存当前值与预期值，相等才写入新值，整个过程不可中断，避免了锁带来的上下文切换开销。
+
+注意：`volatile` **只保证可见性和有序性，不保证原子性**——`volatile int i; i++` 依然线程不安全，这是最常见的追问点。
+
+### 可见性
+
+- **`volatile`**：最轻量的同步机制。写入立即对其他线程可见，读取总是拿到最新值。语义上等价于「读写都直接作用于主内存」；物理上仍经过 CPU 缓存，靠缓存一致性协议（MESI）+ 内存屏障实现。
+- **`synchronized`**：不仅保证原子性，也保证可见性。线程退出 `synchronized` 块时把修改刷新到主内存，进入时从主内存重新读取；`Lock` 的 `unlock()`/`lock()` 具有同样的内存语义。
+- **JMM**：规定共享变量在线程间的可见性与有序性规则，并通过内存屏障的插入规则把这些语义落实到指令层面。
+
+### 有序性
+
+**指令重排序**：编译器、CPU、内存系统为了性能会调整指令顺序（编译器重排、指令级并行重排、内存系统重排）。单线程下重排不改变结果（as-if-serial），但多线程下会出问题。
+
+经典翻车场景——双重检查锁（DCL）单例：`instance = new Singleton()` 的「分配内存 → 初始化 → 赋值引用」三步可能被重排为 1-3-2，另一线程在第一次 `instance == null` 检查时就看到**非 null 但尚未初始化完成**的对象。给 `instance` 加 `volatile` 即可禁止该重排（完整推演见 [[Java 07 - 并发三大根源：可见性、原子性、有序性]]）：
+
+```java
+private static volatile Singleton instance;   // 少了 volatile 就是 bug
+```
+
+**happens-before 原则**：JMM 定义的核心约束。若 A happens-before B，则 A 的结果对 B 可见，且 A 在 B 之前执行。常用规则：
+
+1. **程序顺序**：同一线程内，前面的操作 happens-before 后面的操作
+2. **监视器锁**：对同一个锁的 `unlock` happens-before 后续的 `lock`
+3. **volatile**：对 volatile 变量的写 happens-before 后续对该变量的读
+4. **线程启动/终止**：`Thread.start()` happens-before 新线程内的任何操作；线程内所有操作 happens-before 其他线程从 `join()` 返回
+5. **传递性**：A hb B 且 B hb C，则 A hb C
+
+**内存屏障**：`volatile` 的语义靠屏障落地，禁止特定重排：
+
+| 位置 | 插入屏障 | 作用 |
+|------|----------|------|
+| volatile 写之前 | StoreStore | 保证前面的普通写先刷出，不会被排到 volatile 写之后 |
+| volatile 写之后 | StoreLoad | 保证 volatile 写先于后续的读（开销最大的一个屏障） |
+| volatile 读之后 | LoadLoad / LoadStore | 保证 volatile 读先于后续的读和写 |
+
+x86 只在 StoreLoad 上需要实际指令（`lock addl`），因为 x86 本身是强内存模型，其余三种重排天然不发生。
+
+> 相关：[[Java 07 - 并发三大根源：可见性、原子性、有序性]]（硬件层根因与 DCL 完整推演）、[[Java 16 - 锁与并发工具]]、[[Java 18 - 类加载机制]]
+
+---
+
+## 二十九、什么是 Java 的 CAS（Compare-And-Swap）操作？
+
+**回答重点**：CAS 是一条**硬件级别的原子指令**，语义是「如果内存位置的值等于预期值，就更新为新值，否则什么都不做」。它是 Java 无锁并发（`java.util.concurrent.atomic`、AQS 的 state、ConcurrentHashMap 的节点插入）的基石。
+
+**三个操作数**：
+
+| 操作数 | 含义 |
+|--------|------|
+| V | 变量的内存地址 |
+| A | 旧的预期值（expected） |
+| B | 准备写入的新值（new） |
+
+指令按地址 V 取出当前值，与 A 比较：相等则写入 B 并返回成功，不等则不写并返回失败。**比较和交换被封装成一条指令**，中间不可能被其他线程插入——这才是原子性的来源。
+
+### 为什么需要 CAS
+
+以「比较后再替换」为例：判断值是否为 1，是则替换为 2；是 2 则替换为 3。看起来没问题，但多线程下两个线程可能同时判断「当前值等于 1」，然后**都**把它改成 2——明明加了两次，结果却是 2。
+
+加锁能解决，但锁有上下文切换和阻塞的代价。于是硬件层提供 `cmpxchg` 这类指令，把「判断 + 替换」合并为一个不可分割的动作，既不阻塞也能保证正确性。
+
+典型用法是失败重试（自旋）：
+
+```java
+public final int incrementAndGet() {
+    for (;;) {
+        int current = get();                       // 读快照
+        int next = current + 1;
+        if (compareAndSet(current, next)) {         // 快照没变才提交
+            return next;
+        }
+    }
+}
+```
+
+### 优缺点
+
+**优点**
+
+- **无锁并发**：不阻塞线程，没有锁的获取/释放与上下文切换开销，读多写少或冲突低的场景吞吐更高
+- **原子性**：单条指令完成比较+写入，天然线程安全
+- **无死锁**：不存在锁的持有关系，不会有死锁和优先级反转
+
+**缺点**
+
+- **ABA 问题**：值从 A 变成 B 又变回 A，CAS 察觉不到「中途被改过」，详见「二十六」的推演与 `AtomicStampedReference` 解决方案
+- **自旋开销**：冲突激烈时大量线程反复重试，空转烧 CPU；通常配合 `LongAdder` 分段累加或退避策略缓解
+- **只能保证单个变量的原子性**：多个变量要么各自用原子类，要么封装进一个不可变对象用 `AtomicReference` 整体替换（此时又失去了对字段的独立更新能力）
+- **高并发下改同一变量会出现总线风暴**（见下文）
+
+### 在 Java 中的实现
+
+CAS 由 `sun.misc.Unsafe` 提供（内部类，不推荐业务代码直接用），通过 JNI 调用底层硬件指令；日常使用的是并发包里的封装：
+
+```java
+boolean updated = atomicInteger.compareAndSet(expected, newValue);
+if (updated) {
+    System.out.println("Value updated to " + newValue);
+} else {
+    System.out.println("Update failed");        // 失败由调用方决定是否重试
+}
+```
+
+底层落到 x86 的 `cmpxchg` 指令。由于 `cmpxchg` 本身不保证跨核原子性，还需要 `lock` 前缀：
+
+- **JDK 9 之前**：先判断当前是否多处理器，多处理器才加 `lock` 前缀，单处理器不加（省一次总线锁定）
+- **JDK 9 起**：移除该判断，**一律加 `lock` 前缀**（现实中几乎不存在单核部署）
+
+### CAS 总线风暴
+
+`lock` 前缀会把写缓冲区中的数据立即刷回主内存。在对称多处理器架构下，各 CPU 通过**嗅探总线**检查自己的缓存是否过期：某个 CPU 刷新数据到主存时，会经总线通知其他 CPU 让对应缓存行失效——这就是缓存一致性协议（MESI）的工作方式，也是内存屏障的实现基础。
+
+问题在于：总线上的来回通信（cache 一致性流量）是**共享资源**。当大量线程用 CAS 争抢**同一个变量**时，每次成功写都会引发一轮全核缓存失效广播，流量激增使总线成为瓶颈，反过来拖慢本地缓存更新——这就是总线风暴，也是 CAS 在高并发写同一变量时的性能天花板。
+
+工程上的应对：
+
+- 分散热点：`LongAdder` / `DoubleAdder` 用 Cell 数组把累加分散到多个缓存行，求和时再汇总
+- 避免伪共享：热点字段用 `@Contended` 或手工填充（padding）独占缓存行
+- 减少共享写：线程本地累加后批量合并
+
+> 相关：[[Java 16 - 锁与并发工具]]（「二十六」为本问题的 ABA 专题）
+
+---
+
+## 三十、什么是 Java 的 SPI（Service Provider Interface）机制？
+
+**回答重点**：SPI 是 Java 内置的**服务发现/插件机制**——由框架定义接口，第三方提供实现，双方约定用 `META-INF/services/` 下的配置文件登记实现类，运行时由 `ServiceLoader` 动态发现并加载。核心价值是**接口与实现解耦**：换实现只改配置，不动调用方代码。
+
+**四个核心概念**：
+
+| 概念 | 说明 |
+|------|------|
+| 服务接口 | 接口或抽象类，定义服务规范（如 JDBC 的 `java.sql.Driver`） |
+| 服务提供者 | 实现该接口的具体类（如 `com.mysql.cj.jdbc.Driver`） |
+| `ServiceLoader` | JDK 提供的加载器，运行时扫描并实例化所有已登记的实现 |
+| 配置文件 | `META-INF/services/{接口全限定名}`，内容为实现类的全限定名，一行一个 |
+
+**优势**：
+
+- **解耦**：调用方只依赖接口，编译期不需要知道有哪个实现存在
+- **可扩展**：新增/替换实现只需加一个 jar 和配置文件，无需修改框架代码，符合开闭原则
+
+可以类比「音乐播放器的插槽」：播放器不内置所有解码器，而是留一个标准接口，插件（MP3/WAV 解码器）按规范插入，启动时自动装载。典型真实案例是 **JDBC**：MySQL、Oracle、SQL Server 各自提供驱动实现 `java.sql.Driver`，`DriverManager` 通过 SPI 找到它们，业务代码只面向 JDBC 接口编程。
+
+### 实现一个 SPI
+
+**1）定义服务接口**
+
+```java
+public interface MyService {
+    void execute();
+}
+```
+
+**2）提供服务实现**
+
+```java
+public class MyServiceImpl implements MyService {
+    @Override
+    public void execute() {
+        System.out.println("Executing MyServiceImpl");
+    }
+}
+```
+
+**3）登记配置**：在实现方（jar）的 `META-INF/services/` 下创建**以接口全限定名命名**的文件：
+
+```text
+META-INF/services/com.example.MyService
+```
+
+内容为实现类全限定名：
+
+```text
+com.example.MyServiceImpl
+```
+
+**4）通过 `ServiceLoader` 加载**
+
+```java
+ServiceLoader<MyService> loader = ServiceLoader.load(MyService.class);
+for (MyService service : loader) {
+    service.execute();
+}
+```
+
+**5）替换实现**：新建 `MyServiceImplA implements MyService`，把配置文件内容改成 `com.example.MyServiceImplA` 即可，**调用代码一行不用改**——这就是 SPI 相对硬编码 `new` 的价值。
+
+### 工程上的几个坑
+
+- **`ServiceLoader` 无法按需选择**：`for` 循环会实例化**所有**登记的实现，想要「只加载某一个」做不到；Dubbo 因此自研了带 key 的 `ExtensionLoader`（`@SPI` + `@Adaptive`），按名字精确取用并支持懒加载与 IOC
+- **不是懒加载**：`ServiceLoader.load()` 只做类型检查，真正的实例化发生在迭代时；配置文件写了但类不存在会抛 `ServiceConfigurationError`
+- **配置文件路径/文件名写错是最常见故障**：目录必须恰好是 `META-INF/services`，文件名必须是**接口的全限定名**（不是实现类名），换行符、BOM 也可能导致解析不到
+- **SPI 与双亲委派**：SPI 的接口在核心类库（由 Bootstrap 加载），实现却在应用 classpath，父加载器看不到子加载器的类，因此 JDK 用**线程上下文类加载器（TCCL）**打破双亲委派来完成加载，详见 [[Java 18 - 类加载机制]]
+- **Android 上不可用**：`META-INF` 会被打包裁剪，常改用注解处理器（如 ARouter）生成映射表
+
+> 相关：[[Java 18 - 类加载机制]]
+
 > 来源：鱼皮·编程导航 / codefather
