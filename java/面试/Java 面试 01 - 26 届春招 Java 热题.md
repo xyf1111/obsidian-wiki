@@ -1016,6 +1016,13 @@ ThreadPoolExecutor pool = new ThreadPoolExecutor(
 - **IO 密集型**：`N × (1 + 平均等待时间 / 平均计算时间)`，或按并发连接数 × 单任务耗时 / 目标 QPS 反推；
 - 最终以压测结果为准，不要迷信公式。
 
+**5）运行期的四个细节**
+
+- **默认不预创建线程**：`prestartAllCoreThreads` 默认 `false`，任务提交后才按需 `addWorker` 创建线程。想让核心线程提前就位（避免首波请求的开销抖动），可调用 `prestartAllCoreThreads()` 或 `prestartCoreThread()`，也可在构造前 `setPrestartAllCoreThreads(true)`。
+- **核心线程和非核心线程没有任何标识区分**：`Worker` 里并无「是否核心」的标记，所谓核心线程只是「存活数量 ≤ corePoolSize」这层语义。因此 `allowCoreThreadTimeOut(true)` 后核心线程同样会被回收，线程池最小线程数退化为 0；默认 `false` 时 `processWorkerExit` 只销毁超出 `corePoolSize` 的那部分 worker。
+- **空闲回收的统一入口**：worker 取任务时用 `getTask()` 的 `poll(keepAliveTime, unit)`，超时返回 `null` 后进入 `processWorkerExit`，由 `workerCount > corePoolSize || allowCoreThreadTimeOut` 决定是否真的移除该 worker。
+- **为什么先入队而不是直接加线程**：创建线程要占用栈空间（默认保留 1MB 量级）和调度开销，而队列里放任务只是堆上的引用。先用队列吸收突发流量，队列都满了才说明是持续过载，此时付线程成本才划算。`SynchronousQueue` 不存储元素 → 入队必然失败 → `CachedThreadPool` 才表现为「来一个任务开一个线程」。
+
 > 相关：[[Java 16 - 锁与并发工具]]、[[Java 15 - 线程基础]]、[[Java 51 - 并发编程学什么（学习框架）]]
 
 ---
@@ -1159,6 +1166,10 @@ ThreadPoolExecutor pool = new ThreadPoolExecutor(
 ## 十九、Spring 如何解决循环依赖？
 
 **回答重点**：核心是**提前暴露尚未初始化完成的 Bean**——Bean 实例化完成后，立刻把「能生产该 Bean 的对象工厂」放进三级缓存；当别的 Bean 反过来依赖它时，就能拿到这个半成品，从而打破「A 等 B、B 等 A」的死循环。三个 Map 分工：`singletonObjects`（一级，完整单例）、`earlySingletonObjects`（二级，已实例化未初始化）、`singletonFactories`（三级，对象工厂，用于延迟生成早期 Bean，尤其要生成 AOP 代理时）。
+
+### 什么是循环依赖
+
+两个及以上 Bean 互相持有对方的引用，形成闭环：A 注入 B、B 又注入 A（自己注入自己、三个以上 Bean 串成环，本质相同）。创建 A 时发现依赖 B，于是转去创建 B；B 创建到一半又回头要 A，而 A 正卡在「等 B」的状态上——双方互相等待，初始化顺序无法确定，这就是循环依赖导致的创建死锁。字段注入 / setter 注入能被三级缓存打破，构造器注入则不行（原因见下）。
 
 ### 三个缓存的分工
 
@@ -1760,6 +1771,29 @@ for (MyService service : loader) {
 - **SPI 与双亲委派**：SPI 的接口在核心类库（由 Bootstrap 加载），实现却在应用 classpath，父加载器看不到子加载器的类，因此 JDK 用**线程上下文类加载器（TCCL）**打破双亲委派来完成加载，详见 [[Java 18 - 类加载机制]]
 - **Android 上不可用**：`META-INF` 会被打包裁剪，常改用注解处理器（如 ARouter）生成映射表
 
-> 相关：[[Java 18 - 类加载机制]]
+---
+
+## 三十一、你使用过哪些 Java 并发工具类？
+
+**回答重点**：容器类 `ConcurrentHashMap`、原子类 `AtomicInteger`/`LongAdder`、队列 `BlockingQueue` 负责「让共享数据本身线程安全」；协调类 `Semaphore`、`CountDownLatch`、`CyclicBarrier` 负责「让多个线程按秩序推进」；`CompletableFuture` 负责异步编排。答题时不要只报名字，挑一个结合项目业务讲清楚「为什么用它、怎么用、踩过什么坑」，面试官通常顺着这个点继续深挖。
+
+| 工具 | 解决的问题 | 典型场景 |
+|---|---|---|
+| `ConcurrentHashMap` | 线程安全的哈希表，分段/CAS + 桶头 synchronized，读不加锁 | 本地缓存、按 key 计数、并发去重 |
+| `AtomicInteger` / `LongAdder` | CAS 实现无锁原子加减 | 计数器、序号生成；高并发累加优先 `LongAdder`（分段累加，减少 CAS 自旋失败） |
+| `BlockingQueue` | 队列为空/满时阻塞，天然实现背压 | 生产者-消费者解耦、线程池任务队列、异步日志 |
+| `Semaphore` | 控制同时访问资源的线程数（许可） | 接口限流、连接池/下载并发控制 |
+| `CountDownLatch` | 一个（多个）线程等 N 个任务全部完成 | 主线程等待并行子任务汇总、服务启动预热 |
+| `CyclicBarrier` | N 个线程互相等待到齐后一起继续，**可循环复用** | 分阶段并行计算、多线程对齐同一时间点起跑 |
+
+### 使用要点与误区
+
+- **`ConcurrentHashMap` 只保证单次操作原子**：「先 get 再 put」这类复合逻辑仍要用 `computeIfAbsent` / `merge` / `putIfAbsent`，否则照样有竞态；它也不允许 `null` 键值（无法区分「不存在」与「值为 null」，且并发下 `null` 会带来歧义）。
+- **`AtomicInteger` 高并发下会退化**：大量线程 CAS 同一变量时失败重试加剧，JDK 8 的 `LongAdder` 用 Cell 数组分散热点，统计类场景吞吐明显更好；需要「读取瞬时精确值」时仍用 `AtomicLong`。
+- **`Semaphore` 是许可不是锁**：`acquire()` 后必须在 `finally` 里 `release()`，否则许可泄漏会把后续线程永久挂住；它允许多个线程同时进入，别当成互斥锁用。
+- **`CountDownLatch` 一次性、`CyclicBarrier` 可复用**：前者计数到 0 就作废，后者 `await()` 满员后自动重置；前者是「一个等多个」，后者是「多个等多个」。
+- **别在业务线程池里无限 `await()`**：`latch.await()` 不设超时 + 子任务提交到同一个池，池被占满时会出现「等的人占着线程、被等的人排不上队」的自锁，务必用 `await(timeout, unit)` 或换用独立线程池。
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 15 - 线程基础]]
 
 > 来源：鱼皮·编程导航 / codefather
