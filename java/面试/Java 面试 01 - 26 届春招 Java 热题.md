@@ -1392,4 +1392,159 @@ protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, 
 
 > 相关：[[Java 31 - AOP与自定义注解实践]]
 
+---
+
+## 二十五、什么是 Hash 碰撞？怎么解决哈希碰撞？
+
+**回答重点**：Hash 碰撞是指不同的输入数据经哈希函数计算后得到**相同的哈希值**，从而被映射到哈希表的同一个槽位。常见解决方式有三类：
+
+1. **拉链法（链地址法）**：每个槽位挂一条链表，哈希值相同的元素放进同一链表
+2. **开放寻址法**：槽位被占就按规则找下一个可用槽位（线性探查 / 平方探查 / 双散列）
+3. **再哈希法（双重哈希）**：碰撞时用第二个哈希函数重算索引，降低再次碰撞的概率
+
+### 拉链法
+
+每个 bucket 存的是指向链表头的指针，所有哈希值相同的元素进入同一链表。
+
+- 优点：实现简单、扩展性好；数据量大时性能相对稳定（不像开放寻址会因装填过满而急剧退化）
+- 缺点：碰撞频繁时链表变长，查询从 O(1) 退化到 O(n)；链表节点需要额外内存
+
+**红黑树优化**：当单条链表长度超过阈值（JDK 8 HashMap 为 8，且表容量 ≥ 64）时把链表转成红黑树，查找从 O(n) 降到 O(log n)，可避免哈希被恶意构造导致的长链拖垮查询。代价是实现复杂、内存占用更高。JDK 8 的 HashMap 即采用此方案，详见 [[Java 14 - HashMap 源码解析]]。
+
+### 开放寻址法
+
+碰撞时在表中寻找下一个空闲槽位，探查序列常见三种：
+
+| 方式 | 探查步长 | 特点 |
+|------|----------|------|
+| 线性探查 | `(h + 1, h + 2, …) % n` | 最简单，但易产生**一次聚集**（连续占用区不断变长） |
+| 平方探查 | `(h ± 1², ± 2², …) % n` | 减轻一次聚集，但可能探查不到部分槽位（表长需为质数或 2 的幂且配合特定规则） |
+| 双散列 | 第二个哈希函数决定步长 | 分布最均匀，聚集最少，代价是多一次哈希计算 |
+
+- 优点：不需要额外的指针/链表结构，内存紧凑、缓存友好；负载因子低时查找插入都很快
+- 缺点：装填度上升后探查次数增加，性能下降明显；**删除不能真删**，只能打删除标记（tombstone），否则会截断后续元素的探查链导致查找失败；新元素插入到标记位时才能复用该槽位
+
+JDK 中 `ThreadLocalMap` 就是用开放寻址（线性探查）实现的，因此它的删除同样采用「清理陈旧 entry」的策略。
+
+### 再哈希法（双重哈希）
+
+准备两个哈希函数：`h1` 决定初始位置，碰撞后由 `h2` 计算新的索引（`index = (h1 + i·h2) % n`）。相当于把探查步长也做成「因 key 而异」，从而打散聚集。
+
+- 优点：冲突概率显著降低，分布均匀
+- 缺点：每次冲突都要额外算一次哈希，且第二个哈希函数的质量直接决定效果；本质上仍是开放寻址，装填率过高时依旧会退化
+
+> 相关：[[Java 14 - HashMap 源码解析]]
+
+---
+
+## 二十六、什么是 Java 中的 ABA 问题？
+
+**回答重点**：ABA 问题指多线程环境下，共享变量的值在一段时间内经历了 `A → B → A` 的变化，而 CAS 只比较「当前值是否等于预期值」，因此会误判为「没被改过」并成功执行更新。它常出现在基于 **CAS（Compare-And-Swap）** 的无锁并发编程中。
+
+CAS 的语义是：比较内存值与预期值一致才写入新值。问题在于——**它只能看到最终的值，看不到中间的变化过程**。
+
+### 一个会出错的例子：无锁栈
+
+```java
+public class LockFreeStack<T> {
+    private AtomicReference<Node<T>> head = new AtomicReference<>();
+
+    public T pop() {
+        Node<T> oldHead;
+        Node<T> newHead;
+        do {
+            oldHead = head.get();
+            if (oldHead == null) {
+                return null;
+            }
+            newHead = oldHead.next;
+        } while (!head.compareAndSet(oldHead, newHead));
+        return oldHead.value;
+    }
+}
+```
+
+线程 A 读到栈顶 `oldHead`（节点 X）后暂停；线程 B 连续 pop 掉 X、Y，又把**新节点**压栈并恰好复用了同一块内存地址；线程 A 恢复执行 `compareAndSet(oldHead, newHead)`，比较的是引用地址——地址相同，CAS 成功，栈顶被错误地指向了已失效的 `newHead`，栈结构被破坏。
+
+同类问题也出现在「余额从 100 扣到 50 又充回 100」这类业务判断上：值看着没变，但中间发生过扣款，基于旧快照的决策可能失效。
+
+### 解决方法
+
+**1）引入版本号（最常用）**：每次写不仅更新值，还递增版本号；CAS 时同时比较值与版本号。值绕回原值，版本号也已经变了。
+
+Java 用 `AtomicStampedReference` 实现：
+
+```java
+AtomicStampedReference<Integer> stampedRef = new AtomicStampedReference<>(1, 0);
+int[] stampHolder = new int[1];
+Integer ref = stampedRef.get(stampHolder);   // 值与版本号一起取出
+boolean ok = stampedRef.compareAndSet(ref, 2, stampHolder[0], stampHolder[0] + 1);
+```
+
+注意版本号 `int` 也会溢出回绕（约 21 亿次写），只是概率极低；极端场景可用 `AtomicMarkableReference` 的布尔标记或自行维护 `long` 版本。
+
+**2）`AtomicMarkableReference`**：在引用上附带一个布尔标记，只关心「是否被改过」而不关心改了几次，适合只需要区分两种状态的场景。
+
+```java
+AtomicMarkableReference<Integer> markableRef = new AtomicMarkableReference<>(1, false);
+```
+
+> 相关：[[Java 16 - 锁与并发工具]]
+
+---
+
+## 二十七、什么是 Java 中的不可变类？
+
+**回答重点**：不可变类指对象创建后其状态（字段）无法再被修改的类，实例在整个生命周期内保持不变。
+
+**五个关键特征**：
+
+1. 类声明为 `final`，禁止子类继承后改写行为
+2. 所有字段 `private final`，初始化后不可赋值
+3. 通过构造函数一次性初始化全部字段
+4. 不提供任何修改状态的方法（无 setter）
+5. 若字段引用了可变对象，必须在出入两个方向上都做防御：构造时拷贝入参、getter 返回副本
+
+经典不可变类：`String`、包装类（`Integer` 等）、`BigDecimal`、`LocalDate` / `LocalDateTime`、`java.time` 大部分类型。
+
+### 优缺点
+
+**优点**
+
+1. **天生线程安全**：状态不可变，无需加锁即可安全共享（不可变对象发布本身即安全发布）
+2. **可安全缓存与复用**：如 `String` 常量池、`Integer` 的 `-128~127` 缓存
+3. **可作为 HashMap 的 key**：hashCode 稳定，不会因状态变化而「找不到自己」
+4. 避免意外修改导致的状态不一致，便于推理与调试
+
+**缺点**
+
+1. **每次「修改」都要新建对象**：频繁变更场景下产生大量临时对象，带来 GC 压力（典型如 `String` 用 `+` 循环拼接）
+2. 对象较大且变更频繁时，拷贝成本高
+3. 需要配套可变版本时（如 `StringBuilder`）要额外设计 API
+
+### String 是如何做到的
+
+- `String` 类被 `final` 修饰，无法被继承
+- 内部存储被 `private final` 修饰（JDK 8 为 `char[] value`，JDK 9 起改为 `byte[] value` + `byte coder`，配合 Latin-1 压缩节省内存）
+- `final` 只能保证**引用**不变，挡不住数组内容被改，所以 `value` 必须 `private` 且不对外暴露；JDK 8 中任何返回内部数组的方法都没有公开
+- 需要「修改」的方法（`replace`、`substring`、`concat`、`toUpperCase` 等）一律**返回新对象**，原对象保持不变
+
+```java
+String s = "a";
+s += "b";      // 等价于 s = new StringBuilder(s).append("b").toString();
+// 原 "a" 对象未被修改，只是 s 的引用指向了新的 "ab"
+```
+
+因此频繁拼接应使用 `StringBuilder`（单线程）或 `StringBuffer`（多线程），最后再 `toString()` 一次性生成不可变结果。
+
+### 自己实现一个不可变类的检查清单
+
+- [ ] 类 `final`，或所有构造器私有 + 工厂方法
+- [ ] 字段全部 `private final`
+- [ ] 构造器中对可变入参做**深拷贝**
+- [ ] getter 对可变字段返回**深拷贝或不可变视图**（`Collections.unmodifiableList`）
+- [ ] 不暴露任何可修改内部状态的方法；「修改」类方法返回新实例
+
+> 相关：[[Java 08 - 字符串与正则表达式转义]]
+
 > 来源：鱼皮·编程导航 / codefather
