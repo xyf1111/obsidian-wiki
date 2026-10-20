@@ -1864,4 +1864,139 @@ CompletableFuture.runAsync(() -> doT1())
 
 > 相关：[[Java 16 - 锁与并发工具]]、[[Java 46 - CompletableFuture 异步编程]]、[[Java 15 - 线程基础]]
 
+---
+
+## 三十五、数组和链表在 Java 中的区别是什么？
+
+**回答重点**
+
+| 维度 | 数组 | 链表 |
+|---|---|---|
+| 存储结构 | 一块**连续**内存，元素大小固定 | 节点分散在堆上，靠指针串联，不要求连续 |
+| 容量 | 创建时固定，扩容要重新申请 + 拷贝 | 动态增减，按需申请节点 |
+| 随机访问 | **O(1)**，下标直接定位 | **O(n)**，必须从头（双向链表可从尾）遍历 |
+| 插入/删除 | 中间位置 **O(n)**，需搬移后续元素 | 已知节点位置时 **O(1)**，只改指针 |
+| 内存开销 | 无额外指针，但可能预留空洞、浪费空间 | 每个节点额外存前驱/后继指针，占用更大 |
+| 缓存友好度 | 高（连续内存可被 CPU 预读） | 低（节点地址跳跃，预读命中差） |
+
+一句话必答：数组是「连续内存 + 下标寻址」，赢在随机访问和遍历；链表是「节点 + 指针」，赢在动态增删。
+
+**扩展知识**
+
+- **O(1) 随机访问从哪来**：数组只保存一个基地址，元素大小固定，`地址 = 基地址 + 下标 × 元素大小`，一次乘加就定位，无需比较和跳转。
+- **删除为什么慢**：要保持内存连续，删掉中间元素后必须把后面的元素整体前移，本质是一次内存拷贝（`System.arraycopy`）。
+- **链表删除真的 O(1) 吗**：改指针本身是 O(1)，但「找到要删的节点」仍需 O(n)——只有已持有节点引用（如迭代器的 `remove()`）时才是真 O(1)。
+- **空间局部性决定实际差距**：CPU 按缓存行预读连续内存，遍历数组时后续元素早已被加载进缓存；链表节点地址跳跃，几乎每次都缓存未命中。所以同样是 O(n) 遍历，数组常常快一个数量级。
+- **Java 中的落地**：`ArrayList` = 动态数组（满后扩容并 `Arrays.copyOf` 搬迁），`LinkedList` = 双向链表（同时实现 `Deque`，可当栈/队列/双端队列用）。日常首选 `ArrayList`，只有频繁在两端增删、且不做随机访问时才考虑 `LinkedList`。
+
+> 相关：[[Java 10 - Collection与List]]、[[Java 14 - HashMap 源码解析]]
+
+---
+
+## 三十六、线程的生命周期在 Java 中是如何定义的？
+
+**回答重点**
+
+Java 线程状态由 `Thread.State` 枚举定义，共 6 种，可用 `getState()` 观察——只能靠 `start`/`sleep`/加锁/等待等操作**间接驱动**，不能直接设置：
+
+| 状态 | 进入条件 | 退出条件 |
+|---|---|---|
+| `NEW` | `new Thread()` 后，尚未启动 | 调用 `start()` |
+| `RUNNABLE` | `start()` 之后（就绪 + 运行中合并） | 等锁失败 / 等待 / `run()` 结束 |
+| `BLOCKED` | 等待 `synchronized` 监视器锁 | 拿到锁 → `RUNNABLE` |
+| `WAITING` | `wait()`、`join()`、`LockSupport.park()`（无超时） | `notify`/`notifyAll`/`unpark`/目标线程终止 |
+| `TIMED_WAITING` | `sleep(n)`、`wait(n)`、`join(n)`、`parkNanos` | 超时或被唤醒 → `RUNNABLE` |
+| `TERMINATED` | `run()` 正常返回或抛异常退出 | 终态，不可复活 |
+
+必答句：**Java 把操作系统的「就绪」和「运行」合并为一个 `RUNNABLE`**（线程是否真的在 CPU 上由 OS 调度，JVM 不区分）；而操作系统意义上的「阻塞」在 Java 里被拆成 `BLOCKED`（等监视器锁）、`WAITING`（无限等）、`TIMED_WAITING`（限时等）三种。
+
+**扩展知识**
+
+- 操作系统课程的 5 态（新建 / 就绪 / 运行 / 阻塞 / 终止）与 Java 6 态的差异就来自上面这一「合并」一「拆分」；被追问时先讲映射关系，再讲原因。
+- `BLOCKED` 专指**等待监视器锁**；`wait()`、`park()` 造成的是 `WAITING`，二者不要混说。
+
+> 相关：[[Java 15 - 线程基础]]、[[Java 16 - 锁与并发工具]]
+
+---
+
+## 三十七、说说 AQS 吧？
+
+**回答重点**
+
+AQS（`AbstractQueuedSynchronizer`）是 JUC 同步器的**骨架**：把排队、入队、阻塞/唤醒、中断处理这些通用逻辑封装好，只把「什么时候能加锁、什么时候该入队」留给子类决定——典型的**模板方法模式**。
+
+核心就两样东西：
+
+- 一个 `volatile int state`：同步状态，具体语义由子类定义；
+- 一个 **FIFO 等待队列**：AQS 对 CLH 锁队列的变体，双向链表，节点保存线程引用、等待状态、前驱/后继指针。抢不到资源的线程入队并阻塞，由前驱释放时唤醒后继。
+
+常见实现类：`ReentrantLock`、`CountDownLatch`、`Semaphore`、`ReentrantReadWriteLock`，`ThreadPoolExecutor` 的 worker 控制也基于它。
+
+**扩展知识**
+
+### `state` 的语义由子类定义
+
+| 实现类 | `state` 含义 |
+|---|---|
+| `ReentrantLock` | 锁的重入次数（0 = 未占用，n = 同一线程重入 n 次） |
+| `Semaphore` | 当前可用许可数 |
+| `CountDownLatch` | 剩余待完成计数（减到 0 放行） |
+| `ReentrantReadWriteLock` | 高 16 位 = 读锁持有数，低 16 位 = 写锁重入次数 |
+
+读写通过 `getState()`、`setState(int)`、`compareAndSetState(int, int)` 完成，最后一个基于 CAS，是并发安全的根基。
+
+### 三层结构
+
+| 层 | 内容 | 谁负责 |
+|---|---|---|
+| API 层 | `tryAcquire` / `tryRelease` / `tryAcquireShared` / `tryReleaseShared` / `isHeldExclusively` | **子类重写**，控制加锁与入队时机 |
+| 排队层 | `acquire` / `release` / `acquireQueued` / `doAcquireShared`，负责入队、阻塞、唤醒、中断补偿 | AQS 已实现 |
+| 数据层 | `state` + 双向队列 + CAS | AQS 已实现 |
+
+### 五个可重写方法
+
+| 方法 | 作用 |
+|---|---|
+| `tryAcquire(int)` | 独占模式尝试获取，`true` = 成功 |
+| `tryRelease(int)` | 独占模式尝试释放，`true` = 成功 |
+| `tryAcquireShared(int)` | 共享模式尝试获取，**负数 = 失败**，0 = 成功无剩余，正数 = 成功有剩余 |
+| `tryReleaseShared(int)` | 共享模式尝试释放 |
+| `isHeldExclusively()` | 当前线程是否独占持有 |
+
+### 最小独占锁：只重写 3 个方法
+
+```java
+public class SimpleLock {
+    private static class Sync extends AbstractQueuedSynchronizer {
+        @Override protected boolean tryAcquire(int arg) {
+            if (compareAndSetState(0, 1)) {            // CAS 抢锁
+                setExclusiveOwnerThread(Thread.currentThread());
+                return true;
+            }
+            return false;
+        }
+        @Override protected boolean tryRelease(int arg) {
+            if (getState() == 0) throw new IllegalMonitorStateException();
+            setExclusiveOwnerThread(null);
+            setState(0);                               // 释放无需 CAS：只有持有者能进到这里
+            return true;
+        }
+        @Override protected boolean isHeldExclusively() { return getState() == 1; }
+    }
+    private final Sync sync = new Sync();
+    public void lock()   { sync.acquire(1); }   // 失败交给排队层：入队 + 阻塞
+    public void unlock() { sync.release(1); }   // 成功后由排队层唤醒后继节点
+}
+```
+
+### 为什么需要 `selfInterrupt`
+
+`acquireQueued` 中线程被中断唤醒后，若前面还有排队线程，它抢不到锁会再次 `park` 睡过去——中断信号就丢了。因此 `acquireQueued` 用 `interrupted` 变量记下「等待期间是否被中断过」并返回；`acquire` 发现为 `true` 时主动调用 `selfInterrupt()` 补一次中断，把中断状态还原给上层调用者。
+
+### 与 CLH 的关系
+
+AQS 队列的原型是 CLH 自旋锁：把「自旋等待前驱」换成「阻塞等待前驱」，于是必须维护**显式双向队列**（前驱要能找到后继去唤醒），并引入 `waitStatus` 标记节点状态。CLH 的演进过程与 `waitStatus` 取值表见本文档「七、Java 中 ReentrantLock 的实现原理是什么？」。
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 07 - 并发三大根源：可见性、原子性、有序性]]
+
 > 来源：鱼皮·编程导航 / codefather
