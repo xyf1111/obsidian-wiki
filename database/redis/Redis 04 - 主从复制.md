@@ -133,3 +133,49 @@ repl_backlog_histlen:1148
 
 
 如果使用命令行配置主从，如果从机重启了，就会变回主机！只要变回从机，就能立马从主机获取值
+
+> Redis 5.0 起 `SLAVEOF` 更名为 `REPLICAOF`（旧命令仍兼容），配置文件中的 `slaveof` 对应 `replicaof`。
+
+### 复制原理（全量同步与增量同步）
+
+从节点向主节点发送 `PSYNC <runid> <offset>` 发起同步：
+
+- `runid`：主节点运行 ID。从节点第一次同步不知道主节点 ID，传 `"?"`。
+- `offset`：复制进度偏移量，第一次同步传 `-1`。
+
+主节点据此决定走**全量同步**还是**增量同步**。
+
+#### 全量同步（首次连接 / 断连过久）
+
+1. 从节点发送 `psync ? -1`；
+2. 主节点发现 runid 无效，判定为全量同步，返回 `+FULLRESYNC <runid> <offset>`，从节点保存这两个值；
+3. 主节点执行 `bgsave` 生成 RDB 快照；生成期间新收到的写命令缓存到 `replication buffer`；
+4. RDB 生成完毕后发送给从节点，从节点**先清空旧数据**再加载 RDB；
+5. 从节点加载完成后，主节点把 `replication buffer` 中积压的写命令发过去重放，达到一致；
+6. 之后主从保持长连接，主节点持续把写命令传播给从节点（命令传播阶段）。
+
+#### 增量同步（断线重连）
+
+网络抖动导致断连时，若再走全量同步代价太大，因此 Redis 2.8 引入 `PSYNC` 做部分重同步。
+
+- `repl_backlog_buffer` 是主节点上的**环形缓冲区**（默认 1MB），保存最近的写命令；
+- 从节点重连后带上自己记录的 `runid` + `offset`；
+- 主节点校验：runid 与自己一致，且 offset 之后的数据仍在 backlog 中 → 只把 offset 之后的命令写入 `replication buffer` 发送，从节点执行即完成增量同步；
+- 若 offset 已被环形写入覆盖 → 只能退回全量同步。因此线上通常调大 `repl_backlog_size`，尽量避免全量复制。
+
+#### replication buffer 与 repl_backlog_buffer 的区别
+
+| 维度 | `replication buffer` | `repl_backlog_buffer` |
+|------|---------------------|----------------------|
+| 数量 | 每个从节点一个（主节点为每个 slave 单独创建） | 主节点全局一个 |
+| 作用 | 全量同步期间缓存 RDB 生成过程中的写命令；实时传输写命令给对应从节点 | 保存最近的写命令，供断线重连时做部分重同步 |
+| 大小 | 动态增长，无明确上限 | 固定环形大小，默认 1MB，写满后覆盖旧数据 |
+| 控制参数 | `client-output-buffer-limit`（间接限制） | `repl-backlog-size` |
+
+`replication buffer` 超限会直接断开连接，例如：
+
+```bash
+client-output-buffer-limit slave 256mb 64mb 60
+```
+
+表示从节点输出缓冲区超过 256MB，或超过 64MB 持续 60 秒，Redis 就断开该从节点连接（从节点对主节点而言也是一个客户端）。同步速度慢的从节点需要更大的缓冲，这也是主节点内存可能被复制拖垮的常见原因。
