@@ -7,7 +7,7 @@ source: "鱼皮·编程导航 / codefather"
 
 # Java 面试 01 - 26 届春招 Java 热题
 
-> 26 届春招 Java 高频面试题汇总（集合 / 并发 / 反射与代理 / JDK 新特性 / JVM / Spring 机制），每题为「回答重点 + 扩展知识」结构，逐批追加。
+> 26 届春招 Java 高频面试题汇总（集合 / 并发 / 反射与代理 / JDK 新特性 / JVM / Spring 机制 / 中间件与 ORM），每题为「回答重点 + 扩展知识」结构，逐批追加。
 
 ## 一、JDK 1.8 对 HashMap 除了红黑树还进行了哪些改动？
 
@@ -2051,7 +2051,7 @@ AQS 队列的原型是 CLH 自旋锁：把「自旋等待前驱」换成「阻�
 
 > 相关：[[Java 15 - 线程基础]]、[[Java 16 - 锁与并发工具]]
 
-> 来源：鱼皮·编程导航 / codefather
+---
 
 ## 四十、Java 中的 final 关键字是否能保证变量的可见性？
 
@@ -2093,6 +2093,8 @@ public class YesFinalTest {
 
 > 相关：[[Java 16 - 锁与并发工具]]、[[Java 29 - Synchronized 关键字详解]]；三大性质总览见本文档「二十八、什么是 Java 中的原子性、可见性和有序性？」
 
+---
+
 ## 四十一、Java 线程池核心线程数在运行过程中能修改吗？如何修改？
 
 **回答重点**
@@ -2114,6 +2116,8 @@ public class YesFinalTest {
 
 > 相关：[[Java 16 - 锁与并发工具]]；线程数取值公式见本文档「三十三、如何合理地设置 Java 线程池的线程数？」，七参数与队列/拒绝策略见「十五、Java 并发库中提供了哪些线程池实现？」
 
+---
+
 ## 四十二、什么是 Java 内存模型（JMM）？
 
 **回答重点**
@@ -2128,3 +2132,89 @@ public class YesFinalTest {
 **happens-before 的完整清单**：程序顺序、监视器锁（unlock → 后续 lock）、volatile 写 → 后续读、`Thread.start()` → 线程内动作、线程内动作 → 其他线程从 `join()` / `isAlive()` 感知到终止、`interrupt()` → 检测到中断的代码、对象初始化完成 → `finalize()` 开始、传递性。底层靠内存屏障（LoadLoad / StoreStore / LoadStore / StoreLoad）落实。
 
 > 相关：[[Java 17 - JVM内存模型与GC]]；三大性质的对照表、happens-before 前四条与屏障细节见本文档「二十八、什么是 Java 中的原子性、可见性和有序性？」，volatile 的语义与 JMM 的关系见本文档「八、Java 中 volatile 关键字的作用是什么？」
+
+---
+
+## 四十三、如何优化 Java 中的锁的使用？
+
+**回答重点**
+
+必答句：优化锁只有两条主线——**让锁更小**（缩短持有时间、细化粒度、读写分离）和**根本不用锁**（CAS / 原子类 / 不可变对象 / 线程封闭）。前者降低「排队」带来的串行度，后者直接消灭竞争。
+
+| 方向 | 具体手段 | 适用场景 | 代价 / 坑 |
+|---|---|---|---|
+| 缩小临界区 | 只锁必要语句，把日志、RPC、IO 移出同步块 | 任何有竞争的锁 | 拆得太碎会破坏「读-改-写」的组合原子性 |
+| 细化锁粒度 | 锁分段：`ConcurrentHashMap` 1.7 拆 16 个 `Segment`、1.8 细化到桶的头节点；按业务 key 哈希取锁 | 大对象 / 大集合被多线程读写 | 分段数固定 → 热点段照样排队；锁对象变多，一次持多把锁时要防死锁 |
+| 读写分离 | `ReentrantReadWriteLock`（读共享、写独占）、`StampedLock`（乐观读 + 版本戳校验） | 读多写少 | 读锁**不能**升级成写锁（必须先释放再抢）；写锁可能饥饿；`StampedLock` 不可重入、不支持 `Condition` |
+| 无锁编程 | CAS + 原子类（`AtomicInteger`、`AtomicReference`），计数用 `LongAdder` 分段累加 | 计数器、状态位、单变量更新 | ABA 问题（用 `AtomicStampedReference` 加版本号）、高竞争下自旋空转 CPU 甚至总线风暴 |
+| 线程封闭 | 局部变量、`ThreadLocal`、不可变对象 | 本可不必共享的状态 | `ThreadLocal` 用后必须 `remove()`——线程池复用会读到上一个请求的脏值，并造成内存泄漏 |
+
+**扩展知识**
+
+- **锁的类型与场景**：独占锁（`synchronized` / `ReentrantLock`）适合写多；读写锁适合读多写少；悲观锁每次操作都先加锁，乐观锁靠版本号 / CAS 做冲突检测，只在冲突概率低时划算（冲突高时自旋重试成本反而超过加锁）。
+- **优化是有顺序的**：先问「这块数据非要共享吗」（改成消息队列串行化、按 key 单线程分片），再问「临界区能不能再小」，最后才考虑换更轻的锁。JVM 层的锁消除（逃逸分析）、锁粗化、自适应自旋、偏向锁 → 轻量级锁升级都是**自动**完成的，应用层不必手写。
+- **别用外部锁去修补非线程安全的设计**：`HashTable`、`Collections.synchronizedMap` 是把整张表锁住，换成 `ConcurrentHashMap` 比在外面套 `synchronized` 更划算；同理「给整个方法加 `synchronized`」通常说明临界区没想清楚。
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 29 - Synchronized 关键字详解]]；JVM 层的锁升级、锁消除、锁粗化、自旋见本文档「十六、Java 的 synchronized 是怎么实现的？」，CAS 原理与 ABA 见「七、Java 中 ReentrantLock 的实现原理是什么？」，分段锁到桶级锁的演进见「四、Java 中 ConcurrentHashMap 1.7 和 1.8 之间有哪些区别？」
+
+---
+
+## 四十四、说一下 RocketMQ 中关于事务消息的实现？
+
+**回答重点**
+
+必答句：RocketMQ 用**两阶段提交 + 事务回查**把「本地事务」和「发消息」绑成最终一致——先投一条消费者看不见的**半消息（Half Message）**，本地事务成功再 `Commit` 转正、失败则 `Rollback` 丢弃；生产者迟迟不表态时，Broker 主动反查本地事务状态。
+
+- **第一阶段（发半消息）**：生产者把消息发给 Broker，消息带 `PROPERTY_TRANSACTION_PREPARED=true` 属性；Broker 在 `SendMessageProcessor#sendMessage` 里识别出这是事务消息后，把真实 topic 与队列 id 存进消息属性，**把 topic 改写成 `RMQ_SYS_TRANS_HALF_TOPIC`、队列 id 置 0** 再落盘——消费者因此完全读不到它。
+- **第二阶段（跑本地事务并表态）**：生产者在 `TransactionListener#executeLocalTransaction` 里执行本地事务，返回下面三种状态之一；Commit 时 Broker 把 topic 换回来、写进真实队列让消费者可见，Rollback 时把这条半消息记进 `RMQ_SYS_TRANS_OP_HALF_TOPIC`（half_op）作为「已处理」标记。
+
+| 状态 | 含义 | Broker 动作 |
+|---|---|---|
+| `COMMIT_MESSAGE` | 本地事务成功 | 半消息转正，可被消费 |
+| `ROLLBACK_MESSAGE` | 本地事务失败 | 丢弃半消息，消费者永不可见 |
+| `UNKNOWN` | 状态暂不可知 | 不写 half_op，稍后再次回查 |
+
+**事务回查**：后台服务 `TransactionalMessageCheckService` 定时扫描半消息队列，对超时未决的半消息发 **oneWay** 反查请求；生产者的 `TransactionMQProducer` 线程池收到后调用 `checkLocalTransaction`，结果同样以 oneWay 回传 Broker。
+
+**扩展知识**
+
+- **为什么要有 half_op、为什么半消息还要重新写一遍 commitlog**：RocketMQ 的存储模型是**顺序追加、从不修改已落盘消息**，而「回查次数」必须可更新（超过上限即判定回滚）。所以每次回查前先用 `putBackHalfMsgQueue` 把半消息追加一次并推进消费位点；half_op 记录每一轮反查的结论（Commit / Rollback），下一轮扫描先按 half_op 去重，已决的直接跳过，只有 `UNKNOWN` 不落 half_op 才允许继续回查。
+- **消费端必须幂等**：事务消息保证的是「本地事务成功 ⇒ 消息最终一定可被消费」，即**至少一次**；重复投递、消费失败重试都会发生，靠业务唯一键或去重表兜底，别指望「只投一次」。
+- **与其它最终一致方案的取舍**：本地消息表（业务库同事务写消息表 + 定时投递）不依赖 MQ 特性、实现简单但有时延；事务消息把回查责任交给 MQ，业务代码侵入最小，代价是绑定 RocketMQ、链路更长（半消息落盘 + 回查）；最大努力通知适合跨公司场景。
+
+> 相关：[[RocketMQ 01 - 学习路线]]、[[后端系统设计 01 - 学习路线]]
+
+---
+
+## 四十五、说说 MyBatis 的缓存机制？
+
+**回答重点**
+
+必答句：MyBatis 有两级缓存——一级缓存是 `SqlSession` 级的「会话内复用」，默认开启；二级缓存是 `namespace`（Mapper）级的跨会话共享，必须显式开启。查询顺序是**二级缓存 → 一级缓存 → 数据库**。
+
+| 维度 | 一级缓存 | 二级缓存 |
+|---|---|---|
+| 作用域 | 单个 `SqlSession`（一次会话） | 同一 `namespace` 的所有 `SqlSession` |
+| 缓存键 | namespace + SQL 语句 + 参数（`CacheKey`） | 同上，存进 namespace 对应的 `Cache` |
+| 默认状态 | 开启，无需配置 | 关闭，需 `<cache/>` 或 `@CacheNamespace` |
+| 生命周期 | 与 `SqlSession` 一致 | 与 `SqlSessionFactory` 一致 |
+| 失效时机 | `commit` / `rollback` / 任何增删改 / `clearCache()` / 会话关闭 | 同 namespace 的增删改（相关语句 flushCache） |
+| 存储 | 本地 `PerpetualCache`（一个 HashMap） | 可替换实现（Redis、Ehcache 等定制存储） |
+
+**扩展知识**
+
+- **实现是一条装饰器链**：基础 `PerpetualCache` 就是个 `HashMap`，外面逐层套 `LruCache` / `FifoCache`、`SoftReferenceCache` / `WeakCache`、`SerializedCache`（缓存对象必须可序列化）、`LoggingCache`（统计命中率）、`ScheduledCache`（定时清空）、`SynchronizedCache`、`BlockingCache`（同一 key 只放一个线程回源，防击穿）。二级缓存由 `CachingExecutor` 这层装饰器拦在 `Executor` 前面，命中即返回，不再走一级缓存与数据库。
+- **脏数据的两个典型来源**：① 多 `SqlSession` 场景下 A 读到旧值、B 改库，A 仍返回缓存——分布式或多会话环境应把一级缓存收窄成语句级（`mybatis.configuration.local-cache-scope=statement`，等价于每次查询后立即清空）；② 多表联查时结果只缓存在发起查询的 namespace 里，另一张表被别的 namespace 更新并不会让它失效，形成脏读。
+- **配置示例**（`readOnly="true"` 直接返回缓存对象引用，省一次拷贝，但调用方不得修改它）：
+
+```xml
+<mapper namespace="com.example.mapper.UserMapper">
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true"/>
+</mapper>
+```
+
+- **生产建议**：MyBatis 自带缓存只管单机、粒度又粗，跨节点必然不一致——线上通常**关掉二级缓存**，改用 Redis + Spring Cache 做分布式缓存，热点数据再叠一层 Caffeine / Guava 本地缓存（本地层要设短 TTL，并处理多实例失效广播）。
+
+> 相关：[[Java 41 - MyBatis 框架学习路线]]、[[Java 工具 06 - MyBatis 多数据源整合]]
+
+> 来源：鱼皮·编程导航 / codefather
