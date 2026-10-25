@@ -2021,4 +2021,34 @@ AQS 队列的原型是 CLH 自旋锁：把「自旋等待前驱」换成「阻�
 
 > 面试口径：主干 20 秒说完（结构 → 定位 → 冲突 → 扩容 → key 约定），追问再按上表跳到对应小节，避免一上来就堆源码细节。
 
+---
+
+## 三十九、Java 中如何创建多线程？
+
+**回答重点**
+
+必答句：**真正创建线程的动作只有 `Thread.start()`（线程池也是在池内做同一件事），`run()` / `call()` 只是任务描述——所以五种方式可以归纳为「三种自己起线程」+「两种交给池子」。**
+
+| 方式 | 关键 API | 是否返回结果 | 适用场景 | 局限 |
+|---|---|---|---|---|
+| 实现 `Runnable` | `new Thread(r).start()` | 否 | 任务与线程解耦，日常最常用 | `run()` 不能抛检查异常 |
+| 继承 `Thread` | `class T extends Thread` 重写 `run()` 后 `start()` | 否 | 教学 / 极简 demo | 占用唯一的继承位，任务与线程耦合 |
+| `Callable` + `FutureTask` | `new FutureTask<>(c)` → `new Thread(task).start()` → `task.get()` | 是（可抛检查异常） | 需要返回值 / 异常需要回传 | `get()` 阻塞，结果只能取一次 |
+| 线程池 `ExecutorService` | `pool.submit(r)` / `pool.execute(r)` | `submit` 返回 `Future` | 生产环境首选：复用线程、控制并发 | `Executors` 工厂可能配无界队列 |
+| `CompletableFuture` | `runAsync` / `supplyAsync` + `thenApply` / `thenCombine` | 是（`join()` / `get()`） | 编排多步异步、组合依赖 | 默认共享 `ForkJoinPool.commonPool()` |
+
+**常见追问**
+
+- `run()` ≠ `start()`：直接调 `run()` 只是当前线程里一次普通方法调用，不会开新线程；只有 `start()` 才会让 JVM 创建线程并调度到 `RUNNABLE`。
+- `Runnable.run()` 的签名没有 `throws`，检查异常只能自己 try-catch 或包成 `RuntimeException`；既要返回值、又要抛检查异常就用 `Callable`。
+- `FutureTask.get()` / `Future.get()` 是**阻塞**的：在循环里逐个 `get()` 会把并行退化成串行——应先提交全部任务再统一取结果，或用 `CompletableFuture` 编排、`get(timeout)` 兜底。
+- `Executors.newFixedThreadPool` / `newSingleThreadExecutor` 内部是 `LinkedBlockingQueue`（默认无界），任务积压就会 OOM；`newCachedThreadPool` 的 `maximumPoolSize` 是 `Integer.MAX_VALUE`，并发一高直接打爆机器。生产环境手写 `new ThreadPoolExecutor(core, max, keepAlive, unit, new ArrayBlockingQueue<>(cap), threadFactory, handler)` 显式指定队列容量与拒绝策略。
+- `CompletableFuture` 不传 Executor 时用的是 `ForkJoinPool.commonPool()`，并行度 = **CPU 核数 - 1**，往里塞阻塞 IO 会连带拖慢整个 JVM 的 `parallelStream`，IO 密集任务必须传自己的线程池。
+
+**虚拟线程（Java 21 正式）**：`Thread.startVirtualThread(r)` / `Thread.ofVirtual().start(r)`，由 JVM 把成千上万个虚拟线程复用到少量载体线程上，创建与切换成本极低，适合「数量多、以阻塞 IO 为主」的任务；但它**不适合 CPU 密集任务**，且阻塞在 `synchronized` 块里会**钉住（pin）载体线程**，这类代码应改用 `ReentrantLock`。
+
+线程数怎么定、队列怎么选见本文档「三十三、如何合理地设置 Java 线程池的线程数？」；要让多个线程按指定顺序执行见「三十四、如何在 Java 中控制多个线程的执行顺序？」；`NEW` → `RUNNABLE` → `TERMINATED` 的状态流转见「三十六、线程的生命周期在 Java 中是如何定义的？」。
+
+> 相关：[[Java 15 - 线程基础]]、[[Java 16 - 锁与并发工具]]
+
 > 来源：鱼皮·编程导航 / codefather
