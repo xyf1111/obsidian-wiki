@@ -2052,3 +2052,79 @@ AQS 队列的原型是 CLH 自旋锁：把「自旋等待前驱」换成「阻�
 > 相关：[[Java 15 - 线程基础]]、[[Java 16 - 锁与并发工具]]
 
 > 来源：鱼皮·编程导航 / codefather
+
+## 四十、Java 中的 final 关键字是否能保证变量的可见性？
+
+**回答重点**
+
+必答句：**不能保证并发意义上的可见性**——一个线程改了值、另一个线程立刻能看到，这件事只有 `volatile`（或 `synchronized` 的锁语义）能做到。有些答案说「final 可以保证可见性」，指的是另一件事：**final 域的初始化安全发布**。
+
+| 「可见性」的两种含义 | 含义 | 谁能保证 |
+|---|---|---|
+| 并发可见性（常说的那个） | 线程 A 运行期修改共享变量，线程 B 立刻读到最新值 | `volatile`、`synchronized` / `Lock`；**final 做不到** |
+| 初始化可见性（安全发布） | 对象构造完成后，其他线程拿到的 final 域**必定**是构造器里写入的值 | final 域重排序规则；前提是构造期间 `this` 未逸出 |
+
+**两条 final 重排序规则**（JSR-133 内存模型）：
+
+1. 构造器内对 final 域的写入，与随后把该对象的引用赋给一个引用变量，**不能重排序**（编译期在 final 写之后插入 StoreStore 屏障）。
+2. 初次读「指向该对象的引用」，与随后初次读该对象的 final 域，**不能重排序**（LoadLoad 屏障）。
+
+对比非 final 字段：构造器内的写入可能被重排序到构造器之外，于是别的线程能拿到「引用已发布、字段还是默认值」的半初始化对象——这正是双重检查锁单例必须给实例字段加 `volatile` 的原因。
+
+```java
+public class YesFinalTest {
+    final int a;   // 构造完成后，其他线程读到的肯定是 1
+    int b;         // 可能读到 0（写操作被重排到构造器之后）
+    static YesFinalTest testObj;
+
+    YesFinalTest() { a = 1; b = 2; }
+
+    static void newObj() { testObj = new YesFinalTest(); }   // 线程 A
+    static void read()   { YesFinalTest o = testObj;          // 线程 B（引用非 null 时）
+                           int x = o.a; int y = o.b; }
+}
+```
+
+**常见追问**
+
+- **前提条件**：构造函数里没有把 `this` 传递出去（注册监听器、启动线程、把 `this` 塞进静态集合都算逸出），否则 final 的保证失效。
+- **只保证引用本身**：`final List<String> list` 只保证 `list` 这个引用可见，`list` 内部元素的增删仍不是线程安全的；对象若可变，内部状态照样要用 `volatile` / 锁保护。
+- **配合不可变类**：「所有字段 final + 构造期不逸出」= 天然线程安全的不可变对象，可以自由共享而无需同步。
+
+> 相关：[[Java 16 - 锁与并发工具]]、[[Java 29 - Synchronized 关键字详解]]；三大性质总览见本文档「二十八、什么是 Java 中的原子性、可见性和有序性？」
+
+## 四十一、Java 线程池核心线程数在运行过程中能修改吗？如何修改？
+
+**回答重点**
+
+必答句：**能，且立即生效**。`ThreadPoolExecutor` 暴露了 `setCorePoolSize(int)` 与 `setMaximumPoolSize(int)`，运行期调用即可改，不需要重建线程池。
+
+| 方法 | 校验 | 生效方式 |
+|---|---|---|
+| `setCorePoolSize(n)` | `n ≥ 0` 且 `n ≤ maximumPoolSize`，否则 `IllegalArgumentException` | 调大：立即补建线程，数量 = `min(n − 原值, 队列中待处理任务数)`；调小：中断空闲线程，超出部分在空闲 `keepAliveTime` 后退出 |
+| `setMaximumPoolSize(n)` | `n ≥ corePoolSize`，否则 `IllegalArgumentException` | 只影响后续「核心满 + 队列满」时的扩容上限，已存在的线程不会立刻回收 |
+| `allowCoreThreadTimeOut(true)` | 必须 `keepAliveTime > 0`，否则 `IllegalArgumentException` | 核心线程空闲超时也回收，池可缩到 0 个线程 |
+
+**关键细节**
+
+- 缩容**不会中断正在执行的任务**：`setCorePoolSize` 里走的是 `interruptIdleWorkers()`，只唤醒空闲线程；多余线程回到 `getTask()` 后，因为 `timed = allowCoreThreadTimeOut || wc > corePoolSize` 为真，再空闲一个 `keepAliveTime` 才真正退出。所以「改完 core 但活跃线程数没降」不是没生效，而是还没到回收时机。
+- 扩容是**懒**的：只有当队列里有任务时才补线程（源码里 `Math.min(delta, workQueue.size())` 上限），队列空时不会凭空创建。
+- 默认核心线程常驻不回收，是为了避免频繁创建/销毁线程的开销；只有负载波动大的场景才配合 `allowCoreThreadTimeOut(true)` 让池能缩到 0。
+- 生产上的「动态线程池」（Hippo4j、DynamicTp 等）本质就是**监控 `activeCount` / `queue.size()` / 拒绝次数 → 调这两个 setter**；直接暴露 JMX 指标 + 配置中心也能做到同样效果。注意调整要设上下限，线程数过大会抢 CPU 与内存，反而拖慢系统。
+
+> 相关：[[Java 16 - 锁与并发工具]]；线程数取值公式见本文档「三十三、如何合理地设置 Java 线程池的线程数？」，七参数与队列/拒绝策略见「十五、Java 并发库中提供了哪些线程池实现？」
+
+## 四十二、什么是 Java 内存模型（JMM）？
+
+**回答重点**
+
+必答句：**JMM 是 JVM 规范层面对「多线程如何读写共享变量」的抽象约定**——它规定线程何时从主内存读、何时把结果写回主内存，从而在存在 CPU 多级缓存与编译器/处理器重排序的真实硬件之上，仍然给出可见性、有序性（以及单个变量读写的原子性）的保证。规范落地在 JSR-133。
+
+- **为什么需要它**：各操作系统的内存模型不同，Java 要跨平台，就必须自己定义一套规范屏蔽差异，让开发者只需用 `volatile` / `synchronized` 和 happens-before 规则就能写出并发安全的代码，不必关心底层缓存行与指令重排。
+- **抽象结构**：主内存（所有线程共享，存放共享变量）+ 每个线程私有的本地内存。注意「本地内存」是抽象说法，实际对应寄存器、CPU 缓存、写缓冲区。
+- **典型失效场景**：共享变量被线程 A 改过，但只更新在 A 的本地内存里，线程 B 读到的还是旧值；B 基于旧值计算并刷回主存，又把 A 的修改覆盖掉。JMM 定义的正是这两层内存之间的交互规则。
+- **原子性的边界**：JMM 只保证**单个变量**的读/写是原子的（`long` / `double` 的非 volatile 读写甚至可能被拆成两次 32 位操作），`i++` 这种「读-改-写」复合操作必须靠 `synchronized`、`AtomicInteger`（CAS）保证。
+
+**happens-before 的完整清单**：程序顺序、监视器锁（unlock → 后续 lock）、volatile 写 → 后续读、`Thread.start()` → 线程内动作、线程内动作 → 其他线程从 `join()` / `isAlive()` 感知到终止、`interrupt()` → 检测到中断的代码、对象初始化完成 → `finalize()` 开始、传递性。底层靠内存屏障（LoadLoad / StoreStore / LoadStore / StoreLoad）落实。
+
+> 相关：[[Java 17 - JVM内存模型与GC]]；三大性质的对照表、happens-before 前四条与屏障细节见本文档「二十八、什么是 Java 中的原子性、可见性和有序性？」，volatile 的语义与 JMM 的关系见本文档「八、Java 中 volatile 关键字的作用是什么？」
