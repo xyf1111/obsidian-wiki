@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[ai/AI 面试 60 题速答卡|AI 面试 60 题速答卡]] — *更新于 11-03*
+- [[ai/AI 面试 5 天冲刺计划|AI 面试 5 天冲刺计划]] — *更新于 11-03*
+- [[ai/AI 学习计划 2026-11（含教程清单）|AI 学习计划（2026-11 版）]] — *更新于 11-03*
 - [[tools/前端/前端面试 01 - 26 届春招前端热题|前端面试 01 - 26 届春招前端热题]] — *更新于 11-03*
 - [[weekly/Go GitHub Weekly 2026-10-29|Go GitHub 周报 - 2026-10-29]] — *更新于 10-29*
-- [[java/面试/Java 面试 01 - 26 届春招 Java 热题|Java 面试 01 - 26 届春招 Java 热题]] — *更新于 10-25*
-- [[database/redis/Redis 08 - Cluster集群|Redis 08 - Cluster 集群]] — *更新于 10-25*
-- [[network/rpc/RPC 02 - 从 0 实现简易 RPC 框架|RPC 02 - 从 0 实现简易 RPC 框架]] — *更新于 10-25*
 
 ## 编程语言
 
@@ -198,6 +198,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
