@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-11-12|Go GitHub 周报 - 2026-11-12]] — *更新于 11-12*
 - [[tools/前端/前端面试 01 - 26 届春招前端热题|前端面试 01 - 26 届春招前端热题]] — *更新于 11-10*
 - [[weekly/Go GitHub Weekly 2026-11-05|Go GitHub 周报 - 2026-11-05]] — *更新于 11-05*
 - [[ai/AI 面试 60 题速答卡|AI 面试 60 题速答卡]] — *更新于 11-03*
 - [[ai/AI 面试 5 天冲刺计划|AI 面试 5 天冲刺计划]] — *更新于 11-03*
-- [[ai/AI 学习计划 2026-11（含教程清单）|AI 学习计划（2026-11 版）]] — *更新于 11-03*
 
 ## 编程语言
 
@@ -150,6 +150,7 @@ title: Wiki
 ## 📡 周报
 
 
+- [[weekly/Go GitHub Weekly 2026-11-12|Go GitHub Weekly 2026-11-12]] — Go 生态周报（2026-11-12）
 - [[weekly/Go GitHub Weekly 2026-11-05|Go GitHub Weekly 2026-11-05]] — Go 生态周报（2026-11-05）
 - [[weekly/Go GitHub Weekly 2026-10-29|Go GitHub Weekly 2026-10-29]] — Go 生态周报（2026-10-29）
 - [[weekly/Go GitHub Weekly 2026-10-22|Go GitHub Weekly 2026-10-22]] — Go 生态周报（2026-10-22）
@@ -199,6 +200,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
