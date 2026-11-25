@@ -8,11 +8,11 @@ title: Wiki
 
 ## 🔥 最新
 
+- [[weekly/Go GitHub Weekly 2026-11-26|Go GitHub 周报 - 2026-11-26]] — *更新于 11-26*
 - [[ai/AI 智能客服 01 - Go 多渠道客服系统与 SSE 流式对话|AI 智能客服 01 - Go 多渠道客服系统与 SSE 流式对话]] — *更新于 11-21*
 - [[weekly/Go GitHub Weekly 2026-11-19|Go GitHub 周报 - 2026-11-19]] — *更新于 11-19*
 - [[weekly/Go GitHub Weekly 2026-11-12|Go GitHub 周报 - 2026-11-12]] — *更新于 11-12*
 - [[tools/前端/前端面试 01 - 26 届春招前端热题|前端面试 01 - 26 届春招前端热题]] — *更新于 11-10*
-- [[weekly/Go GitHub Weekly 2026-11-05|Go GitHub 周报 - 2026-11-05]] — *更新于 11-05*
 
 ## 编程语言
 
@@ -150,6 +150,7 @@ title: Wiki
 ## 📡 周报
 
 
+- [[weekly/Go GitHub Weekly 2026-11-26|Go GitHub Weekly 2026-11-26]] — Go 生态周报（2026-11-26）
 - [[weekly/Go GitHub Weekly 2026-11-19|Go GitHub Weekly 2026-11-19]] — Go 生态周报（2026-11-19）
 - [[weekly/Go GitHub Weekly 2026-11-12|Go GitHub Weekly 2026-11-12]] — Go 生态周报（2026-11-12）
 - [[weekly/Go GitHub Weekly 2026-11-05|Go GitHub Weekly 2026-11-05]] — Go 生态周报（2026-11-05）
@@ -201,6 +202,7 @@ title: Wiki
 
 - [RSS 订阅](/obsidian-wiki/index.xml)
 - [站点地图](/obsidian-wiki/sitemap.xml)
+
 
 
 
